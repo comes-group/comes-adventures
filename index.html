@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comes Adventures</title>
+</head>
+
+<body>
+	<h1>COMES ADVENTURES</h1>
+
+	<div id="stage">
+		<div id="ui-layer">
+			<div id="item-pick-dialog">
+				Press <kbd>E</kbd> to pick:
+				<ul>
+					<li>aaa</li>
+				</ul>
+			</div>
+			<div id="player-equipment">
+				<div class="scroll">
+					<div class="player-info">
+						<div class="equipped">
+							
+						</div>
+					</div>
+
+					<br>
+				</div>
+			</div>
+		</div>
+		<canvas id="game-canvas" width="800" height="600" style="border:1px solid lightgrey;"></canvas>
+	</div>
+
+	<script src="./dist/main.js"></script>
+
+	<style>
+		#stage {
+			width: 800px;
+			height: 600px;
+			position: relative;
+		}
+
+		kbd {
+			background-color: black;
+			color: white;
+			border-radius: 4px;
+			padding: 6px;
+		}
+
+		canvas,
+		#ui-layer, #item-pick-dialog, #player-equipment {
+			position: absolute;
+		}
+
+		#ui-layer {
+			z-index: 3;
+		}
+
+		#item-pick-dialog {
+			width: 200px;
+			background-color: rgba(0, 0, 0, 0.5);
+			height: 300px;
+			left: 32px;
+			top: 32px;
+			display: none;
+		}
+
+		#player-equipment {
+			background-color: rgba(0, 0, 0, 0.8);
+			width: 800px;
+			height: 600px;
+			color: white;
+			display: flex;
+			flex-direction: column;
+			padding: 26px;
+			box-sizing: border-box;
+			display: none;
+		}
+
+		#player-equipment .item-in-eq {
+			display: flex;
+			gap: 16px;
+			border: 1px solid white;
+			padding: 6px;
+			align-items: center;
+		}
+
+		#player-equipment .equipped {
+			display: flex;
+			align-items: center;
+			gap: 1em;
+		}
+
+		#game-canvas {
+			z-index: 2;
+		}
+	</style>
+</body>
