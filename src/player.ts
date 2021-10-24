@@ -33,7 +33,10 @@ export class Player extends RenderablePlayer {
 	name = 'player';
 	type = EntityType.Player;
 	speed: number = 3;
+	running_speed: number = 5;
 	health = 100;
+
+	side_facing: Direction = Direction.North;
 
 	ui_item_pick = document.getElementById('item-pick-dialog')
 	ui_player_equipment = document.getElementById('player-equipment');
@@ -183,45 +186,62 @@ export class Player extends RenderablePlayer {
 		if (key_pressed["w"]) {
 			this.position.y -= this.speed;
 			this.facing = Direction.North;
-		}
-		if (key_pressed["s"]) {
+		} else if (key_pressed["s"]) {
 			this.position.y += this.speed;
 			this.facing = Direction.South;
 		}
+
 		if (key_pressed["a"]) {
 			this.position.x -= this.speed;
-			this.facing = Direction.West;
-		}
-		if (key_pressed["d"]) {
+
+			if (key_pressed["w"] || key_pressed["s"]) {
+				this.side_facing = Direction.West;
+			} else {
+				this.facing = Direction.West;
+			}
+		} else if (key_pressed["d"]) {
 			this.position.x += this.speed;
-			this.facing = Direction.East;
+
+			if (key_pressed["w"] || key_pressed["s"]) {
+				this.side_facing = Direction.East;
+			} else {
+				this.facing = Direction.East;
+			}
+		} else {
+			this.side_facing = Direction.North;
 		}
 
 		if (key_pressed["i"]) {
 			this.is_eq_open = !this.is_eq_open;
 		}
+
+		if (key_pressed["shift"]) {
+			this.speed = this.running_speed;
+		} else {
+			this.speed = 3;
+		}
 	}
 
-render(ctx: CanvasRenderingContext2D) {
-	ctx.save();
+	render(ctx: CanvasRenderingContext2D) {
+		ctx.save();
 
-	ctx.translate(this.position.x, this.position.y);
-	ctx.translate(this.size.x / 2, this.size.y / 2);
-	ctx.rotate(DirToRot(this.facing) * Math.PI / 180);
-	ctx.translate(-this.size.x / 2, -this.size.y / 2);
+		ctx.translate(this.position.x, this.position.y);
+		ctx.translate(this.size.x / 2, this.size.y / 2);
+		ctx.rotate(DirToRot(this.facing) * Math.PI / 180);
+		ctx.translate(-this.size.x / 2, -this.size.y / 2);
 
-	ctx.drawImage(this.sprite, 0, 0);
+		ctx.drawImage(this.sprite, 0, 0);
 
-	for (const k of Object.keys(this.eq_items_equippable_implementations)) {
-		let impl = this.eq_items_equippable_implementations[k as undefined as EquippableSlot];
+		for (const k of Object.keys(this.eq_items_equippable_implementations)) {
+			let impl = this.eq_items_equippable_implementations[k as undefined as EquippableSlot];
 
-		if (impl == null) continue;
+			if (impl == null) continue;
 
-		impl.render(ctx, new Vector2(0, -12));
+			impl.render(ctx, new Vector2(0, -12));
+		}
+
+		ctx.restore();
 	}
-
-	ctx.restore();
-}
 
 	process(world: World) {
 		this.ui_item_pick.style.display = "none";
@@ -241,6 +261,7 @@ render(ctx: CanvasRenderingContext2D) {
 			impl.process(world);
 		}
 
+		world.camera.position = this.position;
 		this.world = world;
 	}
 

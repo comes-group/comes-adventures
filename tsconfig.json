@@ -2,9 +2,11 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "module": "es6",
     "target": "es5",
     "allowJs": true
   },
-  "files": ["src/client.ts"]
+  "files": ["src/client.ts", "ComesAdventureWorld1-Tileset.json"]
 }

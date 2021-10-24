@@ -8,14 +8,22 @@ export enum EntityType {
 };
 
 export enum Direction {
-	West = 3,
-	North = 0,
-	East = 1,
-	South = 2
+	West = 1 << 0,
+	North = 1 << 1,
+	East = 1 << 2,
+	South = 1 << 3
 }
 
 export function DirToRot(direction: Direction): number {
-	return direction * 90;
+	if (direction == Direction.West) {
+		return -90;
+	} else if (direction == Direction.North) {
+		return 0;
+	} else if (direction == Direction.East) {
+		return 90;
+	} else if (direction == Direction.South) {
+		return 180;
+	}
 }
 
 export default interface Entity {
