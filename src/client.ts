@@ -1,5 +1,4 @@
 import World from "./world";
-import { RenderablePlayer } from "./player";
 
 var isNode = false;
 

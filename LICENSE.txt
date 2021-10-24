@@ -1,142 +1,208 @@
-                               Licencja comes
-                          PODPIERDOL ILE CHCESZ
+                             PODPIERDOL ILE CHCESZ
+                            Z DODATKOWYMI WARUNKAMI
 
-                        rewizja 1, 25 pazdziernika 2021 roku
+                     rewizja 1, 25 pazdziernika 2021 roku
                 Copyright do zeszytu (C) COMES Sp. z o. o. 2021
 
-Definicje:
+                                   DEFINICJE
 
-    1. Projekt – zbiór aktywności charakteryzujący się następującymi cechami: są ze sobą powiązane w złożony sposób,
-       zmierzają do osiągnięcia celu, często poprzez wytworzenie unikatowego produktu, usługi bądź rezultatu,
+    1. Projekt – zbiór aktywności charakteryzujący się następującymi cechami:
+       są ze sobą powiązane w złożony sposób, zmierzają do osiągnięcia celu,
+       często poprzez wytworzenie unikatowego produktu, usługi bądź rezultatu,
        posiadają zaplanowany z góry początek i koniec.
 
     2. Muza - poezja lub inny rodzaj twórczości uprawianej przez kogoś.
 
-    3. Kod (łac. codex), spis – ciąg składników sygnału (kombinacji sygnałów elementarnych, np. kropek i kresek, impulsów prądu, symboli)
-       oraz reguła ich przyporządkowania składnikom wiadomości (np. znakom pisma).
+    3. Kod (łac. codex), spis – ciąg składników sygnału (kombinacji
+       sygnałów elementarnych, np. kropek i kresek, impulsów prądu, symboli)
+       oraz reguła ich przyporządkowania składnikom wiadomości (np. znakom
+       pisma).
 
-    4. Praca – miara wysiłku włożonego przez człowieka w wytworzenie danego dobra;
-       świadoma czynność polegająca na wkładanym wysiłku (działalność lub oddziaływanie) człowieka w celu osiągnięcia założonego przez niego celu;
-       czynności umysłowe i fizyczne podejmowane dla realizacji zamierzonego celu.
+    4. Praca – miara wysiłku włożonego przez człowieka w wytworzenie danego
+       dobra; świadoma czynność polegająca na wkładanym wysiłku (działalność
+       lub oddziaływanie) człowieka w celu osiągnięcia założonego przez
+       niego celu; czynności umysłowe i fizyczne podejmowane dla realizacji
+       zamierzonego celu.
 
-    5. Użytkownik to osoba, grupa osób, instytucja lub organizacja, która ma prawo do użytkowania dobra (usługi, technologii, narzędzia)
-       oraz do pobierania z niego pożytku. ... Termin ten można rozumieć jako użytkownika według definicji prawnej lub jako osobę korzystającą
+    5. Użytkownik to osoba, grupa osób, instytucja lub organizacja, która ma
+       prawo do użytkowania dobra (usługi, technologii, narzędzia)
+       oraz do pobierania z niego pożytku. Termin ten można rozumieć
+       jako użytkownika według definicji prawnej lub jako osobę korzystającą
        z komputera oraz internetu.
 
-    6. Odpowiedzialność - prawo obowiązek ponoszenia przewidzianych przez przepisy prawne konsekwencji zachowania się własnego lub innych osób.
+    6. Odpowiedzialność - prawo obowiązek ponoszenia przewidzianych przez
+       przepisy prawne konsekwencji zachowania się własnego lub innych osób.
 
-    7. Licencja – oświadczenie woli stron zawarte w formie umowy cywilnoprawnej określającej zasady i warunki korzystania z utworu z zakresu prawa autorskiego (umowa na korzystanie z utworu).
+    7. Licencja – oświadczenie woli stron zawarte w formie umowy
+       cywilnoprawnej określającej zasady i warunki korzystania z utworu
+       z zakresu prawa autorskiego (umowa na korzystanie z utworu).
 
-    8. Oko – receptorowy narząd zmysłu wzroku. Najprostsze oko ma tylko zdolność wykrywania pewnego zakresu promieniowania elektromagnetycznego;
-       bardziej skomplikowane jest w stanie dostarczyć informacji o kierunku padania światła, jego intensywności oraz kształtach obiektów.
+    8. Oko – receptorowy narząd zmysłu wzroku. Najprostsze oko ma tylko
+       zdolność wykrywania pewnego zakresu promieniowania elektromagnetycznego;
+       bardziej skomplikowane jest w stanie dostarczyć informacji o kierunku
+       padania światła, jego intensywności oraz kształtach obiektów.
 
-    9. Ucho – narząd słuchu występujący jedynie u kręgowców. Najbardziej złożone i rozwinięte uszy występują u ssaków. Ucho odbiera fale dźwiękowe, przekształca je w drgania mechaniczne, a drgania w impulsy nerwowe.
-       Odpowiada także za zmysł równowagi (błędnik).
+    9. Ucho – narząd słuchu występujący jedynie u kręgowców.
+       Najbardziej złożone i rozwinięte uszy występują u ssaków. Ucho odbiera
+       fale dźwiękowe, przekształca je w drgania mechaniczne, a drgania w
+       impulsy nerwowe. Odpowiada także za zmysł równowagi (błędnik).
 
-    10. Artysta (pd łac. ars dpn. artis 'sztuka') – osoba tworząca (wykonująca) przedmioty materialne lub utwory niematerialne, mające cechy dzieła sztuki.
-        Artysta – twórca tym różni się od rzemieślnika – odtwórcy, że swoje dzieła tworzy w oparciu o własną koncepcję, nadając im niepowtarzalny charakter.
+   10. Artysta (pd łac. ars dpn. artis 'sztuka') – osoba tworząca (wykonująca)
+       przedmioty materialne lub utwory niematerialne, mające cechy dzieła
+       sztuki. Artysta – twórca tym różni się od rzemieślnika – odtwórcy, że
+       swoje dzieła tworzy w oparciu o własną koncepcję, nadając im
+       niepowtarzalny charakter.
 
-    11. Oprogramowanie (ang. software) – ogół informacji w postaci zestawu instrukcji, zaimplementowanych interfejsów i zintegrowanych danych przeznaczonych
-        dla komputera do realizacji wyznaczonych celów. Celem oprogramowania jest przetwarzanie danych w wyznaczonym przez twórcę zakresie.
-        Określenie „oprogramowanie” może funkcjonować jako synonim terminów „program komputerowy” oraz „aplikacja”,
-        przy czym stosuje się je zazwyczaj na oznaczenie większych programów oraz ich zbiorów.
+   11. Oprogramowanie (ang. software) – ogół informacji w postaci zestawu
+       instrukcji, zaimplementowanych interfejsów i zintegrowanych
+       danych przeznaczonych dla komputera do realizacji wyznaczonych celów.
+       Celem oprogramowania jest przetwarzanie danych w wyznaczonym przez
+       twórcę zakresie. Określenie „oprogramowanie” może funkcjonować jako
+       synonim terminów „program komputerowy” oraz „aplikacja”, przy czym
+       stosuje się je zazwyczaj na oznaczenie większych programów
+       oraz ich zbiorów.
 
-Korzystanie z materiału objętego niniejszą licencją jest objęte następującymi
-warunkami, więc i zasadami użytkownia:
+                                    WARUNKI
 
-    1. A weź podpierdol, także zabierz ile chcesz czy też możesz użyć do swojego projektu, muzy a jakże
-       wielkiego przedwsięzięcia gdzie kod lub inne prace graficzne, muczyczne, liryczne będą przydatne
-       więc też użyteczne dla Ciebie, developera iż użytkownika. Warunek ten określa bardzo ważne posunięcie
-       w historii COMES GROUP, czyli można to ująć jako nową erę podpisu cyfrowej treści i jej dystrybucji
-       na bazie tego oto iż warunku który został Ci przedstawony.
+Korzystanie z materiału objętego niniejszą licencją jest objęte
+następującymi warunkami, więc i zasadami użytkownia:
+                                                                               $
+    1. A weź podpierdol, także zabierz ile chcesz czy też możesz użyć do swojego
+       projektu, muzy a jakże wielkiego przedwsięzięcia gdzie kod lub inne prace
+       graficzne, muczyczne, liryczne będą przydatne więc też użyteczne dla
+       Ciebie, dewelopera, iż użytkownika. Warunek ten określa bardzo ważne
+       posunięcie w historii COMES Group, czyli można to ująć jako nową erę
+       podpisu cyfrowej treści i jej dystrybucji na bazie tego oto iż warunku,
+       który został Ci przedstawony.
 
-    2. Nie bierzemy czy też nie podlegamy żadnej iż znikomej przez co nieistniejącej odpowiedzialności prawnej
-       czy też jakiejkolwiek odpowiedzialności za działanie czyli uruchomienie, użytkowanie, pobieranie, interpretacje
-       gestykulacje, manipulacje, otwieranie, zamykanie, przymykanie, zakluczanie tego oto iż oprogramowania
-       znaczy to nie więcej, nie mniej, że ta oto aplikacja, projekt, zdjęcie, utwór nie podlega niczemu co jest
-       lub też występuje w prawie Polskim, Amerykańskim czy też jeżeli jest to czytane po 2077, prawie zjednoczonych
+    2. Nie bierzemy czy też nie podlegamy żadnej iż znikomej przez co
+       nieistniejącej odpowiedzialności prawnej czy też jakiejkolwiek
+       odpowiedzialności za działanie czyli uruchomienie, użytkowanie,
+       pobieranie, interpretacje gestykulacje, manipulacje, otwieranie,
+       zamykanie, przymykanie, zakluczanie tego oto iż oprogramowania.
+       Znaczy to nie więcej, nie mniej, że ta oto aplikacja, projekt, zdjęcie,
+       utwór nie podlega niczemu co jest lub też występuje w prawie Polskim,
+       Amerykańskim czy też jeżeli jest to czytane po 2077, prawie zjednoczonych
        krajów planety Ziemia.
 
-    3. Wszelkie rzeczy więc i też prace są licencjonowane iż pozostawiane na pastwę losu przez oryginalnego twórcę
-       który używając tej licencji zgodził się na wszelkie zawarte tutaj warunki do użytkownika, developera, polityka
-       lub każdego innego zawodu czy też jego brak. Niezależnie od twoich poglądów politycznych, obowiązującego na twojej
-       planecie, kraju, oddziale, federacji prawa jesteś zobowiązany przestrzegać warunków tej licencji COMES
+    3. Wszelkie rzeczy więc i też prace są licencjonowane iż pozostawiane
+       na pastwę losu przez oryginalnego twórcę który używając tej licencji
+       zgodził się na wszelkie zawarte tutaj warunki do użytkownika, dewelopera,
+       polityka lub każdego innego zawodu czy też jego brak. Niezależnie od
+       twoich poglądów politycznych, obowiązującego na twojej planecie, kraju,
+       oddziale, federacji prawa jesteś zobowiązany przestrzegać warunków tej
+       licencji COMES.
 
-    4. Zezwolnie na użytkowanie oczu, uszu, ust, czy też wszystkich innych sensorów więc i dojść do móżgu użytkownika
-       punkt ten zezwala twórcy czy też developerowi, artyście na wykorzystywanie sensorów cielesnych użytkownika tego
-       dzieła czy też oprogramowania zależnie od użycia tej licencji czy też zasad użytkownia.
+    4. Zezwolnie na użytkowanie oczu, uszu, ust, czy też wszystkich innych
+       sensorów więc i dojść do móżgu użytkownika punkt ten zezwala twórcy czy
+       też developerowi, artyście na wykorzystywanie sensorów cielesnych
+       użytkownika tego dzieła czy też oprogramowania zależnie od użycia tej
+       licencji czy też zasad użytkownia.
 
 
 Podpisano,
 Firstbober, 2021
 
-1. 7729ff49b58aa932b5d7e670f409476121167733734ac542c3ca740fc71bd40f13a7f8afbe9c5369b1b4e4341329decb1740de6f88c40e98d6f556913baf0364
-2. 7bf12874bbd70edc965349cc82c9fa385c288275b0bab27e159024a5f3da82ab973d4002659b60b61b291c541f2a20b5d54ad2a55d330e610217cd53101c0088
+1. da3e7f2500f4915124a6a6811eebad0c63a3635e3444a630937322a0173f9193e0ff03ec9ac16fc498245f715370b497b3fbc9b5ff1157d3737f45040a860632
+2. bf8d49c7001817d6d017fc1828b80593d60e3a37e9564088cac05d581bd4d591b031c2682cb936ceecf2031159a050ca2ff7d01fe8e3d029231f24cac3cbca03
 3. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-4. be643d4dbce8d0465740afb3c7ecd812451b974f333f2e2207fe9661326d25d06e36195ea44c9ae4c081c5de669e6a04802509e8598e7993ceb3249dd1dc993b
+4. f1bdbc1c70266aefce6f7c3efd39ab35444576ed44d329c7d87f89dcb6aaaec33d597472b213e5b98da014074d588d76404f3da00d7deff0e0f954d41dee252d
 5. a21235ebeeed40de4a2071da89db48ab27d7b2adbfad1168a80600e176581381f95f1ed91e0f020be5efd7361f2028cc02a0dd6afa41ddc0eaba93ac144fd9c5
 6. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-7. 0ff14509cbc509eab3d251f2735a822a514fbb5541019198f649ff7733890d3b102dedb2bf7799cc169837258a5382654f06a877cdbacca726b7a12bdbb9c69e
+7. 06c2632b23cc845270d180ad79edc7f2a79c916a70de8936ba8128132b39850ee8f7b08b45e735c738f08ee9d8c88663447712e0cac52e924adcc0e2e6b96873
 8. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-9. aaa87436eda4f1061c57caaeb951168ae3d161b75f5344b2b549e3c1bbceb5b56762d1c5ed1445a4efe00aa3ec22647d51cf9af6f8b8b961f76dea47f12b8e33
-10. bcc188fd466e319380473e41ce6d1dbe4ee92dec6477c256f43ec7452063a89ef3b67e090703d799a2c47d489e11f23803bf98996dbd92c1261b02248a8aeee7
-11. ac599bf3dc501d937052a7e0e7a256c679bf92b8fcbde2aad8e8199befb8e73e3b7000882c8dc953ab05827593e0a3d69c3508ff0ee3ca5eefd9f7ac9a1bfc02
-12. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-13. 84b93f9cdb633f9dd6bd91b9ab781ff55ba8c101f8b5726cadac6e165d9edc2df7bb5d83c4707fc326c368a74fdbe69a0628b25cf26e40c784529ce7985b1f90
-14. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-15. 68eb8648098db02d2d5c52c323a37e436d70738faaa8bb75fb0d4726f62ca2e5b1ef9fc01896b110a8f8b5a65566e52aa6c251a83cf12ed6eadbdbb08c918231
-16. 2472f0f37d0d2021741997eb15cf97fb2e544549f50ac93f2294bb30f2d9e58d346de7b2001d3d2d712a159193ceaa703e880f39561764cf92ad367fd50519e9
-17. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-18. 58e270621c54922638dff14463dedd884b2b99fc684eeeeb6c3b0bef870b28c94049ebecc31d77055035514500805f9ee39d7996ecdbe3f0b54765c214db1816
-19. 0df1362f42a0d593ddb41d25bbe3602eac64b6c7250b7ecacf73bbc4fc33f6ba7b34d7523aa1272d7a00ff99084017a4043c0c0c65f6d071ea34ea46e9858b8f
-20. b3cf798d312a89eae6a34b412a023062f6a8951b7ad9a71ba7e332d7116fba718903e9e647b7c8cb2d4105543ef68a3e97dca20f13a899428237d72eb514a335
-21. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-22. ac85ef5910f2e68f858cf2ea9c0bd960d31f21f73df63ad3bf375c324049112df60d2d4dab58270dfdde73ba2b4cf8168470984e85b50f333bca0256a7e43352
-23. 2b1866e32bf537d02ea561ffb4e4ce1edf2361ea1c33561bfcee1a43aaf1fe246e869ed87345bc9c26cb5f1994a641328531bf6ceec3ae152cdc2e0d2ecddce6
-24. a0084f8c3b638d650c94821fb9812483b0fa89606eb232aa7eee6160971e0542588085a55b25900c58a3a21b3d2c4678f9331edbd99243d6e570fb612751641b
-25. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-26. c26ab978a656d34ab8ef6bcdeee20889d03b26c0152e344c2fdc964dc9b045a95c2bf963a23d07cdc60a205e4bb08b08828423c3dfc5b9bd703f7bab684d9c8d
-27. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-28. d95877f20dd1288e3b05da19a1a01af01c35d25b409d65e6d4bddcedb1ec23514bc819dc0c6fdfaa65e46d5bd2b3504c3ca338741144b8cb3a0de306ec825af6
-29. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-30. 60e1b6753d9f55844e7a08aa3fb7ad9c1f1bf71198e5894d441e09a920d769fcae9cab1193a9b295d69d81af5a80ad13a2a463bd8bb8d9955111d1a650b2724b
-31. 3c52d915ce944bbbcd959982efaf4c1d11c99fc97f4188f509e0e65b4a1c02b11b3a3fa181a84779c0f28998c54cdedad75af037b05ced39f8646902204dc0fc
+9. eb3c706d3467eb3a0e17ee33a7479e1dd368a1e49363d65a9366d951a17832be5794f21549b48cc9b3bab9bd80d444dc476fe6ede2403526f163cda6f48eb141
+10. 17892a070d14c598fa59bef7a829651eff54651a45899290558bf94bcb745f28d530936fd280ded37d541e34dad98366086a13441f0d2770d2439c1717ef078b
+11. 1ac57679f8c09f1c1fed77264a6587ecff62c7f3cbbe93047fd1b42c8c63a1714cd4cd310453ef85b84a6f0d8ec523647ee511a070077c0afe3416e77a7db49f
+12. ac599bf3dc501d937052a7e0e7a256c679bf92b8fcbde2aad8e8199befb8e73e3b7000882c8dc953ab05827593e0a3d69c3508ff0ee3ca5eefd9f7ac9a1bfc02
+13. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+14. 84b93f9cdb633f9dd6bd91b9ab781ff55ba8c101f8b5726cadac6e165d9edc2df7bb5d83c4707fc326c368a74fdbe69a0628b25cf26e40c784529ce7985b1f90
+15. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+16. 8ec11715bcc96c3221da87c7e51628b0810fe8fe09089b04d28869f3b8e61937b2036471220d355d870079e613c12777f5e27f87aac41305ab127292bbf2081d
+17. 34c4e03cf03473a16010b06dc1644c19e5b2b3702f412fb63a3a6df32d22436f1111201015e52c6d53b2c5823158f71a77ae7a2fd14b4592f477a60ad095f50e
+18. 6fb4da1b4fbc7afb6271e34fa2e40b2868d7fa4985ef8ad3ceea90e0bfcbb305f7502b681e39e50e10c1409e34baf81a2cd7fada9286cb16a9a85ca69db52137
+19. fc0eb989cb741c8023fb841662bd8aabd16f621ad3d2997f11076aeac6fe301ce86e4ee77f5ff53121dbc396f850c80b07a5e49f4822a9d5e7f8ab86211c9865
+20. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+21. c099269509d4f3ab45ef9919fb83cbda1366845e6d30fed82ff13ab76024e4b8bd642926f14f7e3e973164eea545c66174a87a2b50a761aaebc8d9c3132d872e
+22. 58a34d76c5290f88d2a51a5a68d84fe7dd3d900bd9781967940210654a9fbfcb9d83fee87677ab2f4b844c14b46ba4d2d22035cf3b777f128ff769074cb46fa2
+23. 8a788e6468aff31ff8a7718fd4dd365fb6a77012f6b562ac3cee580e3d6f54161d85266f9aca5553c570cf2918ebf974009036b78db1906162cce523633a7e09
+24. 451692e2e3c92c612fc4a10907758102e7257319ce99a28a613bcb17b9c470572ef62a40ca144089a9a2f674a3d38f81ab4cfaff9e1470371c6f8ec6c99e8f0e
+25. 0ab728a4b2cd79cc36b5142cf477516303871b2572c2a1f94cfa7c7bb0aa29af07d6e30e104dbd8f7ea4f5a60031025c60d354065ada022e76bebd84e8189a71
+26. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+27. e117fa7ea6eeb9adcfb0edee009e5b73bbf787a7aa2a6edd1c6db1756b30e81add0c29fbe46f0ca3fe3d0f0c2b89169b015ca80657ec195b45774c223c4408bf
+28. d447a5210d02ecb32f6e700cb2c1e36d3bae9d7b6b9a617cffad0e55741dc3500fc668d1ec2b164255a1183d9be472b7250987db1227a44b01c07f73cfac5005
+29. 0d891027fac3668084901ce5d576461d4e149f99d5dc90260f7349418544774440d12203af35aee2775cf504a698131e7c74952589dcfc7079ef9434281964ab
+30. b144e7cceaa9f4d4659ca73c849a03ee7c009ebabdbf69e0686073bdbe166bba8e97db9a125c6634d75089b44b9d9b5712434bd6cf6192b382dfdcdba0eac5ff
+31. a0084f8c3b638d650c94821fb9812483b0fa89606eb232aa7eee6160971e0542588085a55b25900c58a3a21b3d2c4678f9331edbd99243d6e570fb612751641b
 32. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-33. 3d5996b8e1653622c87bce42638d2f1a51e858be346e0cc7967c0508343b0ca221d9191a90436a0409d19e0444af8853db5b7d31ffa24a5b588532b9c5785841
-34. 07b6772b46e3c60d1361ca29b28c6d797e6835345ca921cfa2bd378764734f9a00d0c34e45158f96ea17fb2b9d33488d3a99b5b5983b00ad5a84bcc66c1093bc
+33. a5997e3273d904ecd509a0ffdab32cefbb568aac28b55d573cb9d8fbb3f14a5a56cf9a1deb55f689306708e8bbe24d4251b7117930937a23667d10d50743627c
+34. fb963f2948d5f78652d35e72d6d16f565de2290458508d19ab2353d5c67d14d5cc250295202b1c5538c49c383c9292d71b3feca5f8dddad707e235209b54d4d0
 35. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-36. b9e2ac73e3c63800b4e7800a1ab4636dfa37196488c623e3d9d1655faab11510a42c44f9f863bd69ea588d53c571a6c2ea3a738baa61722153b46c7768685c79
-37. c00373577f88c14422741b951102ef41b504169d8ff2f092527d92e9429f83c8960daa33b6b9a6b6825ef8e111b82ddac09469391267123d393c1297e9bdc26d
-38. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-39. 0ddf66d9b16a170cdaa6513b7694f7c67eadcea0bb42fe211cfd7380b7bfd7dc209a09186c258209aa39dbf024f681399583b3c2e9abb34ea30d5df522c33fbc
-40. 1e7efbb03c73195a0df5fbf0ecc4d7cccb7a5c8b018699286aa75a36c5579baeb167b7f5561ad64f8fef1a4c9f874952e5aa9f0c110670de3d66ad4804327f06
-41. 29ffcb8d6a255a2b91fe1c90e7b5b4a15b512eaa5c906fc56012651f9fa947eff90836e3264edd708b5156097b4320261a382963cf435d2c5059dc22d03c42d9
-42. 0888f70cbd86fdc88e049a85deee9c29d3f95a08373fb2ebd1af8b02452be97893bec75b2f043f3c9ad95aa579e7fef18a8250923855604dd134fd0982934128
-43. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-44. de9aa4ca193219546a3a95d3b0d764c70bc1b96412ff9ac5b4e55346350e6bbeae4a59791efc55cb10a023d573e715a1a2eac55a69acbd009832eda976d35dd7
-45. 83e46efe9160ff9c298a90e9ba3ca7bb3b0ddafc69cd03fd3c57938a1caf931ae9942713f7d864e93a48ccd6e83575228579380053e3871cc7cd16712b3648f7
-46. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-47. 2f69b7311fda6b33d7da3df8f4ac134a96367c59ba014af081466c0962208043cd84972c522bf7d75d1eb373b4758f1088c9c1c4bec58b745ce3edabf6f3ee90
-48. 32045742d12c5952d1aa2498037ebc41d328e71fda992982651cc8738912b535b8651ed9aa96154ced23a178cc4757215bca68c0eff113d6513b113685dd5afa
-49. 4619f8fa0977b5b1d8999e1cb4e2cb7c7f7221311e5fac35c1e54b27b5d2b06748230a236f17a8fd20eca264cad33b38ddd19b488cb36ef1ef0106be20aac772
-50. f2c2971933b3beea3de78339cc518cd12ec2e1fbd50b42d8a42b4a7aac0339597c0cad56c2ff798c9d76e9f3d7f93b7be098a5165d3ef78002dcef8374a45d29
-51. fea4aedc53dd48fdffee48179e3c8aafb626f934bba76402f0e24487a59f29865a3d766f43f3294b447db6d599c310d2ed8dc0d746df3ee07d6aa6e0a721aef2
-52. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-53. 9abcc8c901407e10fe6a4e6a1b89e2d4a28261ba7c6a2df3b407c1c513868a04170e27f608a5352e71b863165e89d02d8750452fc74c313e355667c7dfd43ac5
-54. 3e7a8751d368a7365f58c5c5f7f19867ef626988d705db70402036a6c8c6b74e33637cc42d148ecaeb480920fd5169914b27ffcdebd8d60def92b72c3269dc6e
-55. b8a68a6884e7858432f5115540e24c55870732a0b1d66353d30ddce8dc687909092363407d33c21bcb45554966e4bf8fc793f30a0eedb545e994dca9ff04aed4
-56. 249b94df2bee4ea52c15e891110bbb93b78d080fe38d168f1de139a21ecc916f6c7735888fa5829272b1ee61b75a3bb3b74313780782a31b10d20f4b3ac831ef
-57. 4d89c0acaaa50512dfd7cc0b27199f48b3c1f6ba4a6a013b8396a2e5668f2d25fa60608958b1d4e63d3fa62ffe8ffee87e972c21c5d149f553ccc321d7d15fa2
-58. d4db1d62f94fc31517c457cfa91879fa5c61d2bde9364626df41336c46cc0f7166c5bac0cb14a51758c224e4db879fa848db7be810b827ff225d48a30d5ee194
-59. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-60. b3a0e4e425390a71ceac794201c0c333b8f8f6e4b09fe61589d0525e6f6d42a46dc09cff1f5d6411f63f5329d057b8097d4f7bdbe724c37bafe5448e717dfdc6
-61. 17f7d998a7d1faefdc6ebc500f2b9d82a4ce03412d60fc6aa8ca2380f50b6eaac098d96e02a51f9c43061d8201d05d36cffff3bfed808f52870acaf0805e9202
-62. 7015a52df06fa6715ea2cace1a88d974b52d5b143e6011f9a9558d4d169aaa32bebb967c15cd132e556bca81cbdaf60699bcf12b48ad357dbaca1b3c311a0a49
-63. addc33cd969551d67f9b14c9572bc12e29bef66ee33596be558edd3d0321ae66a6b8fc48535014cdea37e67892994069fe5d89300e270ba395340865159f903d
+36. 6b45b6d01c136bc8fcafef9438f0b7b851a34031ffe19fbe290405998c8e6636772da71072522822da87e4aad139d14c67b97e85304563a514ce64791590d232
+37. 4533c64a3daf3fe9b5612ae274694b994dcbba6e9013d6c1521dafafe7e32db0c2ea5e997f9d899e7cdc82e2723e8b0f9b2087f6a08a4afb9642ed6348fc2484
+38. 8ddc7f65145a24882bc54d86a34d5d34efac3e81a7e483d636cf8e838a031ea6d045614b4a5e84ecaab5bae6370bb5d2448e7b7b146b6376ba6ecd7067913bcd
+39. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+40. a3d1af24f17d03a9d3791e788ded4537d032c65fb96fce9592816de304e8ee02de44515e2d506ce7adaa2ea06758f055a9b10d1efbc2aa76fb8da162a9d54844
+41. 96575721bf8003ed769449d4da9aee0e559a3f3d4616fa86532835f33219b6fd9709df76bb607b083433749f3a22a72b07ee3fe7d5b969e99e97344e26a9c41e
+42. 6c3f57b3d78df3e5fc425f9ff4c0acbc913a8d75ed56a942b381c64a5e4a01b19a58bb67ea7090c50f5e3cbfcef42acb6242c10087da6074efeb0f80d2f72ca9
+43. 377eddbcf901a30813369ac254a623731d19c1035d7bf5ca93c0f279737262cb70aea8e9bb14f17f1b0b3373526e7b6a2dd81af325b4a58dadd628e9f82f14a2
+44. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+45. 780de842af2b3c2fdd76c785cc61e5ceb78acdbc7d68806e0afeeab67f4ed8cca89d4c1ab845d3860c88962270c214a06625389a94bd700fd12bbfa14bfd2ba6
+46. 7be8a5bad677fdd4ae66cb433fd5a55ecc3210abbe4a5fa412bb6d3c4c73cfd9a46f1e2ec936d5c4b71d54d74714a460f1a9150008d63cff63dd4228ffaebaf5
+47. aec28d191a49990ed49f5ad546eabfda0b9a576306ec171078a2cff511cccfc2ecac5e38ecd9efac0e25dd557413cb3a4ec50a108fbbdd6accf1e8092e9d6b68
+48. 810a392f621ead3df3025f87622c9266282a0ba53d7c41e774a8a212250d88eb4001176958769f8c3936cf8fb4ef9a8b05f68729cb72b912d23c394b6d5d88d5
+49. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+50. 1fcc893ac320237db23c803d29f1c8624ee4a730cfa4769df35b4ddd2997a6e17a0888c0780d8265afbcb913f898051a765d9e6da2c58ef4dcdf7d9380d1d830
+51. 185cefbacc80699fbc798ca6bfd1d99bef59b8012f3823f648412c14cbf076fa5413af2d333d22f6d9a9fda7148b63c0980e08fc8cc73d5aed611d3cf2ab5448
+52. a60008b30c5fab7d315d04514289b16dff012d79d7037c7b7523e32a67e3f943254c0183d9d1f5d8b606fc643ad8c49fe9cf24d07dc2d54c5a6825563fb9e90d
+53. b077a0c94918c8adc0f11963ef9eac1844973fe9fd8120ee6e034b5e57c46e901dc4bb5136a724dfabb614aeadc37d2443eb881f7c45251364ec307cd6747cdb
+54. 5dd05ed31941781544f4664353474bcb9fbe71817a5e940c7fc30090b82d17cbdab629e02b671495b18a475a178f9f8e57818c4ce8eb49b635a99965bb1a98cc
+55. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+56. e222a12d26852d5d65b5da5efcfe71946d9357b853fd77632c392707030c139a7e9f6f5a34d70db1ccdc49c282a63723f23246180b7f0528ea6632179edf3047
+57. f93778f9397fe658fd949b8506f257b0d570f66b07b4b835de937ef108c4e3691f1e748cb8826092a151e81bb980327861b62f63991f057adfe8d11f5fd5bc39
+58. 31fcbae20d938114c2335220ca030fa45f827c9489c8699b865df98da5a053b1b0025cc2768b8d05a869f7b76fa47bfb151b239aba57d5e7b53121dfb28616de
+59. 17f8b8b6de42ad8c8b38ef090d8c6fb50f2fee6836212f4b8f5dd6c363a3c4f12fc3203a165fa2bd8214c01fc15c150bbf7f998d2c3c805f5a7fff13fb17f9dc
+60. 32b6270486ea09cfa118a6b918e87f9e085d858534fcda8b17a78f3f5bb0c79e6b2194c55cfd7cf690c7fe5a11e09791ed8f7bc07167cd87919f00603ee2477d
+61. d2df3dade7fa14d807925c918fd72d20a4e1f73866ebeb0f306fc6722d8394a095f0a15a81e848866841ebc1218d7d409541d19dbf7b52b2d5d7b3c2f510acb7
+62. e000255c682c9088d1f4450ea14ab2574a20c6b7456241b1f8a444f85d33d6732a42938d95849c82a3da64014b465222c2e974fd84fb017a87367df67f2074eb
+63. d817eb55b6f910794d58c3a854b520d018b5b10528d315a5cfb668b5c3331bc297f91d4573a1ed74ac88ebb03ff819b69f416e8903232f384dc34f55f0d31b39
 64. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-65. c76b3b38259965194daa124ec7c11d8723fcea4e44b1b4b1de82ed3c6b39a2fed2e8262ba9372fca83b28fe27e5f9984533d9c447b7d2402914f5e9f488326dd
-66. 1cd1a2a9286198ac70e567b7c1c2d5ba86611ad3d06937e7caef886ffbc532b3fd0caab8b69d481ae3b15166c4df2fa1c7341607246da0baba804dd3500b04f9
-67. 16dc287a9914cc587417c76cd3f5b17d0d38ed3f012b2f895ffa146fd0d080782c2d5e5af297997dc28673b4299b8262a62a6dc845cba8a8a1bb7a2c9c65197e
-68. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-69. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
-70. 67a71ce087be6e9a9e2b5f603a40cae3a430478086fb3b9790ff6cadab41316fa5de2390719809b065dabec794bcf5eda77c74dcb6815eb2557cb91f1407105e
+65. 93a9de6ceb739a5bd90548940c97fff5543196556abf84976ff29ba2bc1c8b216f3982ba738a8113bc41a4d9aeb12cd37228cea9948b471f261a1c857ac0243e
+66. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+67. bdcfc63d9c26b73cca473f2fc0ffa16537bf43cb591b90573e17446fa4d4b9df9aef39a371b4d08550970d42431a703da9984be8994ff9866e7975acb62e0e3d
+68. 235c8aa33bd89c79218971dedae27ce63b4bc501b09aca6e1b96e186a4611c3cd6d18321285d5993985ef0a0453d7c6cf8859d03c1cbc86edf719e651ea2d4be
+69. e236f882c6c155c08b46d2c1cf712d9b754b92681fe7c7935e436bfb44781d88798b210080e66b9097f9e6e2a2fc493f9496702f14d8940e73b3858471a6861b
+70. a13b523990f0bc52530351a4ab47f52ae112528cc7c7e6957238d3ed2587b41dd446b0c77017b9cab69c3c42332d46917548345eebf8b3ccdd53f50b9f78d821
+71. 327bc9069672c554f823cb6df3cc5962f044081a7045d350555002105f237960833cef6d7409f90eb59d4ba5d777002d1d858ca7adf22a155c6ccf17329a922f
+72. 90c5d9db9f2b2ebb36c857aeddab3b65d4bd5313e3ca4f22f572a8695a20a33b2b1b601ba17203629fcd14d4b345e7bf2e85fb41a7414265762c9d48b7e798bf
+73. 43ccd68387c57c578e480e23c7e63ff709e1c88e288a72ad4c95205682f0971ccd20ddaa1b7b42c5c0e27620ead44093f517e41a8e0e349038083c46ae5a63f8
+74. 380e9d6d19cacb38890b205bf99ede6375b12f59fb52ae31134f624d0b6ab5193c4aaeb4f648cf754440d389c4ffdb76d3a1a2a598fabc6f0cfdb6d3f96ce407
+75. d3fc49997c1b6e3eefb94d797ca42ab13e9f6222faa650e2f4e29a6bf3d842158962c00ae1caa7079f657943e5572dcc80acc9d78351fec4bec6b73506d28b88
+76. 3dd92bb43070f8aa91d91b368bc7e40eed32ad4a8ba7fb360878fbffd038cc721916e6ab287783581c951ce961f490562f7a65331a6f0a78d97304e6a8acec2b
+77. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+78. 92933b991cbda5ceadeacbc35713faf730a37eceab9db3f9083642589ad037fe6101afd2a378d99bf30a79bc193806ab55f5120ead4c68408c36bc8b1549e008
+79. e5f1edf8b32908e2368fd201ffd5e6d230b53622d6c428de3484f56ef2e940cc5dca7a5ad67493009cf5a372ce844031be0f82b91645a010d75221ba2ca64c95
+80. 5ecac297f25d318b778e9501a98426f5b55dd5c1d984702df13ff8377c4be4464724d94f27b7098ac298ebc406a4a5f98b7bb8261e2d2abdf64f266827258d60
+81. 0c23e5feba919798bd9d15e9cd1b4d9d495bdc9b05e5225638d83bcc6aebc4f818c5de1939b6b74c3de1a512173f6d72c549d7176adaac42891e9bd25f491d75
+82. eb7d22f247da9db0e8a283caadff88e0e2a5cdcf642d912b540654d7ad62d640359c3543dcf2b59eca2e7fca350c99105e43c8c44fa662dbbdbbd997452ef80b
+83. 4bedcfe54e331bfd52e002c04e5816f4a889ebb060222fba28b1793c84f1660fc7a2cb6910949fec831492ff6e7df4d1754047f8b64311fba82e2713543a645a
+84. f6e72da9c257f871383cf76f8f96677f68ca05ee191c0f0c2d54ac80274ee218d8d855fb8a2a6ef45ef4c5c2c1cebc72ca1bc5f235aea4a47a1fa66740080a4e
+85. 8c7aa23524ef7baaf071d192b16cf69bd32065d4f31ee3cd6810cce0a36056cc4a7eb49bc29eb564b83738b5e83aa91bd300bdb39e93531a0136545c82e07880
+86. d4db1d62f94fc31517c457cfa91879fa5c61d2bde9364626df41336c46cc0f7166c5bac0cb14a51758c224e4db879fa848db7be810b827ff225d48a30d5ee194
+87. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+88. a164eb7670e4fbdfb2c9f25b46423211b088e054c3a08277b2a3758fd052d2b2e269e9eb96951f5ad96e112cac52a03cd4900412cdb761407c33a78559752c56
+89. ee971d669c254e93e53e9c25e964c6f8ed58aeeb01b9117e76c8b6f674feeb8bc287ecc5adc6b9e82c18f50ff1816255e647f542ad7ea36d4ba51f9ef68d9c76
+90. 0f6311e4f3f709d277f256de7057762ab1e99cbdbe09644b811fa87f04711a957b6782219bb1266b0d2cff1ebcea768b8eb5f67e2db6a68e23f8b5938d68637c
+91. 411afc740a2cadbebffd0befd7e12e1ec0e865a3f3faa47c711d9fc5bddd07692145c2c8de30f968afd77e3a42b48bdb3ce4ecdaeba33e7870b0111a2afcdfb0
+92. 431f1b051b2ede934359229f26016ddff070816bce0209827e55eee691b2ebe9ff36c67a92c2407d95a914a1b4a2a4269a3b219d5f1589fbeafc38fb8ef7e56b
+93. dfe98131b86cee82a2fc70808cd73d126be270b589d2a8301090a7dc9032a72c27345807d67ac56e2fce2b399b8efb5550e4b47a3a137c69784634df08d608ce
+94. 3c2375f80f83468e35f8e3040de1cbbd98f6ad07b018c11aad044c91ea3c90a6c96316f6b8fc4fcb061912c7190131d7bc30afc42ae4ca148db3f81c1f99451a
+95. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+96. 6eb26acee3f8ee5d55b649a98d26c4c5c21993478a6f87ef4c94cf83eac82295bcb686884b6f73558e2b918a74f7e959a1129f1ec55274c1242d4fe134ee8fc5
+97. 68a0a802d4523a74030c69bee88bb43d180da3f05f5583831d15fab20674c4cbc3d1e92408716340e173ba6a75f34e17a7b2df20327b1cb8e571824ee8f43d70
+98. 64a7ecbd53b2aa8e0c4df295ae0e5aca3de616208403c5ed1316922dcf42e295a8b00619f6d0735c2e1b2858170306e896388694494e7d2d7084307901645ec6
+99. 5ebc905129172e886a30e2be3045cc7cd7631f0709900d724a7b3db9c775647d3e4ae9751ec5340f1389cd58e21d4192a2c201c75555a73868e600856a54c01d
+100. 8daf630134205bb4f47c4d26e7ad405b2a0a123285e67b94ada036bde49673dc68ac17c663d4ae106be82fa3fef171be462b6b5549d890d375b1dfc1bc1ef051
+101. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+102. be688838ca8686e5c90689bf2ab585cef1137c999b48c70b92f67a5c34dc15697b5d11c982ed6d71be1e1e7f7b4e0733884aa97c3f7a339a8ed03577cf74be09
+103. 67a71ce087be6e9a9e2b5f603a40cae3a430478086fb3b9790ff6cadab41316fa5de2390719809b065dabec794bcf5eda77c74dcb6815eb2557cb91f1407105e
