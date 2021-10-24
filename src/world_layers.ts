@@ -1,5 +1,6 @@
 import { Vector2 } from "./common";
 
+// Tiled chunk
 export class WorldLayerChunk {
 	position: Vector2;
 	size: Vector2;
@@ -21,6 +22,7 @@ export class WorldLayerChunk {
 	}
 }
 
+// World layers containing Tiled Chunks
 export class WorldLayers {
 	tilesize: Vector2 = new Vector2(32, 32);
 

@@ -1,12 +1,14 @@
 import World from "./world";
 import { Vector2 } from "./common";
 
+// Entity type
 export enum EntityType {
 	Player,
 	GenericRenderable,
 	Item
 };
 
+// Direction
 export enum Direction {
 	West = 1 << 0,
 	North = 1 << 1,

@@ -2,6 +2,34 @@ import { Vector2 } from "./common";
 import Entity, { Direction, EntityType } from "./entity";
 import World from "./world";
 
+/*
+	Item.ts
+	=======
+
+	Here lies all the Item magic which can be used to add more items
+	and implement functions for them.
+
+	Every item in game has their own entry in "ItemInformations" object
+
+	Item which want to have some function can provide "implementation"
+	member with reference to class. This allows player to make instance of
+	specific item implementation and make use of it.
+
+	Adding new items is pretty simple:
+		1. Create new entry in "ItemInformations" object
+		2. ...
+		3. profit?
+
+	"special_info" member can be used for storing some common informations
+	for classes of item like melee weapons. They will have practically the
+	same implementation but with different values: range, damage etc.
+
+	If item is equippable then it should have some implementation
+	as by default will not be rendered. Also there is not any dummy
+	item implementation so every item should have one matching it's type.
+*/
+
+// Item implementation of Melee weapon
 class Item_Weapon_Melee implements ItemImplementation {
 	info: ItemInfo;
 	sprite: HTMLImageElement = new Image();
@@ -16,6 +44,7 @@ class Item_Weapon_Melee implements ItemImplementation {
 	process(world: World): void {}
 }
 
+// Item category
 export enum ItemCategory {
 	Invalid,
 
@@ -23,12 +52,14 @@ export enum ItemCategory {
 	DEBUG
 }
 
+// Equippable slots in player eq
 export enum EquippableSlot {
 	Invalid,
 
 	WeaponSlot
 }
 
+// Defined items
 export const ItemInformations: {
 	[key: string]: ItemInfo
 } = {
@@ -49,6 +80,7 @@ export const ItemInformations: {
 	}
 };
 
+// Item information for later usage
 export interface ItemInfo {
 	name: string,
 	category: ItemCategory,
@@ -60,6 +92,8 @@ export interface ItemInfo {
 	implementation?: any
 }
 
+// ItemEntity, used when item is on the ground
+// ready to be picked or not, depends on item info
 export class ItemEntity implements Entity {
 	type = EntityType.Item;
 	name = "<DEFAULT ITEM_ENTITY NAME>";
@@ -90,6 +124,8 @@ export class ItemEntity implements Entity {
 	collides_with(world: World, entities: Array<Entity>) { }
 }
 
+// Per item implementation.
+// This interface allows items to have unique functions
 export interface ItemImplementation {
 	info: ItemInfo;
 

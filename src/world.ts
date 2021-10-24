@@ -3,6 +3,7 @@ import { Direction } from "./entity";
 import { Player } from "./player";
 import { WorldLayerChunk, WorldLayers } from "./world_layers";
 
+// Check if two rectangles intersect
 function rect_intersect(x1: number, y1: number, w1: number, h1: number, x2: number, y2: number, w2: number, h2: number) {
 	if (x2 > w1 + x1 || x1 > w2 + x2 || y2 > h1 + y1 || y1 > h2 + y2) {
 		return false;
@@ -10,18 +11,24 @@ function rect_intersect(x1: number, y1: number, w1: number, h1: number, x2: numb
 	return true;
 }
 
+// Wrapper class for manipulating canvas
+// making things more like in real game engine
 class Camera {
 	position: Vector2 = new Vector2(0, 0);
 
+	// Save canvas and change its position
 	start(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.translate(-(this.position.x - ctx.canvas.clientWidth / 2), -(this.position.y - ctx.canvas.clientHeight / 2));
 	}
 
+	// Restore everything
 	end(ctx: CanvasRenderingContext2D) {
 		ctx.restore();
 	}
 
+	// Check if some rectangle is in viewing space
+	// useful for optimizing which elements should be rendered
 	check_if_in_bound(ctx: CanvasRenderingContext2D, pos: Vector2, size: Vector2): boolean {
 		let x1 = this.position.x - ctx.canvas.clientWidth / 2;
 		let y1 = this.position.y - ctx.canvas.clientHeight / 2;
@@ -30,6 +37,7 @@ class Camera {
 	}
 }
 
+// World class
 export default class World {
 	entities: Array<any> = [];
 	player: Player = new Player();
@@ -47,10 +55,14 @@ export default class World {
 		this.world_layers = world_layers;
 	}
 
+	// Render single world layer
+	// optional_logic allows for using generated tile x and y
+	// for some operations like collisions
 	render_world_layer(ctx: CanvasRenderingContext2D, layer: Array<WorldLayerChunk>, optional_logic?: any) {
 		for (const chunk of layer) {
 			let world_chunk_pos = new Vector2(this.world_layers.tilesize.x * chunk.position.x, this.world_layers.tilesize.y * chunk.position.y);
 
+			// Optimize drawing by checking if chunk is in viewing distance
 			if (!this.camera.check_if_in_bound(
 				ctx, world_chunk_pos,
 				new Vector2(
@@ -85,14 +97,19 @@ export default class World {
 		}
 	}
 
+	// Render things out
 	render(ctx: CanvasRenderingContext2D) {
+		// Process player logic
 		this.player.process_key_press(this.key_pressed);
 		this.player.process(this);
 
+		// Clear screen
 		ctx.clearRect(0, 0, 800, 600);
 
+		// Start camera work
 		this.camera.start(ctx);
 
+		// Render selected world layers
 		this.render_world_layer(ctx, this.world_layers.collision, (tile_world_x: number, tile_world_y: number) => {
 			if (rect_intersect(
 				tile_world_x,
@@ -123,11 +140,14 @@ export default class World {
 		});
 		this.render_world_layer(ctx, this.world_layers.floor);
 
+		// Store players collisions which accured while checking
 		let player_collisions = [];
 
+		// Collision detection
 		for (let entity of this.entities) {
 			entity.process(this);
 
+			// Between player and entity
 			if (rect_intersect(
 				entity.position.x,
 				entity.position.y,
@@ -141,9 +161,13 @@ export default class World {
 				player_collisions.push(entity);
 			}
 
+			// Do the same for entities instead of player
 			let collisions = [];
 
+			// Between entity and entity
 			for (let entity2 of this.entities) {
+				if(entity == entity2) continue;
+
 				if (rect_intersect(
 					entity.position.x,
 					entity.position.y,
@@ -158,21 +182,28 @@ export default class World {
 				}
 			}
 
+			// Emit collides_with event to entities
+			// and render them
 			entity.collides_with(this, collisions);
 			entity.render(ctx);
 		}
 
+		// Emit collides_with event to player
+		// and render them
 		this.player.collides_with(this, player_collisions);
 		this.player.render(ctx);
 
+		// End camera work
 		this.camera.end(ctx);
 	}
 
+	// Add entity to world
 	add_entity(entity: any) {
 		entity.id = this.entities.length + 1;
 		this.entities.push(entity);
 	}
 
+	// Remove entity from world
 	remove_entity(entity_id: number) {
 		for (let i = 0; i < this.entities.length; i++) {
 			const entity = this.entities[i];
