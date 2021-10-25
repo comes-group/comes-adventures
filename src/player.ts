@@ -54,6 +54,7 @@ export class Player extends RenderablePlayer {
 	// Class memebers for storing equipment
 	is_eq_open: boolean = false;
 	eq_items_inside: Array<ItemInPlayerEq> = [];
+	eq_item_inside_index_counter = 0;
 	eq_items_equippable_slots: Record<EquippableSlot, null | ItemInPlayerEq>;
 	eq_items_equippable_implementations: Record<EquippableSlot, null | ItemImplementation>;
 
@@ -76,6 +77,16 @@ export class Player extends RenderablePlayer {
 
 		// Source to player sprite
 		this.sprite.src = "https://cdn.discordapp.com/attachments/403666260832813079/901526304304816228/unknown.png";
+	}
+
+	get_item_by_id(id: number): null | ItemInPlayerEq {
+		for(const item of this.eq_items_inside) {
+			if(item.id == id) {
+				return item;
+			}
+		}
+
+		return null;
 	}
 
 	// UI: Create HTML item element and return it
@@ -103,11 +114,14 @@ export class Player extends RenderablePlayer {
 
 	// Add item to equipment
 	// both UI and internal
-	add_item_to_eq(item: ItemInfo) {
+	// returns item id
+	add_item_to_eq(item: ItemInfo): number {
+		this.eq_item_inside_index_counter += 1;
+
 		// Create ItemInPLayerEq objetct
 		let ni: ItemInPlayerEq = new ItemInPlayerEq;
 		// Assign id, info, HTMLElement and is_equipped flag
-		ni.id = this.eq_items_inside.length + 1;
+		ni.id = this.eq_item_inside_index_counter;
 		ni.info = item;
 		ni.el = this.ui_item_create(ni, `EQ-LIST-ITEM--${ni.id}`);
 		ni.is_equipped = false;
@@ -126,7 +140,9 @@ export class Player extends RenderablePlayer {
 		// Add item to UI
 		this.ui_player_equipment.querySelectorAll(".scroll")[0].appendChild(ni.el);
 		// Add item to internal container
-		this.eq_items_inside.push(ni)
+		this.eq_items_inside.push(ni);
+
+		return ni.id;
 	}
 
 	// Add item to equipment
@@ -189,15 +205,21 @@ export class Player extends RenderablePlayer {
 	}
 
 	// Unequip item from slot
-	unequip_item_from_slot(slot: EquippableSlot) {
+	// returns id of new item, otherwise -1
+	unequip_item_from_slot(slot: EquippableSlot): number {
 		// If slot is eqipped
 		if (this.eq_items_equippable_slots[slot] != null) {
 			// Add to standard equipment previously equipped item
-			this.add_item_to_eq(this.eq_items_equippable_slots[slot].info);
+			let new_item_id = this.add_item_to_eq(this.eq_items_equippable_slots[slot].info);
+			// Remove implementation
+			delete this.eq_items_equippable_implementations[this.eq_items_equippable_slots[slot].info.equippable!];
+			this.eq_items_equippable_implementations[this.eq_items_equippable_slots[slot].info.equippable!] = null;
 			// Clear slot
 			this.eq_items_equippable_slots[slot] = null;
 			// Redraw UI
 			this.redraw_equipped_ui();
+
+			return new_item_id;
 		}
 	}
 
@@ -222,6 +244,11 @@ export class Player extends RenderablePlayer {
 					let el = this.ui_item_create(this.eq_items_equippable_slots[key], `EQ-EQUIPPED-IN-SLOT--${key}`);
 					// Create HTML Button for unequip event
 					let unequip_btn = document.createElement("button");
+
+					el.getElementsByTagName("button")[0].onclick = () => {
+						let id_item_in_eq = this.unequip_item_from_slot(key);
+						this.drop_item_from_eq(this.get_item_by_id(id_item_in_eq));
+					}
 
 					// Configure button with text and event
 					unequip_btn.innerText = "Unequip";

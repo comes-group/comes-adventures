@@ -43,6 +43,8 @@ export default class World {
 	player: Player = new Player();
 	key_pressed: any = {};
 
+	global_id_counter = 0;
+
 	camera: Camera = new Camera();
 	world_layers: WorldLayers = new WorldLayers();
 
@@ -166,7 +168,7 @@ export default class World {
 
 			// Between entity and entity
 			for (let entity2 of this.entities) {
-				if(entity == entity2) continue;
+				if (entity == entity2) continue;
 
 				if (rect_intersect(
 					entity.position.x,
@@ -199,7 +201,11 @@ export default class World {
 
 	// Add entity to world
 	add_entity(entity: any) {
-		entity.id = this.entities.length + 1;
+		if (entity.id == undefined) {
+			this.global_id_counter += 1;
+			entity.id = this.global_id_counter;
+		}
+
 		this.entities.push(entity);
 	}
 
