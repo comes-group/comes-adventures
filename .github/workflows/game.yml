@@ -28,6 +28,9 @@ jobs:
         npm run build:prod
         mkdir build
         cp -r dist build/
+        cp -r textures build/
+        cp ComesAdventureWorld1-Map.json build/
+        cp ComesAdventureWorld1-Tileset.json build/
         cp index.html build/
 
     - name: Deploy
