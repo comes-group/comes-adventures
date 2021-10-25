@@ -22,13 +22,14 @@
 			<div id="player-equipment">
 				<div class="scroll">
 					<div class="player-info">
-						<div class="equipped">
-							
-						</div>
+						<div class="equipped"></div>
 					</div>
-
 					<br>
 				</div>
+			</div>
+			<div id="interact-with-npc">
+				Press <kbd>F</kbd> to talk with:
+				<span></span>
 			</div>
 		</div>
 		<canvas id="game-canvas" width="800" height="600" style="border:1px solid lightgrey;"></canvas>
@@ -53,7 +54,10 @@
 		}
 
 		canvas,
-		#ui-layer, #item-pick-dialog, #player-equipment {
+		#ui-layer,
+		#item-pick-dialog,
+		#player-equipment,
+		#interact-with-npc {
 			position: absolute;
 		}
 
@@ -61,13 +65,20 @@
 			z-index: 3;
 		}
 
-		#item-pick-dialog {
+		#item-pick-dialog, #interact-with-npc {
 			width: 200px;
 			background-color: rgba(0, 0, 0, 0.5);
 			height: 300px;
 			left: 32px;
 			top: 32px;
+			color: white;
 			display: none;
+		}
+
+		#interact-with-npc {
+			left: 500px;
+			height: 60px;
+			right: 32px;
 		}
 
 		#player-equipment {

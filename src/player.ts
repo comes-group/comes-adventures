@@ -2,6 +2,7 @@ import Entity, { Direction, DirToRot, EntityType } from "./entity";
 import World from "./world";
 import { ItemEntity, ItemInfo, EquippableSlot, ItemImplementation } from "./item";
 import { Vector2 } from "./common";
+import { TalkableNPC } from "./npc";
 
 // Renderable player, intended for future multiplayer
 export class RenderablePlayer implements Entity {
@@ -50,6 +51,7 @@ export class Player extends RenderablePlayer {
 	ui_item_pick = document.getElementById('item-pick-dialog')
 	ui_player_equipment = document.getElementById('player-equipment');
 	ui_player_equipped_slots = document.getElementById('player-equipment').querySelectorAll(".scroll .player-info .equipped")[0];
+	ui_npc_interaction = document.getElementById('interact-with-npc');
 
 	// Class memebers for storing equipment
 	is_eq_open: boolean = false;
@@ -80,8 +82,8 @@ export class Player extends RenderablePlayer {
 	}
 
 	get_item_by_id(id: number): null | ItemInPlayerEq {
-		for(const item of this.eq_items_inside) {
-			if(item.id == id) {
+		for (const item of this.eq_items_inside) {
+			if (item.id == id) {
 				return item;
 			}
 		}
@@ -348,6 +350,9 @@ export class Player extends RenderablePlayer {
 		this.ui_item_pick.style.display = "none";
 		this.ui_item_pick.querySelectorAll("ul")[0].innerHTML = "";
 
+		this.ui_npc_interaction.style.display = "none";
+		this.ui_npc_interaction.querySelectorAll("span")[0].innerHTML = "";
+
 		if (!this.is_eq_open) {
 			this.ui_player_equipment.style.display = "none";
 		} else {
@@ -387,6 +392,17 @@ export class Player extends RenderablePlayer {
 				if (world.key_pressed["e"]) {
 					this.add_item_to_eq_by_ItemEntity(item_entity);
 					world.remove_entity((item_entity as any).id);
+				}
+			}
+
+			if (entity.type == EntityType.TalkableNPC) {
+				let talkable_npc = entity as TalkableNPC;
+
+				this.ui_npc_interaction.style.display = "block";
+				this.ui_npc_interaction.querySelectorAll("span")[0].innerText = talkable_npc.name;
+
+				if(world.key_pressed["f"]) {
+
 				}
 			}
 		}
