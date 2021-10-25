@@ -2,9 +2,9 @@ name: Build and publish game on github pages
 
 on:
   push:
-    branches: [ $default-branch, ci/ci ]
+    branches: [ $default-branch, master, ci/ci ]
   pull_request:
-    branches: [ $default-branch. ci/ci ]
+    branches: [ $default-branch, master, ci/ci ]
 
 jobs:
   build:
