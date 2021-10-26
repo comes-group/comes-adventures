@@ -31,6 +31,11 @@
 				Press <kbd>F</kbd> to talk with:
 				<span></span>
 			</div>
+			<div id="player-quests">
+				Things you must do:
+				<ul>
+				</ul>
+			</div>
 		</div>
 		<canvas id="game-canvas" width="800" height="600" style="border:1px solid lightgrey;"></canvas>
 	</div>
@@ -57,7 +62,8 @@
 		#ui-layer,
 		#item-pick-dialog,
 		#player-equipment,
-		#interact-with-npc {
+		#interact-with-npc,
+		#player-quests {
 			position: absolute;
 		}
 
@@ -65,20 +71,27 @@
 			z-index: 3;
 		}
 
-		#item-pick-dialog, #interact-with-npc {
+		#item-pick-dialog, #interact-with-npc, #player-quests {
 			width: 200px;
 			background-color: rgba(0, 0, 0, 0.5);
 			height: 300px;
 			left: 32px;
 			top: 32px;
 			color: white;
-			display: none;
+			/*display: none;*/
 		}
 
 		#interact-with-npc {
 			left: 500px;
 			height: 60px;
 			right: 32px;
+		}
+
+		#player-quests {
+			width: 300px;
+			padding: 8px;
+			left: 550px;
+			top: 120px;
 		}
 
 		#player-equipment {

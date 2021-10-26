@@ -59,5 +59,9 @@ export class TalkableNPC implements Entity {
 
 	}
 
+	interact(world: World) {
+		
+	}
+
 	collides_with() { }
 }

@@ -2,6 +2,9 @@ import { create_player_collision, rect_intersect, Vector2 } from "./common";
 import { Direction } from "./entity";
 import { Player } from "./player";
 import { WorldLayerChunk, WorldLayers } from "./world_layers";
+import { DialogManager } from "./dialog_manager";
+import { QuestManager, Quests } from "./quest_manager";
+import { UI } from "./ui";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -31,8 +34,10 @@ class Camera {
 
 // World class
 export default class World {
+	ui: UI = new UI();
+
 	entities: Array<any> = [];
-	player: Player = new Player();
+	player: Player = new Player(this);
 	key_pressed: any = {};
 
 	global_id_counter = 0;
@@ -40,9 +45,19 @@ export default class World {
 	camera: Camera = new Camera();
 	world_layers: WorldLayers = new WorldLayers();
 
+	dialog_man: DialogManager = new DialogManager();
+	quest_man: QuestManager = new QuestManager();
+
 	constructor() {
 		this.player.position.x = 64;
 		this.player.position.y = 64;
+
+		this.quest_man.start_quest(Quests["Test Quest"]);
+
+		setInterval(() => {
+			this.quest_man.process_in_progress_quests(this);
+			this.ui.quests_render(this);
+		}, 1000);
 	}
 
 	load_world_layers(world_layers: WorldLayers) {
@@ -95,7 +110,9 @@ export default class World {
 	render(ctx: CanvasRenderingContext2D) {
 		// Process player logic
 		this.player.process_key_press(this.key_pressed);
-		this.player.process(this);
+
+		if (!this.dialog_man.is_in_dialog)
+			this.player.process(this);
 
 		// Clear screen
 		ctx.clearRect(0, 0, 800, 600);
@@ -118,7 +135,8 @@ export default class World {
 
 		// Collision detection
 		for (let entity of this.entities) {
-			entity.process(this);
+			if (!this.dialog_man.is_in_dialog)
+				entity.process(this);
 
 			// Between player and entity
 			if (rect_intersect(
