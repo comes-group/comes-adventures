@@ -1,12 +1,12 @@
 # 🚀 COMES Adventures
-Version: 0.1.0
+A game about Comes and his adventures.  
 
-how to build
+## How to build
 
+Install all the required packages, and build the project for production.
+```
 npm install
-
 npm run build:prod
+```
 
-next
-
-run index.html
+Start the game by opening `index.html` in your browser.
