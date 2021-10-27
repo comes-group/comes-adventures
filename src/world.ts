@@ -36,10 +36,8 @@ class Camera {
 
 // World class
 export default class World {
-	ui: UI = new UI();
-
 	entities: Array<any> = [];
-	player: Player = new Player(this);
+	player: Player;
 	key_pressed: any = {};
 
 	global_id_counter = 0;
@@ -50,13 +48,20 @@ export default class World {
 	dialog_man: DialogManager = new DialogManager();
 	quest_man: QuestManager = new QuestManager();
 
-	constructor() {
+	ui: UI;
+
+	constructor() {}
+
+	init() {
+		this.ui = new UI();
+		this.player = new Player();
+
 		this.player.position.x = 64;
 		this.player.position.y = 64;
 
 		setInterval(() => {
-			this.quest_man.process_in_progress_quests(this);
-			this.ui.quests_render(this);
+			this.quest_man.process_in_progress_quests();
+			this.ui.quests_render();
 		}, 1000);
 	}
 
@@ -126,7 +131,7 @@ export default class World {
 		// Process player logic
 		if (!this.dialog_man.is_in_dialog) {
 			this.player.process_key_press(this.key_pressed);
-			this.player.process(this);
+			this.player.process();
 		}
 
 		// Clear screen
@@ -196,7 +201,7 @@ export default class World {
 
 		// Emit collides_with event to player
 		// and render them
-		this.player.collides_with(this, player_collisions);
+		this.player.collides_with(player_collisions);
 		this.player.render(ctx);
 
 		// End camera work
@@ -223,3 +228,5 @@ export default class World {
 		}
 	}
 }
+
+export let world: World = new World();

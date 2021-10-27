@@ -1,5 +1,5 @@
 import Entity, { Direction, DirToRot, EntityType } from "./entity";
-import World from "./world";
+import World, { world } from "./world";
 import { ItemEntity, ItemInfo, EquippableSlot, ItemImplementation } from "./item";
 import { Vector2 } from "./common";
 import { TalkableNPC } from "./npc";
@@ -21,8 +21,8 @@ export class RenderablePlayer implements Entity {
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
 	}
-	process(world: World) { }
-	collides_with(world: World, entities: Array<Entity>) { }
+	process() { }
+	collides_with(entities: Array<Entity>) { }
 };
 
 // Item in player equipment
@@ -51,12 +51,8 @@ export class Player extends RenderablePlayer {
 	eq_items_equippable_slots: Record<EquippableSlot, null | ItemInPlayerEq>;
 	eq_items_equippable_implementations: Record<EquippableSlot, null | ItemImplementation>;
 
-	// Reference to world object
-	world: World;
-
-	constructor(world: World) {
+	constructor() {
 		super();
-		this.world = world;
 
 		// Create containers so js will stay stable
 		this.eq_items_equippable_slots = {} as Record<EquippableSlot, null | ItemInPlayerEq>;
@@ -67,7 +63,7 @@ export class Player extends RenderablePlayer {
 		this.eq_items_equippable_implementations[EquippableSlot.WeaponSlot] = null;
 
 		// Draw equipped items ui
-		this.world.ui.eq_redraw(this);
+		world.ui.eq_redraw(this);
 
 		// Source to player sprite
 		this.sprite.src = "https://cdn.discordapp.com/attachments/403666260832813079/901526304304816228/unknown.png";
@@ -94,7 +90,7 @@ export class Player extends RenderablePlayer {
 		// Assign id, info, HTMLElement and is_equipped flag
 		ni.id = this.eq_item_inside_index_counter;
 		ni.info = item;
-		ni.el = this.world.ui.eq_create_item_element(this, ni, `EQ-LIST-ITEM--${ni.id}`);
+		ni.el = world.ui.eq_create_item_element(this, ni, `EQ-LIST-ITEM--${ni.id}`);
 		ni.is_equipped = false;
 
 		// Check if item can be equipped
@@ -109,7 +105,7 @@ export class Player extends RenderablePlayer {
 		}
 
 		// Add item to UI
-		this.world.ui.eq_add_item_element(ni.el);
+		world.ui.eq_add_item_element(ni.el);
 		// Add item to internal container
 		this.eq_items_inside.push(ni);
 
@@ -153,7 +149,7 @@ export class Player extends RenderablePlayer {
 		ientity.position.x = this.position.x;
 		ientity.position.y = this.position.y;
 
-		this.world.add_entity(ientity);
+		world.add_entity(ientity);
 	}
 
 	// Equip item to selected slot
@@ -176,7 +172,7 @@ export class Player extends RenderablePlayer {
 		}
 
 		// Redraw HTML equipped ui
-		this.world.ui.eq_redraw(this);
+		world.ui.eq_redraw(this);
 	}
 
 	// Unequip item from slot
@@ -192,7 +188,7 @@ export class Player extends RenderablePlayer {
 			// Clear slot
 			this.eq_items_equippable_slots[slot] = null;
 			// Redraw UI
-			this.world.ui.eq_redraw(this);
+			world.ui.eq_redraw(this);
 
 			return new_item_id;
 		}
@@ -274,7 +270,7 @@ export class Player extends RenderablePlayer {
 		ctx.restore();
 	}
 
-	process(world: World) {
+	process() {
 		world.ui.item_pick_dialog_visibility(false);
 		world.ui.npc_interaction_dialog_visibility(false);
 
@@ -286,16 +282,15 @@ export class Player extends RenderablePlayer {
 
 			if (impl == null) continue;
 
-			impl.process(world);
+			impl.process();
 		}
 
 		// Set camera position to player
 		world.camera.position = this.position;
-		this.world = world;
 	}
 
 	// Handle collisions
-	collides_with(world: World, entities: Array<Entity>) {
+	collides_with(entities: Array<Entity>) {
 		for (let entity of entities) {
 			// If entity is ItemEntity then
 			// show pickup dialog and eventually
@@ -323,7 +318,7 @@ export class Player extends RenderablePlayer {
 				world.ui.npc_interaction_dialog_set_npc_name(talkable_npc.name);
 
 				if (world.key_pressed["f"]) {
-					talkable_npc.interact(world);
+					talkable_npc.interact();
 				}
 			}
 		}

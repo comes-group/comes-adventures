@@ -1,6 +1,6 @@
 import { EquippableSlot } from "./item";
 import { Player, ItemInPlayerEq } from "./player";
-import World from "./world";
+import World, { world } from "./world";
 
 export class UI {
 	// HTML UI for
@@ -125,7 +125,7 @@ export class UI {
 		}
 	}
 
-	quests_render(world: World) {
+	quests_render() {
 		let quest_list = this.ui_quests.getElementsByTagName("ul")[0];
 		quest_list.innerHTML = "";
 
@@ -151,7 +151,7 @@ export class UI {
 		}
 	}
 
-	text_dialog_refresh(world: World) {
+	text_dialog_refresh() {
 		if (world.dialog_man.is_in_dialog) {
 			this.ui_talk_dialogs.container.style.display = "block";
 			this.ui_talk_dialogs.dialog_image.setAttribute("src", world.dialog_man.current_dialog.image);
@@ -160,8 +160,8 @@ export class UI {
 				world.dialog_man.current_dialog.stages[world.dialog_man.current_stage];
 
 			this.ui_talk_dialogs.next_button.onclick = () => {
-				world.dialog_man.next_stage(world),
-				this.text_dialog_refresh(world);
+				world.dialog_man.next_stage(),
+				this.text_dialog_refresh();
 			};
 		} else {
 			this.ui_talk_dialogs.container.style.display = "none";

@@ -3,13 +3,13 @@ import { Dialog, Dialogs } from "./dialog_manager";
 import Entity, { Direction, EntityType } from "./entity";
 import { ItemEntity, ItemInformations } from "./item";
 import { Quests } from "./quest_manager";
-import World from "./world";
+import World, { world } from "./world";
 
 export class TalkableNPC implements Entity {
 	type = EntityType.TalkableNPC;
 	name = "<DEFAULT TalkableNPC name>";
 	size = new Vector2(32, 32);
-	_position = new Vector2(0, 0);
+	private _position = new Vector2(0, 0);
 	hitbox = new Vector2(32, 32);
 
 	interactable_area = new Vector2(96, 96);
@@ -26,9 +26,9 @@ export class TalkableNPC implements Entity {
 
 	custom_data: any = {};
 
-	interact_callback: (npc: TalkableNPC, world: World) => void;
+	interact_callback: (npc: TalkableNPC) => void;
 
-	constructor(name: string, sprite_src: string, init: (npc: TalkableNPC) => void, interact: (npc: TalkableNPC, world: World) => void) {
+	constructor(name: string, sprite_src: string, init: (npc: TalkableNPC) => void, interact: (npc: TalkableNPC) => void) {
 		this.name = name;
 		this.sprite.src = sprite_src;
 		this.interact_callback = interact;
@@ -52,7 +52,7 @@ export class TalkableNPC implements Entity {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
 	}
 
-	process(world: World) {
+	process() {
 		create_player_collision(world.player, this.position, this.hitbox);
 
 		if (rect_intersect(
@@ -65,13 +65,13 @@ export class TalkableNPC implements Entity {
 			world.player.size.x,
 			world.player.size.y
 		)) {
-			world.player.collides_with(world, [this]);
+			world.player.collides_with([this]);
 		}
 
 	}
 
-	interact(world: World) {
-		this.interact_callback(this, world);
+	interact() {
+		this.interact_callback(this);
 	}
 
 	collides_with() { }
@@ -84,11 +84,10 @@ export const NPCs: { [key: string]: TalkableNPC } = {
 		(npc: TalkableNPC) => {
 			npc.custom_data.completed_dialogs = 0;
 		},
-		(npc: TalkableNPC, world: World) => {
+		(npc: TalkableNPC) => {
 			switch (npc.custom_data.completed_dialogs) {
 				case 0:
 					world.dialog_man.start_dialog(
-						world,
 						Dialogs["Region1_OldMan_WelcomeComes"],
 						npc.sprite.src,
 						npc.name,
@@ -107,7 +106,6 @@ export const NPCs: { [key: string]: TalkableNPC } = {
 
 				default:
 					world.dialog_man.start_dialog(
-						world,
 						Dialogs['Region1_OldMan_NothingMoreToSay'],
 						npc.sprite.src,
 						npc.name

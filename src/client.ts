@@ -1,4 +1,4 @@
-import World from "./world";
+import World, { world } from "./world";
 import { ItemEntity, ItemInfo, ItemInformations } from "./item";
 import { WorldLayers, TileSet } from "./world_layers";
 
@@ -12,9 +12,6 @@ var isNode = false;
 let game_canvas: HTMLCanvasElement = document.getElementById('game-canvas')! as HTMLCanvasElement;
 let ctx = game_canvas.getContext('2d');
 
-// Create world object
-let world = new World();
-
 // Create tileset and world layers
 let tileset = new TileSet();
 let world_layers = new WorldLayers();
@@ -24,6 +21,8 @@ tileset.load_from_data(world1_tileset);
 world_layers.load_from_data(tileset, world1_map);
 
 world.load_world_layers(world_layers);
+
+world.init();
 
 // Game loop
 function game_loop() {
@@ -42,7 +41,7 @@ document.body.addEventListener('keyup', (ev) => {
 
 // Game saving, maybe
 document.body.querySelector("#ui-save-button").addEventListener('click', (ev) => {
-	console.log(JSON.stringify(world.player.eq_items_inside));
+	console.log(JSON.stringify(world));
 });
 
 window.requestAnimationFrame(game_loop);

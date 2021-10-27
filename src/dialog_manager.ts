@@ -1,4 +1,4 @@
-import World from "./world";
+import World, { world } from "./world";
 
 export class Dialog {
 	name: string;
@@ -35,7 +35,6 @@ export class DialogManager {
 	on_dialog_end: () => void;
 
 	start_dialog(
-		world: World,
 		dialog: Dialog,
 		image_src: string = "https://cdn.discordapp.com/emojis/882989368573296670.png?size=96",
 		name: string = "Hollow Man",
@@ -52,10 +51,10 @@ export class DialogManager {
 
 		this.on_dialog_end = on_dialog_end;
 
-		world.ui.text_dialog_refresh(world);
+		world.ui.text_dialog_refresh();
 	}
 
-	next_stage(world: World) {
+	next_stage() {
 		if (this.current_dialog.stages.length - 1 == this.current_stage) {
 			this.is_in_dialog = false;
 			this.current_stage = 0;
@@ -66,6 +65,6 @@ export class DialogManager {
 			this.current_stage += 1;
 		}
 
-		world.ui.text_dialog_refresh(world);
+		world.ui.text_dialog_refresh();
 	}
 }

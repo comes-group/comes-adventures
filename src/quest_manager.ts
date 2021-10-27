@@ -1,5 +1,5 @@
 import { ItemInfo, ItemInformations } from "./item";
-import World from "./world";
+import World, { world } from "./world";
 
 export interface QuestRequirement {
 	item: ItemInfo,
@@ -43,7 +43,7 @@ export class QuestManager {
 		this.in_progress.push(quest);
 	}
 
-	process_in_progress_quests(world: World) {
+	process_in_progress_quests() {
 		let i = 0;
 
 		for (const quest of this.in_progress) {

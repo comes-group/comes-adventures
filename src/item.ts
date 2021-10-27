@@ -37,11 +37,11 @@ class Item_Weapon_Melee implements ItemImplementation {
 	init(): void {
 		this.sprite.src = this.info.texture_url;
 	}
-	use(world: World): void {}
+	use(): void {}
 	render(ctx: CanvasRenderingContext2D, position: Vector2): void {
 		ctx.drawImage(this.sprite, position.x, position.y);
 	}
-	process(world: World): void {}
+	process(): void {}
 }
 
 // Item category
@@ -120,8 +120,8 @@ export class ItemEntity implements Entity {
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
 	}
-	process(world: World) { }
-	collides_with(world: World, entities: Array<Entity>) { }
+	process() { }
+	collides_with(entities: Array<Entity>) { }
 }
 
 // Per item implementation.
@@ -130,7 +130,7 @@ export interface ItemImplementation {
 	info: ItemInfo;
 
 	init(): void;
-	use(world: World): void;
+	use(): void;
 	render(ctx: CanvasRenderingContext2D, position: Vector2): void;
-	process(world: World): void;
+	process(): void;
 }

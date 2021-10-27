@@ -40,6 +40,6 @@ export default interface Entity {
 	facing: Direction,
 
 	render(ctx: CanvasRenderingContext2D): void;
-	process(world: World): void;
-	collides_with(world: World, entities: Array<Entity>): void;
+	process(): void;
+	collides_with(entities: Array<Entity>): void;
 }
