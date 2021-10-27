@@ -1,5 +1,7 @@
 import { create_player_collision, rect_intersect, Vector2 } from "./common";
+import { Dialogs } from "./dialog_manager";
 import Entity, { Direction, EntityType } from "./entity";
+import { Quests } from "./quest_manager";
 import World from "./world";
 
 export class TalkableNPC implements Entity {
@@ -21,8 +23,12 @@ export class TalkableNPC implements Entity {
 
 	sprite: HTMLImageElement = new Image();
 
-	constructor() {
-		this.sprite.src = "https://cdn.discordapp.com/attachments/635191339859836948/902221013150998608/unknown.png";
+	interact_callback: (npc: TalkableNPC, world: World) => void;
+
+	constructor(name: string, sprite_src: string, interact: (npc: TalkableNPC, world: World) => void) {
+		this.name = name;
+		this.sprite.src = sprite_src;
+		this.interact_callback = interact;
 	}
 
 	public get position() {
@@ -60,8 +66,26 @@ export class TalkableNPC implements Entity {
 	}
 
 	interact(world: World) {
-		
+		this.interact_callback(this, world);
 	}
 
 	collides_with() { }
+}
+
+export const Npcs: { [key: string]: TalkableNPC } = {
+	'Region1_OldMan': new TalkableNPC(
+		"Old Man",
+		"https://cdn.discordapp.com/attachments/635191339859836948/902221013150998608/unknown.png",
+		(npc: TalkableNPC, world: World) => {
+			world.dialog_man.start_dialog(
+				world,
+				Dialogs["OldMan_WelcomeComes"],
+				npc.sprite.src,
+				npc.name,
+				() => {
+					world.quest_man.start_quest(Quests["Region1_GetTheDaggerBoi"]);
+				}
+			);
+		}
+	)
 }

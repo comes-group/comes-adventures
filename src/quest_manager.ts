@@ -12,8 +12,8 @@ export interface Quest {
 }
 
 export const Quests: { [key: string]: Quest } = {
-	"Test Quest": {
-		name: "Stara baba część 1",
+	"Region1_GetTheDaggerBoi": {
+		name: "Get The Dagger comes",
 		requirements: [
 			{
 				item: ItemInformations["Dagger"],
@@ -28,6 +28,18 @@ export class QuestManager {
 	completed: Array<Quest> = [];
 
 	start_quest(quest: Quest) {
+		for(const q of this.in_progress) {
+			if(q == quest) {
+				return;
+			}
+		}
+
+		for(const q of this.completed) {
+			if(q == quest) {
+				return;
+			}
+		}
+
 		this.in_progress.push(quest);
 	}
 

@@ -52,8 +52,6 @@ export default class World {
 		this.player.position.x = 64;
 		this.player.position.y = 64;
 
-		this.dialog_man.start_dialog(this, Dialogs["OldMan_WelcomeComes"]);
-
 		setInterval(() => {
 			this.quest_man.process_in_progress_quests(this);
 			this.ui.quests_render(this);
