@@ -134,8 +134,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":87,
-                 "y":325.333333333333
+                 "x":276,
+                 "y":357.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -147,97 +147,7 @@
          "draworder":"topdown",
          "id":6,
          "name":"Items",
-         "objects":[
-                {
-                 "gid":10,
-                 "height":32,
-                 "id":5,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"item_id",
-                         "type":"string",
-                         "value":"Dagger"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":298,
-                 "y":119
-                }, 
-                {
-                 "gid":10,
-                 "height":32,
-                 "id":6,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"item_id",
-                         "type":"string",
-                         "value":"Dagger"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":275,
-                 "y":173
-                }, 
-                {
-                 "gid":10,
-                 "height":32,
-                 "id":7,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"item_id",
-                         "type":"string",
-                         "value":"Dagger"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":332,
-                 "y":180
-                }, 
-                {
-                 "gid":10,
-                 "height":32,
-                 "id":8,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"item_id",
-                         "type":"string",
-                         "value":"Dagger"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":356,
-                 "y":145
-                }, 
-                {
-                 "gid":10,
-                 "height":32,
-                 "id":9,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"item_id",
-                         "type":"string",
-                         "value":"Dagger"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":398,
-                 "y":180
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,

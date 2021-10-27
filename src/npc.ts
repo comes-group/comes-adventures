@@ -1,6 +1,7 @@
 import { create_player_collision, rect_intersect, Vector2 } from "./common";
-import { Dialogs } from "./dialog_manager";
+import { Dialog, Dialogs } from "./dialog_manager";
 import Entity, { Direction, EntityType } from "./entity";
+import { ItemEntity, ItemInformations } from "./item";
 import { Quests } from "./quest_manager";
 import World from "./world";
 
@@ -23,12 +24,16 @@ export class TalkableNPC implements Entity {
 
 	sprite: HTMLImageElement = new Image();
 
+	custom_data: any = {};
+
 	interact_callback: (npc: TalkableNPC, world: World) => void;
 
-	constructor(name: string, sprite_src: string, interact: (npc: TalkableNPC, world: World) => void) {
+	constructor(name: string, sprite_src: string, init: (npc: TalkableNPC) => void, interact: (npc: TalkableNPC, world: World) => void) {
 		this.name = name;
 		this.sprite.src = sprite_src;
 		this.interact_callback = interact;
+
+		init(this);
 	}
 
 	public get position() {
@@ -76,16 +81,39 @@ export const NPCs: { [key: string]: TalkableNPC } = {
 	'Region1_OldMan': new TalkableNPC(
 		"Old Man",
 		"https://cdn.discordapp.com/attachments/635191339859836948/902221013150998608/unknown.png",
+		(npc: TalkableNPC) => {
+			npc.custom_data.completed_dialogs = 0;
+		},
 		(npc: TalkableNPC, world: World) => {
-			world.dialog_man.start_dialog(
-				world,
-				Dialogs["OldMan_WelcomeComes"],
-				npc.sprite.src,
-				npc.name,
-				() => {
-					world.quest_man.start_quest(Quests["Region1_GetTheDaggerBoi"]);
-				}
-			);
+			switch (npc.custom_data.completed_dialogs) {
+				case 0:
+					world.dialog_man.start_dialog(
+						world,
+						Dialogs["Region1_OldMan_WelcomeComes"],
+						npc.sprite.src,
+						npc.name,
+						() => {
+							npc.custom_data.completed_dialogs += 1;
+							world.quest_man.start_quest(Quests["Region1_GetTheDaggerBoi"]);
+
+							let item = new ItemEntity(ItemInformations["Dagger"]);
+							item.position = npc.position.clone();
+							item.position.y -= 32;
+
+							world.add_entity(item);
+						}
+					);
+					break;
+
+				default:
+					world.dialog_man.start_dialog(
+						world,
+						Dialogs['Region1_OldMan_NothingMoreToSay'],
+						npc.sprite.src,
+						npc.name
+					);
+					break;
+			}
 		}
 	)
 }

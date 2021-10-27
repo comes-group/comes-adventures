@@ -7,12 +7,23 @@ export class Dialog {
 }
 
 export const Dialogs: { [key: string]: Dialog } = {
-	'OldMan_WelcomeComes': {
+	'Region1_OldMan_WelcomeComes': {
 		name: "",
 		image: "",
 		stages: [
-			"Welcome Comes, this is world. You must defeat Final Boss.",
-			"If you do not then you die."
+			"Oh hello Comes i didn't saw you. You're finally here eh?",
+			"As you might see this is different world from yours, magic things, random field with lake etc.",
+			"Hero department summoned you here so you can defeat biggest world threads.",
+			"Here, take this Dagger, it is from my old days as adventurer.",
+			"Good luck!"
+		]
+	},
+
+	'Region1_OldMan_NothingMoreToSay': {
+		name: "",
+		image: "",
+		stages: [
+			"Fight for freedom comes!"
 		]
 	}
 };
