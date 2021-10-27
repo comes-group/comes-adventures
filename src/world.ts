@@ -7,6 +7,7 @@ import { QuestManager, Quests } from "./quest_manager";
 import { UI } from "./ui";
 import { NPCs, TalkableNPC } from "./npc";
 import { ItemEntity, ItemInformations } from "./item";
+import { AudioManager, Music } from "./audio_manager";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -36,6 +37,8 @@ class Camera {
 
 // World class
 export default class World {
+	audio_man: AudioManager = new AudioManager();
+
 	entities: Array<any> = [];
 	player: Player;
 	key_pressed: any = {};
@@ -63,6 +66,8 @@ export default class World {
 			this.quest_man.process_in_progress_quests();
 			this.ui.quests_render();
 		}, 1000);
+
+		this.audio_man.play_music(Music.Region1_OverworldTheme, true);
 	}
 
 	load_world_layers(world_layers: WorldLayers) {
