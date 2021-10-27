@@ -12,6 +12,13 @@ export class UI {
 	ui_player_equipped_slots = document.getElementById('player-equipment').querySelectorAll(".scroll .player-info .equipped")[0];
 	ui_npc_interaction = document.getElementById('interact-with-npc');
 	ui_quests = document.getElementById('player-quests');
+	ui_talk_dialogs = {
+		container: document.getElementById('talk-with-npc-dialog'),
+		dialog_image: document.getElementById('talk-with-npc-dialog').getElementsByTagName("img")[0],
+		dialog_name: document.getElementById('talk-with-npc-dialog').getElementsByTagName("b")[0],
+		dialog_text: document.getElementById('talk-with-npc-dialog').getElementsByTagName("span")[0],
+		next_button: document.getElementById('talk-with-npc-dialog').getElementsByTagName("button")[0]
+	};
 
 	item_pick_dialog_visibility(visible: boolean) {
 		if (visible) {
@@ -141,6 +148,23 @@ export class UI {
 			total_html += `</ul></li>`;
 
 			quest_list.innerHTML += total_html;
+		}
+	}
+
+	text_dialog_refresh(world: World) {
+		if (world.dialog_man.is_in_dialog) {
+			this.ui_talk_dialogs.container.style.display = "block";
+			this.ui_talk_dialogs.dialog_image.setAttribute("src", world.dialog_man.current_dialog.image);
+			this.ui_talk_dialogs.dialog_name.innerText = world.dialog_man.current_dialog.name;
+			this.ui_talk_dialogs.dialog_text.innerText =
+				world.dialog_man.current_dialog.stages[world.dialog_man.current_stage];
+
+			this.ui_talk_dialogs.next_button.onclick = () => {
+				world.dialog_man.next_stage(world),
+				this.text_dialog_refresh(world);
+			};
+		} else {
+			this.ui_talk_dialogs.container.style.display = "none";
 		}
 	}
 };

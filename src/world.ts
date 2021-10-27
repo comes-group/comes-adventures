@@ -2,7 +2,7 @@ import { create_player_collision, rect_intersect, Vector2 } from "./common";
 import { Direction } from "./entity";
 import { Player } from "./player";
 import { WorldLayerChunk, WorldLayers } from "./world_layers";
-import { DialogManager } from "./dialog_manager";
+import { Dialog, DialogManager, Dialogs } from "./dialog_manager";
 import { QuestManager, Quests } from "./quest_manager";
 import { UI } from "./ui";
 
@@ -52,7 +52,7 @@ export default class World {
 		this.player.position.x = 64;
 		this.player.position.y = 64;
 
-		this.quest_man.start_quest(Quests["Test Quest"]);
+		this.dialog_man.start_dialog(this, Dialogs["OldMan_WelcomeComes"]);
 
 		setInterval(() => {
 			this.quest_man.process_in_progress_quests(this);
@@ -109,10 +109,10 @@ export default class World {
 	// Render things out
 	render(ctx: CanvasRenderingContext2D) {
 		// Process player logic
-		this.player.process_key_press(this.key_pressed);
-
-		if (!this.dialog_man.is_in_dialog)
+		if (!this.dialog_man.is_in_dialog) {
+			this.player.process_key_press(this.key_pressed);
 			this.player.process(this);
+		}
 
 		// Clear screen
 		ctx.clearRect(0, 0, 800, 600);

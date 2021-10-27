@@ -36,6 +36,19 @@
 				<ul>
 				</ul>
 			</div>
+			<div id="talk-with-npc-dialog">
+				<div>
+					<img src="https://cdn.discordapp.com/attachments/635191339859836948/902221013150998608/unknown.png"
+						width="128">
+					<div>
+						<b>Old man</b>
+						<span>
+							Welcome Comes, this is world. You must defeat Final Boss.
+						</span>
+					</div>
+				</div>
+				<button>Next</button>
+			</div>
 		</div>
 		<canvas id="game-canvas" width="800" height="600" style="border:1px solid lightgrey;"></canvas>
 	</div>
@@ -58,12 +71,18 @@
 			padding: 6px;
 		}
 
+		#ui-layer {
+			width: 800px;
+			height: 600px;
+		}
+
 		canvas,
 		#ui-layer,
 		#item-pick-dialog,
 		#player-equipment,
 		#interact-with-npc,
-		#player-quests {
+		#player-quests,
+		#talk-with-npc-dialog {
 			position: absolute;
 		}
 
@@ -71,7 +90,9 @@
 			z-index: 3;
 		}
 
-		#item-pick-dialog, #interact-with-npc, #player-quests {
+		#item-pick-dialog,
+		#interact-with-npc,
+		#player-quests {
 			width: 200px;
 			background-color: rgba(0, 0, 0, 0.5);
 			height: 300px;
@@ -122,6 +143,39 @@
 
 		#game-canvas {
 			z-index: 2;
+		}
+
+		#talk-with-npc-dialog {
+			width: 800px;
+			background-color: rgba(0, 0, 0, 0.8);
+			color: white;
+			bottom: 20px;
+			padding: 8px;
+			display: none;
+		}
+
+		#talk-with-npc-dialog > div {
+			display: flex;
+			gap: 12px;
+		}
+
+		#talk-with-npc-dialog > div > div {
+			display: flex;
+			flex-direction: column;
+		}
+
+		#talk-with-npc-dialog > div > div b {
+			font-size: 2em;
+		}
+
+		#talk-with-npc-dialog > div > div span {
+			font-size: 1.5em;
+		}
+
+		#talk-with-npc-dialog button {
+			width: 100%;
+			font-size: 1.5em;
+			margin-top: 10px;
 		}
 	</style>
 </body>
