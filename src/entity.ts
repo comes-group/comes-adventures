@@ -5,6 +5,8 @@ import { Vector2 } from "./common";
 export enum EntityType {
 	Player,
 	GenericRenderable,
+	TalkableNPC,
+
 	Item
 };
 

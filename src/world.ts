@@ -1,15 +1,10 @@
-import { Vector2 } from "./common";
+import { create_player_collision, rect_intersect, Vector2 } from "./common";
 import { Direction } from "./entity";
 import { Player } from "./player";
 import { WorldLayerChunk, WorldLayers } from "./world_layers";
-
-// Check if two rectangles intersect
-function rect_intersect(x1: number, y1: number, w1: number, h1: number, x2: number, y2: number, w2: number, h2: number) {
-	if (x2 > w1 + x1 || x1 > w2 + x2 || y2 > h1 + y1 || y1 > h2 + y2) {
-		return false;
-	}
-	return true;
-}
+import { Dialog, DialogManager, Dialogs } from "./dialog_manager";
+import { QuestManager, Quests } from "./quest_manager";
+import { UI } from "./ui";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -39,16 +34,28 @@ class Camera {
 
 // World class
 export default class World {
+	ui: UI = new UI();
+
 	entities: Array<any> = [];
-	player: Player = new Player();
+	player: Player = new Player(this);
 	key_pressed: any = {};
+
+	global_id_counter = 0;
 
 	camera: Camera = new Camera();
 	world_layers: WorldLayers = new WorldLayers();
 
+	dialog_man: DialogManager = new DialogManager();
+	quest_man: QuestManager = new QuestManager();
+
 	constructor() {
 		this.player.position.x = 64;
 		this.player.position.y = 64;
+
+		setInterval(() => {
+			this.quest_man.process_in_progress_quests(this);
+			this.ui.quests_render(this);
+		}, 1000);
 	}
 
 	load_world_layers(world_layers: WorldLayers) {
@@ -100,8 +107,10 @@ export default class World {
 	// Render things out
 	render(ctx: CanvasRenderingContext2D) {
 		// Process player logic
-		this.player.process_key_press(this.key_pressed);
-		this.player.process(this);
+		if (!this.dialog_man.is_in_dialog) {
+			this.player.process_key_press(this.key_pressed);
+			this.player.process(this);
+		}
 
 		// Clear screen
 		ctx.clearRect(0, 0, 800, 600);
@@ -111,32 +120,11 @@ export default class World {
 
 		// Render selected world layers
 		this.render_world_layer(ctx, this.world_layers.collision, (tile_world_x: number, tile_world_y: number) => {
-			if (rect_intersect(
-				tile_world_x,
-				tile_world_y,
-				this.world_layers.tilesize.x,
-				this.world_layers.tilesize.y,
-				this.player.position.x,
-				this.player.position.y,
-				this.player.hitbox.x,
-				this.player.hitbox.y
-			)) {
-				if (this.player.facing == Direction.West || this.player.side_facing == Direction.West) {
-					this.player.position.x += this.player.speed;
-				}
-
-				if (this.player.facing == Direction.North) {
-					this.player.position.y += this.player.speed;
-				}
-
-				if (this.player.facing == Direction.East || this.player.side_facing == Direction.East) {
-					this.player.position.x -= this.player.speed;
-				}
-
-				if (this.player.facing == Direction.South) {
-					this.player.position.y -= this.player.speed;
-				}
-			}
+			create_player_collision(
+				this.player,
+				new Vector2(tile_world_x, tile_world_y),
+				this.world_layers.tilesize
+			);
 		});
 		this.render_world_layer(ctx, this.world_layers.floor);
 
@@ -145,7 +133,8 @@ export default class World {
 
 		// Collision detection
 		for (let entity of this.entities) {
-			entity.process(this);
+			if (!this.dialog_man.is_in_dialog)
+				entity.process(this);
 
 			// Between player and entity
 			if (rect_intersect(
@@ -166,7 +155,7 @@ export default class World {
 
 			// Between entity and entity
 			for (let entity2 of this.entities) {
-				if(entity == entity2) continue;
+				if (entity == entity2) continue;
 
 				if (rect_intersect(
 					entity.position.x,
@@ -199,7 +188,11 @@ export default class World {
 
 	// Add entity to world
 	add_entity(entity: any) {
-		entity.id = this.entities.length + 1;
+		if (entity.id == undefined) {
+			this.global_id_counter += 1;
+			entity.id = this.global_id_counter;
+		}
+
 		this.entities.push(entity);
 	}
 

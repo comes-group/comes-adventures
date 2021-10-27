@@ -28,6 +28,14 @@ world.load_world_layers(world_layers);
 // Add testing entity - Dagger
 world.add_entity(new ItemEntity(ItemInformations["Dagger"]));
 
+import { Npcs, TalkableNPC } from "./npc";
+import { Vector2 } from "./common";
+
+let test_npc = Npcs["Region1_OldMan"];
+test_npc.position = new Vector2(256, 64);
+
+world.add_entity(test_npc);
+
 // Game loop
 function game_loop() {
 	world.render(ctx);

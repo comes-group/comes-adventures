@@ -2,6 +2,7 @@ import Entity, { Direction, DirToRot, EntityType } from "./entity";
 import World from "./world";
 import { ItemEntity, ItemInfo, EquippableSlot, ItemImplementation } from "./item";
 import { Vector2 } from "./common";
+import { TalkableNPC } from "./npc";
 
 // Renderable player, intended for future multiplayer
 export class RenderablePlayer implements Entity {
@@ -26,7 +27,7 @@ export class RenderablePlayer implements Entity {
 
 // Item in player equipment
 // represents UI element and item itself
-class ItemInPlayerEq {
+export class ItemInPlayerEq {
 	id: number;
 	el: HTMLElement;
 	info: ItemInfo;
@@ -43,25 +44,19 @@ export class Player extends RenderablePlayer {
 	// Which side is player also facing
 	side_facing: Direction = Direction.North;
 
-	// HTML UI for
-	//   - item picking
-	//   - equipment
-	//   - equipped slots
-	ui_item_pick = document.getElementById('item-pick-dialog')
-	ui_player_equipment = document.getElementById('player-equipment');
-	ui_player_equipped_slots = document.getElementById('player-equipment').querySelectorAll(".scroll .player-info .equipped")[0];
-
 	// Class memebers for storing equipment
 	is_eq_open: boolean = false;
 	eq_items_inside: Array<ItemInPlayerEq> = [];
+	eq_item_inside_index_counter = 0;
 	eq_items_equippable_slots: Record<EquippableSlot, null | ItemInPlayerEq>;
 	eq_items_equippable_implementations: Record<EquippableSlot, null | ItemImplementation>;
 
 	// Reference to world object
 	world: World;
 
-	constructor() {
+	constructor(world: World) {
 		super();
+		this.world = world;
 
 		// Create containers so js will stay stable
 		this.eq_items_equippable_slots = {} as Record<EquippableSlot, null | ItemInPlayerEq>;
@@ -72,44 +67,34 @@ export class Player extends RenderablePlayer {
 		this.eq_items_equippable_implementations[EquippableSlot.WeaponSlot] = null;
 
 		// Draw equipped items ui
-		this.redraw_equipped_ui();
+		this.world.ui.eq_redraw(this);
 
 		// Source to player sprite
 		this.sprite.src = "https://cdn.discordapp.com/attachments/403666260832813079/901526304304816228/unknown.png";
 	}
 
-	// UI: Create HTML item element and return it
-	// id is set to div
-	ui_item_create(item: ItemInPlayerEq, id: string): HTMLElement {
-		let el = document.createElement("div");
-		el.classList.add("item-in-eq");
+	get_item_by_id(id: number): null | ItemInPlayerEq {
+		for (const item of this.eq_items_inside) {
+			if (item.id == id) {
+				return item;
+			}
+		}
 
-		el.innerHTML = `
-			<img src="${item.info.texture_url}" alt="">
-			<span>${item.info.name}</span>
-			<span></span>
-		`;
-
-		el.id = id;
-
-		let drop_btn = document.createElement("button");
-		drop_btn.innerText = "Drop";
-		// Drop item event
-		drop_btn.onclick = () => this.drop_item_from_eq(item);
-		el.appendChild(drop_btn);
-
-		return el;
+		return null;
 	}
 
 	// Add item to equipment
 	// both UI and internal
-	add_item_to_eq(item: ItemInfo) {
+	// returns item id
+	add_item_to_eq(item: ItemInfo): number {
+		this.eq_item_inside_index_counter += 1;
+
 		// Create ItemInPLayerEq objetct
 		let ni: ItemInPlayerEq = new ItemInPlayerEq;
 		// Assign id, info, HTMLElement and is_equipped flag
-		ni.id = this.eq_items_inside.length + 1;
+		ni.id = this.eq_item_inside_index_counter;
 		ni.info = item;
-		ni.el = this.ui_item_create(ni, `EQ-LIST-ITEM--${ni.id}`);
+		ni.el = this.world.ui.eq_create_item_element(this, ni, `EQ-LIST-ITEM--${ni.id}`);
 		ni.is_equipped = false;
 
 		// Check if item can be equipped
@@ -124,9 +109,11 @@ export class Player extends RenderablePlayer {
 		}
 
 		// Add item to UI
-		this.ui_player_equipment.querySelectorAll(".scroll")[0].appendChild(ni.el);
+		this.world.ui.eq_add_item_element(ni.el);
 		// Add item to internal container
-		this.eq_items_inside.push(ni)
+		this.eq_items_inside.push(ni);
+
+		return ni.id;
 	}
 
 	// Add item to equipment
@@ -185,59 +172,25 @@ export class Player extends RenderablePlayer {
 		}
 
 		// Redraw HTML equipped ui
-		this.redraw_equipped_ui();
+		this.world.ui.eq_redraw(this);
 	}
 
 	// Unequip item from slot
-	unequip_item_from_slot(slot: EquippableSlot) {
+	// returns id of new item, otherwise -1
+	unequip_item_from_slot(slot: EquippableSlot): number {
 		// If slot is eqipped
 		if (this.eq_items_equippable_slots[slot] != null) {
 			// Add to standard equipment previously equipped item
-			this.add_item_to_eq(this.eq_items_equippable_slots[slot].info);
+			let new_item_id = this.add_item_to_eq(this.eq_items_equippable_slots[slot].info);
+			// Remove implementation
+			delete this.eq_items_equippable_implementations[this.eq_items_equippable_slots[slot].info.equippable!];
+			this.eq_items_equippable_implementations[this.eq_items_equippable_slots[slot].info.equippable!] = null;
 			// Clear slot
 			this.eq_items_equippable_slots[slot] = null;
 			// Redraw UI
-			this.redraw_equipped_ui();
-		}
-	}
+			this.world.ui.eq_redraw(this);
 
-	// Redraw HTML equipped UI
-	redraw_equipped_ui() {
-		// Clear container
-		this.ui_player_equipped_slots.innerHTML = "";
-
-		for (const k of Object.keys(this.eq_items_equippable_slots)) {
-			// Treat k as EquippmentSlot enum
-			const key = (k as unknown as EquippableSlot);
-
-			if (key == EquippableSlot.WeaponSlot) {
-				// Add bold text
-				let b = document.createElement("b");
-				b.innerText = "Weapon:";
-				this.ui_player_equipped_slots.appendChild(b);
-
-				// Check if iterated slot is empty, if not then
-				if (this.eq_items_equippable_slots[key] != null) {
-					// Create HTML UI element
-					let el = this.ui_item_create(this.eq_items_equippable_slots[key], `EQ-EQUIPPED-IN-SLOT--${key}`);
-					// Create HTML Button for unequip event
-					let unequip_btn = document.createElement("button");
-
-					// Configure button with text and event
-					unequip_btn.innerText = "Unequip";
-					unequip_btn.onclick = () => this.unequip_item_from_slot(key);
-
-					// Add button to UI element
-					el.appendChild(unequip_btn);
-					// Add UI element to container
-					this.ui_player_equipped_slots.appendChild(el);
-					// Set new UI element in slot
-					this.eq_items_equippable_slots[key].el = el;
-				}
-
-				// Add spacing to container
-				this.ui_player_equipped_slots.appendChild(document.createElement("br"))
-			}
+			return new_item_id;
 		}
 	}
 
@@ -318,14 +271,10 @@ export class Player extends RenderablePlayer {
 	}
 
 	process(world: World) {
-		this.ui_item_pick.style.display = "none";
-		this.ui_item_pick.querySelectorAll("ul")[0].innerHTML = "";
+		world.ui.item_pick_dialog_visibility(false);
+		world.ui.npc_interaction_dialog_visibility(false);
 
-		if (!this.is_eq_open) {
-			this.ui_player_equipment.style.display = "none";
-		} else {
-			this.ui_player_equipment.style.display = "flex";
-		}
+		world.ui.eq_visibility(this.is_eq_open);
 
 		// Do the same as above in render(ctx) but with process(world)
 		for (const k of Object.keys(this.eq_items_equippable_implementations)) {
@@ -354,12 +303,23 @@ export class Player extends RenderablePlayer {
 					continue;
 				}
 
-				this.ui_item_pick.style.display = "block";
-				this.ui_item_pick.querySelectorAll("ul")[0].innerHTML += `<li>${item_entity.item_info.name}</li>`;
+				world.ui.item_pick_dialog_visibility(true);
+				world.ui.item_pick_dialog_add_item_name(item_entity.item_info.name);
 
 				if (world.key_pressed["e"]) {
 					this.add_item_to_eq_by_ItemEntity(item_entity);
 					world.remove_entity((item_entity as any).id);
+				}
+			}
+
+			if (entity.type == EntityType.TalkableNPC) {
+				let talkable_npc = entity as TalkableNPC;
+
+				world.ui.npc_interaction_dialog_visibility(true);
+				world.ui.npc_interaction_dialog_set_npc_name(talkable_npc.name);
+
+				if (world.key_pressed["f"]) {
+					talkable_npc.interact(world);
 				}
 			}
 		}
