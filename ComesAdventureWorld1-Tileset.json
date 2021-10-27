@@ -8,7 +8,7 @@
  "margin":0,
  "name":"ComesAdventureWorld1-Tileset",
  "spacing":0,
- "tilecount":7,
+ "tilecount":9,
  "tiledversion":"1.7.2",
  "tileheight":32,
  "tiles":[
@@ -53,6 +53,30 @@
          "image":"textures\/Cegly.png",
          "imageheight":32,
          "imagewidth":32
+        }, 
+        {
+         "id":8,
+         "image":"textures\/NPC-Placeholder.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"npc_id",
+                 "type":"string",
+                 "value":""
+                }]
+        }, 
+        {
+         "id":9,
+         "image":"textures\/ITEM-Placeholder.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"item_id",
+                 "type":"string",
+                 "value":""
+                }]
         }],
  "tilewidth":32,
  "type":"tileset",

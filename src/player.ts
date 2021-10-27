@@ -158,6 +158,10 @@ export class Player extends RenderablePlayer {
 
 	// Equip item to selected slot
 	equip_item_to_slot(slot: EquippableSlot, item: ItemInPlayerEq) {
+		if(this.eq_items_equippable_slots[slot] != null) {
+			this.unequip_item_from_slot(slot);
+		}
+
 		this.eq_items_equippable_slots[slot] = item;
 		this.remove_item_from_eq(item);
 		item.is_equipped = true;

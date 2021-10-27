@@ -72,7 +72,7 @@ export class TalkableNPC implements Entity {
 	collides_with() { }
 }
 
-export const Npcs: { [key: string]: TalkableNPC } = {
+export const NPCs: { [key: string]: TalkableNPC } = {
 	'Region1_OldMan': new TalkableNPC(
 		"Old Man",
 		"https://cdn.discordapp.com/attachments/635191339859836948/902221013150998608/unknown.png",

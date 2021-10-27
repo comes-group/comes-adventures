@@ -22,10 +22,25 @@ export class WorldLayerChunk {
 	}
 }
 
+export class WorldLayerObject {
+	position: Vector2;
+	properties: { [key: string]: any } = {};
+
+	constructor(data: any) {
+		this.position = new Vector2(data.x, data.y);
+
+		for (const property of data.properties) {
+			this.properties[property.name] = property.value;
+		}
+	}
+}
+
 // World layers containing Tiled Chunks
 export class WorldLayers {
 	tilesize: Vector2 = new Vector2(32, 32);
 
+	items: Array<WorldLayerObject> = [];
+	npcs: Array<WorldLayerObject> = [];
 	collision: Array<WorldLayerChunk> = [];
 	floor: Array<WorldLayerChunk> = [];
 
@@ -35,7 +50,7 @@ export class WorldLayers {
 		this.tileset = tileset;
 		this.tilesize = new Vector2(data.tilewidth, data.tileheight);
 
-		for (const layer of data.layers) {
+		const process_tilelayer_layer = (layer: any) => {
 			for (const chunk of layer.chunks) {
 				let layer_chunk = new WorldLayerChunk(chunk);
 
@@ -46,6 +61,30 @@ export class WorldLayers {
 				if (layer.name == "Floor") {
 					this.floor.push(layer_chunk);
 				}
+			}
+		};
+
+		const process_objectgroup_layer = (layer: any) => {
+			for (const object of layer.objects) {
+				let layer_object = new WorldLayerObject(object);
+
+				if (layer.name == "NPCs") {
+					this.npcs.push(layer_object);
+				}
+
+				if (layer.name == "Items") {
+					this.items.push(layer_object);
+				}
+			}
+		}
+
+		for (const layer of data.layers) {
+			if (layer.type == "tilelayer") {
+				process_tilelayer_layer(layer);
+			}
+
+			if (layer.type == "objectgroup") {
+				process_objectgroup_layer(layer);
 			}
 		}
 	}

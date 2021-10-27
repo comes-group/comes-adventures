@@ -5,6 +5,8 @@ import { WorldLayerChunk, WorldLayers } from "./world_layers";
 import { Dialog, DialogManager, Dialogs } from "./dialog_manager";
 import { QuestManager, Quests } from "./quest_manager";
 import { UI } from "./ui";
+import { NPCs, TalkableNPC } from "./npc";
+import { ItemEntity, ItemInformations } from "./item";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -60,6 +62,21 @@ export default class World {
 
 	load_world_layers(world_layers: WorldLayers) {
 		this.world_layers = world_layers;
+
+		for (const npc_object of this.world_layers.npcs) {
+			let npc = NPCs[npc_object.properties["npc_id"]];
+			npc.position = npc_object.position;
+
+			this.add_entity(npc);
+		}
+
+		for (const item_object of this.world_layers.items) {
+			let item_info = ItemInformations[item_object.properties["item_id"]];
+			let item_entity = new ItemEntity(item_info);
+			item_entity.position = item_object.position;
+
+			this.add_entity(item_entity);
+		}
 	}
 
 	// Render single world layer
