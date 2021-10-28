@@ -1,5 +1,5 @@
-import { create_player_collision, rect_intersect, Vector2 } from "./common";
-import { Direction } from "./entity";
+import { create_entity_collision, create_player_collision, rect_intersect, Vector2 } from "./common";
+import { Direction, EntityType } from "./entity";
 import { Player } from "./player";
 import { WorldLayerChunk, WorldLayers } from "./world_layers";
 import { Dialog, DialogManager, Dialogs } from "./dialog_manager";
@@ -41,10 +41,13 @@ export default class World {
 	audio_man: AudioManager = new AudioManager();
 
 	entities: Array<any> = [];
+	enemy_entities: Array<any> = [];
+
 	player: Player;
 	key_pressed: any = {};
 
 	global_id_counter = 0;
+	frame_count = 0;
 
 	camera: Camera = new Camera();
 	world_layers: WorldLayers = new WorldLayers();
@@ -53,6 +56,7 @@ export default class World {
 	quest_man: QuestManager = new QuestManager();
 
 	ui: UI;
+	gameover: boolean = false;
 
 	constructor() { }
 
@@ -161,6 +165,14 @@ export default class World {
 				new Vector2(tile_world_x, tile_world_y),
 				this.world_layers.tilesize
 			);
+
+			for (const enemy of this.enemy_entities) {
+				create_entity_collision(
+					enemy,
+					new Vector2(tile_world_x, tile_world_y),
+					this.world_layers.tilesize
+				);
+			}
 		});
 		this.render_world_layer(ctx, this.world_layers.floor);
 
@@ -213,6 +225,15 @@ export default class World {
 			entity.render(ctx);
 		}
 
+		for (let enemy of this.enemy_entities) {
+			if (this.frame_count % 30 == 0)
+				enemy.process();
+
+			enemy.logic_process();
+
+			enemy.render(ctx);
+		}
+
 		// Emit collides_with event to player
 		// and render them
 		this.player.collides_with(player_collisions);
@@ -220,6 +241,11 @@ export default class World {
 
 		// End camera work
 		this.camera.end(ctx);
+
+		if (this.frame_count > 1000)
+			this.frame_count = -1;
+
+		this.frame_count += 1;
 	}
 
 	// Add entity to world
@@ -229,7 +255,11 @@ export default class World {
 			entity.id = this.global_id_counter;
 		}
 
-		this.entities.push(entity);
+		if (entity.type == EntityType.GenericEnemy) {
+			this.enemy_entities.push(entity);
+		} else {
+			this.entities.push(entity);
+		}
 	}
 
 	// Remove entity from world
@@ -240,6 +270,17 @@ export default class World {
 				this.entities.splice(i, 1);
 			}
 		}
+
+		for (let i = 0; i < this.enemy_entities.length; i++) {
+			const entity = this.enemy_entities[i];
+			if (entity.id == entity_id) {
+				this.enemy_entities.splice(i, 1);
+			}
+		}
+	}
+
+	destroy() {
+		world = null;
 	}
 }
 

@@ -19,6 +19,10 @@ export class UI {
 		dialog_text: document.getElementById('talk-with-npc-dialog').getElementsByTagName("span")[0],
 		next_button: document.getElementById('talk-with-npc-dialog').getElementsByTagName("button")[0]
 	};
+	ui_player_hp_mp_stats = {
+		hp: document.getElementById('player-stats-hp'),
+		mp: document.getElementById('player-stats-mana')
+	}
 
 	item_pick_dialog_visibility(visible: boolean) {
 		if (visible) {
@@ -161,10 +165,24 @@ export class UI {
 
 			this.ui_talk_dialogs.next_button.onclick = () => {
 				world.dialog_man.next_stage(),
-				this.text_dialog_refresh();
+					this.text_dialog_refresh();
 			};
 		} else {
 			this.ui_talk_dialogs.container.style.display = "none";
 		}
+	}
+
+	player_stats_refresh() {
+		(this.ui_player_hp_mp_stats.hp as any).value = world.player.health;
+		(this.ui_player_hp_mp_stats.mp as any).value = world.player.mana;
+	}
+
+	gameover() {
+		document.write(`
+			<h1>GAME OVER!</h1>
+			<h2>Poor comes got killed you bastard!</h2>
+
+			<button>Start again</button>
+		`);
 	}
 };

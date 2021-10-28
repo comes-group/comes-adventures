@@ -3,6 +3,7 @@ import World, { world } from "./world";
 import { ItemEntity, ItemInfo, EquippableSlot, ItemImplementation } from "./item";
 import { Vector2 } from "./common";
 import { TalkableNPC } from "./npc";
+import { Sounds } from "./audio_manager";
 
 // Renderable player, intended for future multiplayer
 export class RenderablePlayer implements Entity {
@@ -15,6 +16,7 @@ export class RenderablePlayer implements Entity {
 	position = new Vector2(0, 0);
 	hitbox = new Vector2(32, 32);
 	health = -1;
+	speed = 0;
 
 	sprite: HTMLImageElement = new Image();
 
@@ -69,6 +71,23 @@ export class Player extends RenderablePlayer {
 
 		// Source to player sprite
 		this.sprite.src = "https://cdn.discordapp.com/attachments/403666260832813079/901526304304816228/unknown.png";
+	}
+
+	damage_player(amount: number) {
+		this.health -= amount;
+		world.ui.player_stats_refresh();
+
+		if(this.health <= 0) {
+			world.audio_man.play_sound(Sounds.GameOver);
+			world.audio_man.stop_music();
+			world.gameover = true;
+			world.ui.gameover();
+		}
+	}
+
+	heal_player(amount: number) {
+		this.health += amount;
+		world.ui.player_stats_refresh();
 	}
 
 	get_item_by_id(id: number): null | ItemInPlayerEq {

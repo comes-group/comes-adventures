@@ -8,6 +8,8 @@ export enum EntityType {
 	TalkableNPC,
 	SecurityGate,
 
+	GenericEnemy,
+
 	Item
 };
 
@@ -39,6 +41,7 @@ export default interface Entity {
 	hitbox: Vector2,
 	health: number,
 	facing: Direction,
+	speed: number,
 
 	render(ctx: CanvasRenderingContext2D): void;
 	process(): void;

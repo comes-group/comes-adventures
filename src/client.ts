@@ -24,9 +24,16 @@ world.load_world_layers(world_layers);
 
 world.init();
 
+import { GenericEnemies, GenericEnemyEntity } from "./enemies";
+world.add_entity(new GenericEnemyEntity(
+	GenericEnemies["OrthoCollar"]
+));
+
 // Game loop
 function game_loop() {
-	world.render(ctx);
+	if(!world.gameover)
+		world.render(ctx);
+
 	window.requestAnimationFrame(game_loop);
 }
 

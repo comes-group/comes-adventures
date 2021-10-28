@@ -1,4 +1,4 @@
-import { Direction } from "./entity";
+import Entity, { Direction } from "./entity";
 import { Player } from "./player";
 
 export class Vector2 {
@@ -48,6 +48,37 @@ export function create_player_collision(player: Player, rect_pos: Vector2, rect_
 
 		if (player.facing == Direction.South) {
 			player.position.y -= player.speed;
+		}
+
+		on_collision();
+	}
+}
+
+export function create_entity_collision(entity: Entity, rect_pos: Vector2, rect_size: Vector2, on_collision: () => void = () => {}) {
+	if (rect_intersect(
+		rect_pos.x,
+		rect_pos.y,
+		rect_size.x,
+		rect_size.y,
+		entity.position.x,
+		entity.position.y,
+		entity.hitbox.x,
+		entity.hitbox.y
+	)) {
+		if (entity.facing == Direction.West) {
+			entity.position.x += entity.speed;
+		}
+
+		if (entity.facing == Direction.North) {
+			entity.position.y += entity.speed;
+		}
+
+		if (entity.facing == Direction.East) {
+			entity.position.x -= entity.speed;
+		}
+
+		if (entity.facing == Direction.South) {
+			entity.position.y -= entity.speed;
 		}
 
 		on_collision();

@@ -27,6 +27,7 @@ export class SecurityGateEntity implements Entity {
 
 	health = -1;
 	facing = Direction.North;
+	speed = 0;
 
 	sprite = new Image();
 

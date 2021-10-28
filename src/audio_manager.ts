@@ -2,6 +2,10 @@ export const Music = {
 	Region1_OverworldTheme: new Audio("./assets/music/comes_adventures_-_overworld.opus")
 }
 
+export const Sounds = {
+	GameOver: new Audio("./assets/sounds/PRZEGRANA.ogg")
+}
+
 export class AudioManager {
 	currently_playing_music: HTMLAudioElement;
 
@@ -18,5 +22,9 @@ export class AudioManager {
 
 	stop_music() {
 		this.currently_playing_music.pause();
+	}
+
+	play_sound(sound: HTMLAudioElement) {
+		sound.play();
 	}
 };

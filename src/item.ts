@@ -102,6 +102,7 @@ export class ItemEntity implements Entity {
 	hitbox = new Vector2(32, 32);
 	health = -1;
 	facing = Direction.North;
+	speed = 0;
 
 	sprite: HTMLImageElement = new Image();
 	item_info: ItemInfo;

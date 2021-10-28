@@ -21,6 +21,7 @@ export class TalkableNPC implements Entity {
 
 	health = -1;
 	facing = Direction.North;
+	speed = 0;
 
 	sprite: HTMLImageElement = new Image();
 
