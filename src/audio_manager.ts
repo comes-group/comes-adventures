@@ -6,13 +6,14 @@ export class AudioManager {
 	currently_playing_music: HTMLAudioElement;
 
 	play_music(music: HTMLAudioElement, loop: boolean = false) {
-		if(this.currently_playing_music == music) {
+		if (this.currently_playing_music == music) {
 			music.play();
 			return;
 		}
 
 		this.currently_playing_music = music;
 		music.play();
+		music.loop = loop;
 	}
 
 	stop_music() {

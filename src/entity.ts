@@ -6,6 +6,7 @@ export enum EntityType {
 	Player,
 	GenericRenderable,
 	TalkableNPC,
+	SecurityGate,
 
 	Item
 };

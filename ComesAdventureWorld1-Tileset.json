@@ -8,7 +8,7 @@
  "margin":0,
  "name":"ComesAdventureWorld1-Tileset",
  "spacing":0,
- "tilecount":9,
+ "tilecount":10,
  "tiledversion":"1.7.2",
  "tileheight":32,
  "tiles":[
@@ -77,8 +77,20 @@
                  "type":"string",
                  "value":""
                 }]
+        }, 
+        {
+         "id":10,
+         "image":"textures\/Gate.png",
+         "imageheight":32,
+         "imagewidth":128,
+         "properties":[
+                {
+                 "name":"security_gate_info_id",
+                 "type":"string",
+                 "value":""
+                }]
         }],
- "tilewidth":32,
+ "tilewidth":128,
  "type":"tileset",
  "version":"1.6"
 }

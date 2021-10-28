@@ -8,6 +8,7 @@ import { UI } from "./ui";
 import { NPCs, TalkableNPC } from "./npc";
 import { ItemEntity, ItemInformations } from "./item";
 import { AudioManager, Music } from "./audio_manager";
+import { SecurityGateEntity, SecurityGates } from "./gates";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -53,7 +54,7 @@ export default class World {
 
 	ui: UI;
 
-	constructor() {}
+	constructor() { }
 
 	init() {
 		this.ui = new UI();
@@ -75,7 +76,7 @@ export default class World {
 
 		for (const npc_object of this.world_layers.npcs) {
 			let npc = NPCs[npc_object.properties["npc_id"]];
-			npc.position = npc_object.position;
+			npc.position = new Vector2(npc_object.position.x, npc_object.position.y - 32);
 
 			this.add_entity(npc);
 		}
@@ -86,6 +87,14 @@ export default class World {
 			item_entity.position = item_object.position;
 
 			this.add_entity(item_entity);
+		}
+
+		for (const gate_object of this.world_layers.gates) {
+			let gate_info = SecurityGates[gate_object.properties["security_gate_info_id"]];
+			let gate_entity = new SecurityGateEntity(gate_info, gate_object.size, gate_object.position, "./textures/Gate.png");
+			gate_entity.position.y -= 32;
+
+			this.add_entity(gate_entity);
 		}
 	}
 

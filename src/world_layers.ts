@@ -24,10 +24,12 @@ export class WorldLayerChunk {
 
 export class WorldLayerObject {
 	position: Vector2;
+	size: Vector2;
 	properties: { [key: string]: any } = {};
 
 	constructor(data: any) {
 		this.position = new Vector2(data.x, data.y);
+		this.size = new Vector2(data.width, data.height);
 
 		for (const property of data.properties) {
 			this.properties[property.name] = property.value;
@@ -39,6 +41,7 @@ export class WorldLayerObject {
 export class WorldLayers {
 	tilesize: Vector2 = new Vector2(32, 32);
 
+	gates: Array<WorldLayerObject> = [];
 	items: Array<WorldLayerObject> = [];
 	npcs: Array<WorldLayerObject> = [];
 	collision: Array<WorldLayerChunk> = [];
@@ -74,6 +77,10 @@ export class WorldLayers {
 
 				if (layer.name == "Items") {
 					this.items.push(layer_object);
+				}
+
+				if (layer.name == "Gates") {
+					this.gates.push(layer_object);
 				}
 			}
 		}

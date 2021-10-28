@@ -23,7 +23,7 @@ export function rect_intersect(x1: number, y1: number, w1: number, h1: number, x
 	return true;
 }
 
-export function create_player_collision(player: Player, rect_pos: Vector2, rect_size: Vector2) {
+export function create_player_collision(player: Player, rect_pos: Vector2, rect_size: Vector2, on_collision: () => void = () => {}) {
 	if (rect_intersect(
 		rect_pos.x,
 		rect_pos.y,
@@ -49,5 +49,7 @@ export function create_player_collision(player: Player, rect_pos: Vector2, rect_
 		if (player.facing == Direction.South) {
 			player.position.y -= player.speed;
 		}
+
+		on_collision();
 	}
 }

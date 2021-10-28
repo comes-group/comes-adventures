@@ -25,6 +25,15 @@ export const Dialogs: { [key: string]: Dialog } = {
 		stages: [
 			"Fight for freedom comes!"
 		]
+	},
+
+	'Region1_Gate_HackingToTheGate': {
+		name: "",
+		image: "",
+		stages: [
+			"Hacking to the Gate",
+			"..."
+		]
 	}
 };
 
