@@ -39,7 +39,9 @@ export class Player extends RenderablePlayer {
 	type = EntityType.Player;
 	speed: number = 3;
 	running_speed: number = 5;
+
 	health = 100;
+	mana = 100;
 
 	// Which side is player also facing
 	side_facing: Direction = Direction.North;

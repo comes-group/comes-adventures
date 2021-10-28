@@ -49,6 +49,16 @@
 				</div>
 				<button>Next</button>
 			</div>
+			<div id="player-stats">
+				<div>
+					HP:
+					<input type="range" id="player-stats-hp" max="100" value="100" disabled>
+				</div>
+				<div>
+					MA:
+					<input type="range" id="player-stats-mana" min="0" max="100" value="100" disabled>
+				</div>
+			</div>
 		</div>
 		<canvas id="game-canvas" width="800" height="600" style="border:1px solid lightgrey;"></canvas>
 	</div>
@@ -89,6 +99,11 @@
 	<script src="./dist/main.js"></script>
 
 	<style>
+		body {
+			background-image: url('./background.png');
+			color: white;
+		}
+
 		#stage {
 			width: 800px;
 			height: 600px;
@@ -113,7 +128,8 @@
 		#player-equipment,
 		#interact-with-npc,
 		#player-quests,
-		#talk-with-npc-dialog {
+		#talk-with-npc-dialog,
+		#player-stats {
 			position: absolute;
 		}
 
@@ -185,21 +201,21 @@
 			display: none;
 		}
 
-		#talk-with-npc-dialog > div {
+		#talk-with-npc-dialog>div {
 			display: flex;
 			gap: 12px;
 		}
 
-		#talk-with-npc-dialog > div > div {
+		#talk-with-npc-dialog>div>div {
 			display: flex;
 			flex-direction: column;
 		}
 
-		#talk-with-npc-dialog > div > div b {
+		#talk-with-npc-dialog>div>div b {
 			font-size: 2em;
 		}
 
-		#talk-with-npc-dialog > div > div span {
+		#talk-with-npc-dialog>div>div span {
 			font-size: 1.5em;
 		}
 
@@ -207,6 +223,26 @@
 			width: 100%;
 			font-size: 1.5em;
 			margin-top: 10px;
+		}
+
+		#player-stats div {
+			display: flex;
+			align-items: center;
+		}
+
+		#player-stats {
+			background-color: rgba(0, 0, 0, 0.8);
+			color: white;
+			padding: 12px;
+			bottom: 0;
+		}
+
+		#player-stats div:nth-child(1) input {
+			filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2);
+		}
+
+		#player-stats div:nth-child(2) input {
+			filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
 		}
 	</style>
 </body>
