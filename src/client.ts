@@ -25,9 +25,15 @@ world.load_world_layers(world_layers);
 world.init();
 
 import { GenericEnemies, GenericEnemyEntity } from "./enemies";
-world.add_entity(new GenericEnemyEntity(
+
+let e = new GenericEnemyEntity(
 	GenericEnemies["OrthoCollar"]
-));
+);
+
+e.position.y -= 256;
+e.position.x += 48;
+
+world.add_entity(e);
 
 // Game loop
 function game_loop() {
@@ -39,6 +45,10 @@ function game_loop() {
 
 // Handle keyboard events
 document.body.addEventListener('keydown', (ev) => {
+	if(ev.key == " ") {
+		ev.preventDefault();
+	}
+
 	world.key_pressed[ev.key.toLowerCase()] = true;
 });
 

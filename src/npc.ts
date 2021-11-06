@@ -49,6 +49,9 @@ export class TalkableNPC implements Entity {
 		);
 	}
 
+	damage() {}
+	heal() {}
+
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
 	}

@@ -53,8 +53,8 @@ export const GenericEnemies: { [key: string]: GenericEnemyInfo } = {
 
 		attack_logic: (gee: GenericEnemyEntity) => {
 			(gee as any).attack_cooldown += 1;
-			if((gee as any).attack_cooldown > 15) {
-				world.player.damage_player(gee.gei.damage);
+			if ((gee as any).attack_cooldown > 15) {
+				world.player.damage(gee.gei.damage);
 				(gee as any).attack_cooldown = 0;
 			}
 		},
@@ -69,7 +69,7 @@ export class GenericEnemyEntity implements Entity {
 	hitbox = new Vector2(32, 32);
 
 	health = 50;
-	damage = 0;
+	damage_val = 0;
 
 	facing = Direction.North;
 
@@ -82,13 +82,22 @@ export class GenericEnemyEntity implements Entity {
 
 	constructor(gei: GenericEnemyInfo) {
 		this.health = gei.health;
-		this.damage = gei.damage;
+		this.damage_val = gei.damage;
 		this.sprite.src = gei.sprite_src;
 		this.speed = gei.walk_speed;
 		this.gei = gei;
 
 		gei.init(this);
 	}
+
+	damage(amount: number) {
+		this.health -= amount;
+
+		if (this.health <= 0) {
+			world.remove_entity((this as any).id);
+		}
+	}
+	heal(amount: number) { }
 
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);

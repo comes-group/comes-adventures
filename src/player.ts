@@ -20,6 +20,9 @@ export class RenderablePlayer implements Entity {
 
 	sprite: HTMLImageElement = new Image();
 
+	damage(amount: number) {}
+	heal(amount: number) {}
+
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
 	}
@@ -73,7 +76,7 @@ export class Player extends RenderablePlayer {
 		this.sprite.src = "https://cdn.discordapp.com/attachments/403666260832813079/901526304304816228/unknown.png";
 	}
 
-	damage_player(amount: number) {
+	damage(amount: number) {
 		this.health -= amount;
 		world.ui.player_stats_refresh();
 
@@ -85,7 +88,7 @@ export class Player extends RenderablePlayer {
 		}
 	}
 
-	heal_player(amount: number) {
+	heal(amount: number) {
 		this.health += amount;
 		world.ui.player_stats_refresh();
 	}
@@ -263,6 +266,12 @@ export class Player extends RenderablePlayer {
 			this.speed = this.running_speed;
 		} else {
 			this.speed = 3;
+		}
+
+		// Attack
+		if(key_pressed[" "]) {
+			if(this.eq_items_equippable_implementations[EquippableSlot.WeaponSlot] != null)
+				this.eq_items_equippable_implementations[EquippableSlot.WeaponSlot].use();
 		}
 	}
 

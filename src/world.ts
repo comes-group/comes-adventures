@@ -73,6 +73,8 @@ export default class World {
 		}, 1000);
 
 		this.audio_man.play_music(Music.Region1_OverworldTheme, true);
+
+		this.ui.player_stats_refresh();
 	}
 
 	load_world_layers(world_layers: WorldLayers) {
@@ -217,6 +219,14 @@ export default class World {
 				)) {
 					collisions.push(entity2);
 				}
+			}
+
+			for (const enemy of this.enemy_entities) {
+				create_entity_collision(
+					enemy,
+					entity.position,
+					entity.size
+				);
 			}
 
 			// Emit collides_with event to entities

@@ -43,6 +43,9 @@ export default interface Entity {
 	facing: Direction,
 	speed: number,
 
+	damage(amount: number): void;
+	heal(amount: number): void;
+
 	render(ctx: CanvasRenderingContext2D): void;
 	process(): void;
 	collides_with(entities: Array<Entity>): void;

@@ -41,6 +41,9 @@ export class SecurityGateEntity implements Entity {
 		this.position = position;
 	}
 
+	damage() {}
+	heal() {}
+
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y, this.size.x, this.size.y);
 	}

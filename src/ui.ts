@@ -182,7 +182,7 @@ export class UI {
 			<h1>GAME OVER!</h1>
 			<h2>Poor comes got killed you bastard!</h2>
 
-			<button>Start again</button>
+			<button onclick="window.location.reload();">Start again</button>
 		`);
 	}
 };

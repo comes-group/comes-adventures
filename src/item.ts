@@ -1,6 +1,6 @@
-import { Vector2 } from "./common";
+import { rect_intersect, Vector2 } from "./common";
 import Entity, { Direction, EntityType } from "./entity";
-import World from "./world";
+import World, { world } from "./world";
 
 /*
 	Item.ts
@@ -34,14 +34,47 @@ class Item_Weapon_Melee implements ItemImplementation {
 	info: ItemInfo;
 	sprite: HTMLImageElement = new Image();
 
+	can_be_used: boolean = false;
+
 	init(): void {
 		this.sprite.src = this.info.texture_url;
+
+		setInterval(() => {
+			this.can_be_used = true;
+		}, this.info.special_info.timeout);
 	}
-	use(): void {}
+	use(): void {
+		if(!this.can_be_used)
+			return;
+
+		let range = (this.info.special_info.range * 32);
+
+		let attack_area = new Vector2(
+			(world.player.position.x + world.player.size.x / 2) - range / 2,
+			(world.player.position.y + world.player.size.y / 2) - range / 2
+		);
+
+		for (let enemy of world.enemy_entities) {
+			if (rect_intersect(
+				attack_area.x,
+				attack_area.y,
+				range,
+				range,
+				enemy.position.x,
+				enemy.position.y,
+				enemy.hitbox.x,
+				enemy.hitbox.y
+			)) {
+				enemy.damage(this.info.special_info.damage);
+			}
+		}
+
+		this.can_be_used = false;
+	}
 	render(ctx: CanvasRenderingContext2D, position: Vector2): void {
 		ctx.drawImage(this.sprite, position.x, position.y);
 	}
-	process(): void {}
+	process(): void { }
 }
 
 // Item category
@@ -69,7 +102,12 @@ export const ItemInformations: {
 		texture_url: "https://cdn.discordapp.com/attachments/403666260832813079/901539954700718080/unknown.png",
 		pickable: true,
 		equippable: EquippableSlot.WeaponSlot,
-		implementation: Item_Weapon_Melee
+		implementation: Item_Weapon_Melee,
+		special_info: {
+			damage: 5,
+			range: 2,
+			timeout: 150
+		}
 	},
 
 	"DebugItem": {
@@ -117,6 +155,9 @@ export class ItemEntity implements Entity {
 			this.size = new Vector2(0, 0);
 		}
 	}
+
+	damage() { }
+	heal() { }
 
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
