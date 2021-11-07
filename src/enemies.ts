@@ -1,3 +1,4 @@
+import { Sounds } from "./audio_manager";
 import { rect_intersect, Vector2 } from "./common";
 import Entity, { Direction, EntityType } from "./entity";
 import { world } from "./world";
@@ -96,6 +97,8 @@ export class GenericEnemyEntity implements Entity {
 		if (this.health <= 0) {
 			world.remove_entity((this as any).id);
 		}
+
+		world.audio_man.play_sound(Sounds.OrthoCollarDamage);
 	}
 	heal(amount: number) { }
 

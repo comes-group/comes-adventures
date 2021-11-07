@@ -4,7 +4,12 @@ export const Music = {
 
 export const Sounds = {
 	GameOver: new Audio("./assets/sounds/PRZEGRANA.ogg"),
-	Dialog: new Audio("./assets/sounds/DIALOG.mp3")
+	Dialog: new Audio("./assets/sounds/DIALOG.mp3"),
+	PickupItem: new Audio("./assets/sounds/PODNIES_PRZEDMIOT.ogg"),
+	Walk: new Audio("./assets/sounds/IDZ.ogg"),
+	OrthoCollarDamage: new Audio("./assets/sounds/ORTHOCOLLAR_OBRAZENIA.ogg"),
+	AttackSword: new Audio("./assets/sounds/UDERZENIE_MIECZ.ogg"),
+	DamageToPlayer: new Audio("./assets/sounds/LAMANIE_KOSCI.ogg")
 }
 
 export class AudioManager {

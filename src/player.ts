@@ -86,6 +86,8 @@ export class Player extends RenderablePlayer {
 			world.gameover = true;
 			world.ui.gameover();
 		}
+
+		world.audio_man.play_sound(Sounds.DamageToPlayer);
 	}
 
 	heal(amount: number) {
@@ -224,10 +226,12 @@ export class Player extends RenderablePlayer {
 		if (key_pressed["w"]) {
 			this.position.y -= this.speed;
 			this.facing = Direction.North;
+			world.audio_man.play_sound(Sounds.Walk);
 			// S - Backwards
 		} else if (key_pressed["s"]) {
 			this.position.y += this.speed;
 			this.facing = Direction.South;
+			world.audio_man.play_sound(Sounds.Walk);
 		}
 
 		// A - Left
@@ -241,6 +245,8 @@ export class Player extends RenderablePlayer {
 			} else {
 				this.facing = Direction.West;
 			}
+
+			world.audio_man.play_sound(Sounds.Walk);
 			// D - Right
 		} else if (key_pressed["d"]) {
 			this.position.x += this.speed;
@@ -252,6 +258,8 @@ export class Player extends RenderablePlayer {
 			} else {
 				this.facing = Direction.East;
 			}
+
+			world.audio_man.play_sound(Sounds.Walk);
 		} else {
 			this.side_facing = Direction.North;
 		}
@@ -338,6 +346,7 @@ export class Player extends RenderablePlayer {
 				if (world.key_pressed["e"]) {
 					this.add_item_to_eq_by_ItemEntity(item_entity);
 					world.remove_entity((item_entity as any).id);
+					world.audio_man.play_sound(Sounds.PickupItem);
 				}
 			}
 

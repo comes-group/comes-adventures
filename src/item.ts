@@ -1,3 +1,4 @@
+import { Sounds } from "./audio_manager";
 import { rect_intersect, Vector2 } from "./common";
 import Entity, { Direction, EntityType } from "./entity";
 import World, { world } from "./world";
@@ -68,6 +69,8 @@ class Item_Weapon_Melee implements ItemImplementation {
 				enemy.damage(this.info.special_info.damage);
 			}
 		}
+
+		world.audio_man.play_sound(Sounds.AttackSword);
 
 		this.can_be_used = false;
 	}
