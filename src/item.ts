@@ -115,6 +115,7 @@ export enum ItemCategory {
 	Weapon_Shooting_OneDir,
 	Utility,
 	Ammo,
+	Food,
 
 	DEBUG
 }
@@ -176,6 +177,23 @@ export const ItemInformations: {
 			range: 6,
 			timeout: 300,
 			uses: "Arrow"
+		}
+	},
+
+	"Calcium": {
+		name: "Calcium",
+		category: ItemCategory.Utility,
+		texture_url: "https://cdn.discordapp.com/attachments/635191339859836948/906962599965515836/unknown.png",
+		pickable: true
+	},
+
+	"Bananas": {
+		name: "Bananas",
+		category: ItemCategory.Food,
+		texture_url: "https://cdn.discordapp.com/attachments/635191339859836948/906972837712134214/unknown.png",
+		pickable: true,
+		special_info: {
+			heals: 10
 		}
 	},
 

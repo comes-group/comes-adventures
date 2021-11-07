@@ -20,6 +20,16 @@ export const Quests: { [key: string]: Quest } = {
 				quantity: 1
 			}
 		]
+	},
+
+	"Region1_CollectCalciumForArrows": {
+		name: "Get calcium from enemies",
+		requirements: [
+			{
+				item: ItemInformations["Calcium"],
+				quantity: 16
+			}
+		]
 	}
 }
 

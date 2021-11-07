@@ -84,3 +84,9 @@ export function create_entity_collision(entity: Entity, rect_pos: Vector2, rect_
 		on_collision();
 	}
 }
+
+export function getRandomInt(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

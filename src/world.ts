@@ -10,6 +10,7 @@ import { ItemEntity, ItemInformations } from "./item";
 import { AudioManager, Music } from "./audio_manager";
 import { SecurityGateEntity, SecurityGates } from "./gates";
 import { GenericEnemies, GenericEnemyEntity } from "./enemies";
+import { EnemySpawner } from "./spawners";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -91,7 +92,7 @@ export default class World {
 		for (const item_object of this.world_layers.items) {
 			let item_info = ItemInformations[item_object.properties["item_id"]];
 			let item_entity = new ItemEntity(item_info);
-			item_entity.position = item_object.position;
+			item_entity.position = new Vector2(item_object.position.x, item_object.position.y - 32);
 
 			this.add_entity(item_entity);
 		}
@@ -104,15 +105,22 @@ export default class World {
 			this.add_entity(gate_entity);
 		}
 
-		for(const enemy_object of this.world_layers.enemies) {
-			let enemy_type =  this.world_layers.tileset.get_tile_by_id(enemy_object.tile_id).properties["type"];
+		for (const enemy_object of this.world_layers.enemies) {
+			let enemy_type = this.world_layers.tileset.get_tile_by_id(enemy_object.tile_id).properties["type"];
 
-			if(enemy_type == "generic") {
+			if (enemy_type == "generic") {
 				let enemy_entity = new GenericEnemyEntity(GenericEnemies[enemy_object.properties["enemy_id"]]);
 				enemy_entity.position = new Vector2(enemy_object.position.x, enemy_object.position.y - 32);
 
 				this.add_entity(enemy_entity);
 			}
+		}
+
+		for (const spawner_object of this.world_layers.spawners) {
+			let spawner = new EnemySpawner(spawner_object.properties["type"], spawner_object.properties["enemy_id"]);
+			spawner.position = new Vector2(spawner_object.position.x, spawner_object.position.y - 32);
+
+			this.add_entity(spawner);
 		}
 	}
 
@@ -143,6 +151,7 @@ export default class World {
 					if (tile_id == 0) continue;
 
 					let tile = this.world_layers.tileset.get_tile_by_id(tile_id);
+
 					let tile_world_x = world_chunk_pos.x + (this.world_layers.tilesize.x * x);
 					let tile_world_y = world_chunk_pos.y + (this.world_layers.tilesize.y * y);
 

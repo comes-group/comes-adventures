@@ -8,7 +8,7 @@
  "margin":0,
  "name":"ComesAdventureWorld1-Tileset",
  "spacing":0,
- "tilecount":11,
+ "tilecount":13,
  "tiledversion":"1.7.2",
  "tileheight":32,
  "tiles":[
@@ -106,6 +106,29 @@
                  "type":"string",
                  "value":"generic"
                 }]
+        }, 
+        {
+         "id":13,
+         "image":"textures\/SPAWNER.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"enemy_id",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"type",
+                 "type":"string",
+                 "value":""
+                }]
+        }, 
+        {
+         "id":14,
+         "image":"textures\/TrawaSpalona.png",
+         "imageheight":32,
+         "imagewidth":32
         }],
  "tilewidth":128,
  "type":"tileset",

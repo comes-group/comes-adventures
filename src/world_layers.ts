@@ -44,9 +44,11 @@ export class WorldLayers {
 	tilesize: Vector2 = new Vector2(32, 32);
 
 	gates: Array<WorldLayerObject> = [];
+	spawners: Array<WorldLayerObject> = [];
 	items: Array<WorldLayerObject> = [];
 	npcs: Array<WorldLayerObject> = [];
 	enemies: Array<WorldLayerObject> = [];
+
 	collision: Array<WorldLayerChunk> = [];
 	floor: Array<WorldLayerChunk> = [];
 
@@ -88,6 +90,10 @@ export class WorldLayers {
 
 				if (layer.name == "Gates") {
 					this.gates.push(layer_object);
+				}
+
+				if (layer.name == "Spawners") {
+					this.spawners.push(layer_object);
 				}
 			}
 		}

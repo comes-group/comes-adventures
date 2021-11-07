@@ -13,6 +13,12 @@ export const SecurityGates: { [key: string]: SecurityGateInfo } = {
 		can_be_removed: (sge: SecurityGateEntity) => {
 			return world.quest_man.completed.includes(Quests["Region1_GetTheDaggerBoi"]);
 		}
+	},
+
+	Region1_BlockBeforeSpiderAndOrthoSpawners: {
+		can_be_removed: (sge: SecurityGateEntity) => {
+			return world.quest_man.completed.includes(Quests["Region1_CollectCalciumForArrows"]);
+		}
 	}
 };
 

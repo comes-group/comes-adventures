@@ -24,6 +24,15 @@ export class UI {
 		mp: document.getElementById('player-stats-mana')
 	}
 
+	ui_general = {
+		sound_volume: document.getElementById('sound-volume') as HTMLInputElement,
+		music_volume: document.getElementById('music-volume') as HTMLInputElement
+	}
+
+	constructor() {
+		
+	}
+
 	item_pick_dialog_visibility(visible: boolean) {
 		if (visible) {
 			this.ui_item_pick.style.display = "block";
