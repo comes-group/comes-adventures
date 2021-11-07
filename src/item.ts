@@ -45,7 +45,7 @@ class Item_Weapon_Melee implements ItemImplementation {
 		}, this.info.special_info.timeout);
 	}
 	use(): void {
-		if(!this.can_be_used)
+		if (!this.can_be_used)
 			return;
 
 		let range = (this.info.special_info.range * 32);
@@ -80,12 +80,41 @@ class Item_Weapon_Melee implements ItemImplementation {
 	process(): void { }
 }
 
+class Item_Weapon_Shooting_OneDir implements ItemImplementation {
+	info: ItemInfo;
+	sprite: HTMLImageElement = new Image();
+
+	can_be_used: boolean = false;
+
+	init(): void {
+		this.sprite.src = this.info.texture_url;
+
+		setInterval(() => {
+			this.can_be_used = true;
+		}, this.info.special_info.timeout);
+	}
+	use(): void {
+		if (!this.can_be_used)
+			return;
+
+		world.audio_man.play_sound(Sounds.Attack_Shooting_OneDir);
+
+		this.can_be_used = false;
+	}
+	render(ctx: CanvasRenderingContext2D, position: Vector2): void {
+		ctx.drawImage(this.sprite, position.x, position.y);
+	}
+	process(): void { }
+}
+
 // Item category
 export enum ItemCategory {
 	Invalid,
 
 	Weapon_Melee,
+	Weapon_Shooting_OneDir,
 	Utility,
+	Ammo,
 
 	DEBUG
 }
@@ -120,6 +149,34 @@ export const ItemInformations: {
 		category: ItemCategory.Utility,
 		texture_url: "https://cdn.discordapp.com/attachments/635191339859836948/906867166450708500/unknown.png",
 		pickable: true
+	},
+
+	"Some_Sticks": {
+		name: "Some sticks",
+		category: ItemCategory.Utility,
+		texture_url: "https://cdn.discordapp.com/attachments/635191339859836948/906908575069241354/unknown.png",
+		pickable: true
+	},
+
+	"Arrow": {
+		name: "Arrow",
+		category: ItemCategory.Ammo,
+		texture_url: "https://cdn.discordapp.com/attachments/635191339859836948/906910122364780585/unknown.png",
+		pickable: true
+	},
+
+	"PoorManBow": {
+		name: "Poor Man Bow",
+		category: ItemCategory.Weapon_Shooting_OneDir,
+		texture_url: "https://cdn.discordapp.com/attachments/635191339859836948/906913558846119946/unknown.png",
+		pickable: true,
+		equippable: EquippableSlot.WeaponSlot,
+		implementation: Item_Weapon_Shooting_OneDir,
+		special_info: {
+			range: 6,
+			timeout: 300,
+			uses: "Arrow"
+		}
 	},
 
 	"DebugItem": {
