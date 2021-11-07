@@ -24,17 +24,6 @@ world.load_world_layers(world_layers);
 
 world.init();
 
-import { GenericEnemies, GenericEnemyEntity } from "./enemies";
-
-let e = new GenericEnemyEntity(
-	GenericEnemies["OrthoCollar"]
-);
-
-e.position.y -= 256;
-e.position.x += 48;
-
-world.add_entity(e);
-
 // Game loop
 function game_loop() {
 	if(!world.gameover)

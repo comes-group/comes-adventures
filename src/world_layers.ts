@@ -26,10 +26,12 @@ export class WorldLayerObject {
 	position: Vector2;
 	size: Vector2;
 	properties: { [key: string]: any } = {};
+	tile_id: number;
 
 	constructor(data: any) {
 		this.position = new Vector2(data.x, data.y);
 		this.size = new Vector2(data.width, data.height);
+		this.tile_id = data.gid;
 
 		for (const property of data.properties) {
 			this.properties[property.name] = property.value;
@@ -44,6 +46,7 @@ export class WorldLayers {
 	gates: Array<WorldLayerObject> = [];
 	items: Array<WorldLayerObject> = [];
 	npcs: Array<WorldLayerObject> = [];
+	enemies: Array<WorldLayerObject> = [];
 	collision: Array<WorldLayerChunk> = [];
 	floor: Array<WorldLayerChunk> = [];
 
@@ -70,6 +73,10 @@ export class WorldLayers {
 		const process_objectgroup_layer = (layer: any) => {
 			for (const object of layer.objects) {
 				let layer_object = new WorldLayerObject(object);
+
+				if (layer.name == "Enemies") {
+					this.enemies.push(layer_object);
+				}
 
 				if (layer.name == "NPCs") {
 					this.npcs.push(layer_object);
@@ -100,6 +107,7 @@ export class WorldLayers {
 class Tile {
 	id: number;
 	image: HTMLImageElement;
+	properties: { [key: string]: any };
 }
 
 export class TileSet {
@@ -113,9 +121,18 @@ export class TileSet {
 			let image = new Image();
 			image.src = tile.image;
 
+			let properties: any = {};
+
+			if(tile.properties != undefined) {
+				for(const property of tile.properties) {
+					properties[property.name] = property.value;
+				}
+			}
+
 			this.tiles.push({
 				id: tile.id + 1,
-				image: image
+				image: image,
+				properties: properties
 			});
 		}
 	}

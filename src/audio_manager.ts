@@ -3,7 +3,8 @@ export const Music = {
 }
 
 export const Sounds = {
-	GameOver: new Audio("./assets/sounds/PRZEGRANA.ogg")
+	GameOver: new Audio("./assets/sounds/PRZEGRANA.ogg"),
+	Dialog: new Audio("./assets/sounds/DIALOG.mp3")
 }
 
 export class AudioManager {

@@ -8,7 +8,7 @@
  "margin":0,
  "name":"ComesAdventureWorld1-Tileset",
  "spacing":0,
- "tilecount":10,
+ "tilecount":11,
  "tiledversion":"1.7.2",
  "tileheight":32,
  "tiles":[
@@ -88,6 +88,23 @@
                  "name":"security_gate_info_id",
                  "type":"string",
                  "value":""
+                }]
+        }, 
+        {
+         "id":12,
+         "image":"textures\/ENEMY_GENERIC-Placeholder.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"enemy_id",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"type",
+                 "type":"string",
+                 "value":"generic"
                 }]
         }],
  "tilewidth":128,

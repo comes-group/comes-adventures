@@ -1,3 +1,4 @@
+import { Sounds } from "./audio_manager";
 import World, { world } from "./world";
 
 export class Dialog {
@@ -61,6 +62,8 @@ export class DialogManager {
 		this.on_dialog_end = on_dialog_end;
 
 		world.ui.text_dialog_refresh();
+
+		world.audio_man.play_sound(Sounds.Dialog);
 	}
 
 	next_stage() {
@@ -73,6 +76,8 @@ export class DialogManager {
 		} else {
 			this.current_stage += 1;
 		}
+
+		world.audio_man.play_sound(Sounds.Dialog);
 
 		world.ui.text_dialog_refresh();
 	}

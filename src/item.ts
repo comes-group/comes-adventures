@@ -82,6 +82,8 @@ export enum ItemCategory {
 	Invalid,
 
 	Weapon_Melee,
+	Utility,
+
 	DEBUG
 }
 
@@ -108,6 +110,13 @@ export const ItemInformations: {
 			range: 2,
 			timeout: 150
 		}
+	},
+
+	"Minecraft_String": {
+		name: "Minecraft String",
+		category: ItemCategory.Utility,
+		texture_url: "https://cdn.discordapp.com/attachments/635191339859836948/906867166450708500/unknown.png",
+		pickable: true
 	},
 
 	"DebugItem": {

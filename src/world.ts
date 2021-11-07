@@ -9,6 +9,7 @@ import { NPCs, TalkableNPC } from "./npc";
 import { ItemEntity, ItemInformations } from "./item";
 import { AudioManager, Music } from "./audio_manager";
 import { SecurityGateEntity, SecurityGates } from "./gates";
+import { GenericEnemies, GenericEnemyEntity } from "./enemies";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -101,6 +102,17 @@ export default class World {
 			gate_entity.position.y -= 32;
 
 			this.add_entity(gate_entity);
+		}
+
+		for(const enemy_object of this.world_layers.enemies) {
+			let enemy_type =  this.world_layers.tileset.get_tile_by_id(enemy_object.tile_id).properties["type"];
+
+			if(enemy_type == "generic") {
+				let enemy_entity = new GenericEnemyEntity(GenericEnemies[enemy_object.properties["enemy_id"]]);
+				enemy_entity.position = new Vector2(enemy_object.position.x, enemy_object.position.y - 32);
+
+				this.add_entity(enemy_entity);
+			}
 		}
 	}
 
