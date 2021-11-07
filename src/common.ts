@@ -23,7 +23,7 @@ export function rect_intersect(x1: number, y1: number, w1: number, h1: number, x
 	return true;
 }
 
-export function create_player_collision(player: Player, rect_pos: Vector2, rect_size: Vector2, on_collision: () => void = () => {}) {
+export function create_player_collision(player: Player, rect_pos: Vector2, rect_size: Vector2, on_collision: () => void = () => { }) {
 	if (rect_intersect(
 		rect_pos.x,
 		rect_pos.y,
@@ -54,7 +54,7 @@ export function create_player_collision(player: Player, rect_pos: Vector2, rect_
 	}
 }
 
-export function create_entity_collision(entity: Entity, rect_pos: Vector2, rect_size: Vector2, on_collision: () => void = () => {}) {
+export function create_entity_collision(entity: Entity, rect_pos: Vector2, rect_size: Vector2, on_collision: () => void = () => { }) {
 	if (rect_intersect(
 		rect_pos.x,
 		rect_pos.y,
@@ -86,7 +86,30 @@ export function create_entity_collision(entity: Entity, rect_pos: Vector2, rect_
 }
 
 export function getRandomInt(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export const generateRandomDrop = (drops: { [key: string]: number }): Array<string> => {
+	const lerp = (min: number, max: number, value: number) => ((1 - value) * min + value * max);
+	let total = 0;
+
+	for (const item of Object.keys(drops)) {
+		total += drops[item];
+	}
+
+	const chance = lerp(0, total, Math.random());
+	let items = [];
+
+	for (const i of Array(getRandomInt(1, Object.keys(drops).length))) {
+		let current = 0;
+		for (const item of Object.keys(drops)) {
+			if (current <= chance && chance < current + drops[item]) {
+				items.push(item);
+			}
+		}
+	}
+
+	return items;
 }

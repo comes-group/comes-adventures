@@ -1,5 +1,5 @@
 import { Sounds } from "./audio_manager";
-import { getRandomInt, rect_intersect, Vector2 } from "./common";
+import { generateRandomDrop, getRandomInt, rect_intersect, Vector2 } from "./common";
 import Entity, { Direction, EntityType } from "./entity";
 import { ItemEntity, ItemInformations } from "./item";
 import { world } from "./world";
@@ -18,29 +18,6 @@ export interface GenericEnemyInfo {
 	init: (gee: GenericEnemyEntity) => void;
 	movement_logic: (gee: GenericEnemyEntity) => void;
 	attack_logic: (gee: GenericEnemyEntity) => void;
-}
-
-const generateRandomDrop = (enemy: GenericEnemyInfo): Array<string> => {
-	const lerp = (min: number, max: number, value: number) => ((1 - value) * min + value * max);
-	let total = 0;
-
-	for (const item of Object.keys(enemy.drops)) {
-		total += enemy.drops[item];
-	}
-
-	const chance = lerp(0, total, Math.random());
-	let items = [];
-
-	for (const i of Array(getRandomInt(1, Object.keys(enemy.drops).length))) {
-		let current = 0;
-		for (const item of Object.keys(enemy.drops)) {
-			if (current <= chance && chance < current + enemy.drops[item]) {
-				items.push(item);
-			}
-		}
-	}
-
-	return items;
 }
 
 export const GenericEnemies: { [key: string]: GenericEnemyInfo } = {
@@ -123,7 +100,7 @@ export class GenericEnemyEntity implements Entity {
 		this.health -= amount;
 
 		if (this.health <= 0) {
-			let drop = generateRandomDrop(this.gei);
+			let drop = generateRandomDrop(this.gei.drops);
 
 			for (const item_id of drop) {
 				let item = new ItemEntity(ItemInformations[item_id]);

@@ -55,20 +55,25 @@ class Item_Weapon_Melee implements ItemImplementation {
 			(world.player.position.y + world.player.size.y / 2) - range / 2
 		);
 
-		for (let enemy of world.enemy_entities) {
-			if (rect_intersect(
-				attack_area.x,
-				attack_area.y,
-				range,
-				range,
-				enemy.position.x,
-				enemy.position.y,
-				enemy.hitbox.x,
-				enemy.hitbox.y
-			)) {
-				enemy.damage(this.info.special_info.damage);
+		const damageEntities = (entites: Array<any>) => {
+			for (let entity of entites) {
+				if (rect_intersect(
+					attack_area.x,
+					attack_area.y,
+					range,
+					range,
+					entity.position.x,
+					entity.position.y,
+					entity.hitbox.x,
+					entity.hitbox.y
+				)) {
+					entity.damage(this.info.special_info.damage);
+				}
 			}
 		}
+
+		damageEntities(world.enemy_entities);
+		damageEntities(world.utility_entities);
 
 		world.audio_man.play_sound(Sounds.AttackSword);
 

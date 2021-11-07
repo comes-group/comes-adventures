@@ -33,6 +33,9 @@ export class WorldLayerObject {
 		this.size = new Vector2(data.width, data.height);
 		this.tile_id = data.gid;
 
+		if(data.properties == null)
+			return;
+
 		for (const property of data.properties) {
 			this.properties[property.name] = property.value;
 		}

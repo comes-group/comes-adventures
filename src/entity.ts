@@ -8,6 +8,7 @@ export enum EntityType {
 	TalkableNPC,
 	SecurityGate,
 	Spawner,
+	Utility,
 
 	GenericEnemy,
 

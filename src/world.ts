@@ -10,7 +10,8 @@ import { ItemEntity, ItemInformations } from "./item";
 import { AudioManager, Music } from "./audio_manager";
 import { SecurityGateEntity, SecurityGates } from "./gates";
 import { GenericEnemies, GenericEnemyEntity } from "./enemies";
-import { EnemySpawner } from "./spawners";
+import { EnemySpawner, UtilitySpawner } from "./spawners";
+import { UtilityEntity } from "./utility_entities";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -44,6 +45,7 @@ export default class World {
 
 	entities: Array<any> = [];
 	enemy_entities: Array<any> = [];
+	utility_entities: Array<any> = [];
 
 	player: Player;
 	key_pressed: any = {};
@@ -117,10 +119,21 @@ export default class World {
 		}
 
 		for (const spawner_object of this.world_layers.spawners) {
-			let spawner = new EnemySpawner(spawner_object.properties["type"], spawner_object.properties["enemy_id"]);
-			spawner.position = new Vector2(spawner_object.position.x, spawner_object.position.y - 32);
+			let spawner_category = this.world_layers.tileset.get_tile_by_id(spawner_object.tile_id).properties["category"];
 
-			this.add_entity(spawner);
+			if (spawner_category == "enemy") {
+				let spawner = new EnemySpawner(spawner_object.properties["type"], spawner_object.properties["enemy_id"]);
+				spawner.position = new Vector2(spawner_object.position.x, spawner_object.position.y - 32);
+
+				this.add_entity(spawner);
+			}
+
+			if (spawner_category == "utility_entity") {
+				let spawner = new UtilitySpawner(spawner_object.properties["utility_entity_id"]);
+				spawner.position = new Vector2(spawner_object.position.x, spawner_object.position.y - 32);
+
+				this.add_entity(spawner);
+			}
 		}
 	}
 
@@ -265,6 +278,14 @@ export default class World {
 			enemy.render(ctx);
 		}
 
+		for (let utility of this.utility_entities) {
+			if (this.frame_count % 30 == 0)
+				utility.process();
+
+			utility.render(ctx);
+		}
+
+
 		// Emit collides_with event to player
 		// and render them
 		this.player.collides_with(player_collisions);
@@ -288,6 +309,8 @@ export default class World {
 
 		if (entity.type == EntityType.GenericEnemy) {
 			this.enemy_entities.push(entity);
+		} else if (entity.type == EntityType.Utility) {
+			this.utility_entities.push(entity);
 		} else {
 			this.entities.push(entity);
 		}
@@ -306,6 +329,13 @@ export default class World {
 			const entity = this.enemy_entities[i];
 			if (entity.id == entity_id) {
 				this.enemy_entities.splice(i, 1);
+			}
+		}
+
+		for (let i = 0; i < this.utility_entities.length; i++) {
+			const entity = this.utility_entities[i];
+			if (entity.id == entity_id) {
+				this.utility_entities.splice(i, 1);
 			}
 		}
 	}
