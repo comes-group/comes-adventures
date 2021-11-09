@@ -72,12 +72,12 @@ export const GenericEnemies: { [key: string]: GenericEnemyInfo } = {
 
 	BleedingSpider: {
 		health: 50,
-		damage: 4,
+		damage: 2,
 		sprite_src: "https://cdn.discordapp.com/attachments/635191339859836948/907740558024388668/unknown.png",
 		sight_radius: 308,
 		attack_radius: 72,
 
-		walk_speed: 4,
+		walk_speed: 3,
 
 		special_data: {},
 		drops: {

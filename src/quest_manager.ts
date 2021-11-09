@@ -46,14 +46,14 @@ export class QuestManager {
 	completed: Array<Quest> = [];
 
 	start_quest(quest: Quest) {
-		for(const q of this.in_progress) {
-			if(q == quest) {
+		for (const q of this.in_progress) {
+			if (q == quest) {
 				return;
 			}
 		}
 
-		for(const q of this.completed) {
-			if(q == quest) {
+		for (const q of this.completed) {
+			if (q == quest) {
 				return;
 			}
 		}
@@ -65,6 +65,8 @@ export class QuestManager {
 		let i = 0;
 
 		for (const quest of this.in_progress) {
+			let completed_requirements = 0;
+
 			for (const requirement of quest.requirements) {
 				let item_quantity = 0;
 
@@ -75,11 +77,15 @@ export class QuestManager {
 				}
 
 				if (item_quantity == requirement.quantity) {
-					this.in_progress.splice(i, 1);
-					this.completed.push(quest);
-
-					alert(`You completed quest ${quest.name}`);
+					completed_requirements += 1;
 				}
+			}
+
+			if (completed_requirements == quest.requirements.length) {
+				this.in_progress.splice(i, 1);
+				this.completed.push(quest);
+
+				alert(`You completed quest ${quest.name}`);
 			}
 
 			i += 1;
