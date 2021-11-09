@@ -20,6 +20,24 @@ export interface GenericEnemyInfo {
 	attack_logic: (gee: GenericEnemyEntity) => void;
 }
 
+const MovementImpl1 = (gee: GenericEnemyEntity) => {
+	if (gee.position.x > world.player.position.x) {
+		gee.position.x -= gee.gei.walk_speed;
+		gee.facing = Direction.West;
+	} else {
+		gee.position.x += gee.gei.walk_speed;
+		gee.facing = Direction.East;
+	}
+
+	if (gee.position.y > world.player.position.y) {
+		gee.position.y -= gee.gei.walk_speed;
+		gee.facing = Direction.North;
+	} else {
+		gee.position.y += gee.gei.walk_speed;
+		gee.facing = Direction.South;
+	}
+};
+
 export const GenericEnemies: { [key: string]: GenericEnemyInfo } = {
 	OrthoCollar: {
 		health: 30,
@@ -40,26 +58,44 @@ export const GenericEnemies: { [key: string]: GenericEnemyInfo } = {
 		},
 
 		movement_logic: (gee: GenericEnemyEntity) => {
-			if (gee.position.x > world.player.position.x) {
-				gee.position.x -= gee.gei.walk_speed;
-				gee.facing = Direction.West;
-			} else {
-				gee.position.x += gee.gei.walk_speed;
-				gee.facing = Direction.East;
-			}
-
-			if (gee.position.y > world.player.position.y) {
-				gee.position.y -= gee.gei.walk_speed;
-				gee.facing = Direction.North;
-			} else {
-				gee.position.y += gee.gei.walk_speed;
-				gee.facing = Direction.South;
-			}
+			MovementImpl1(gee);
 		},
 
 		attack_logic: (gee: GenericEnemyEntity) => {
 			(gee as any).attack_cooldown += 1;
 			if ((gee as any).attack_cooldown > 15) {
+				world.player.damage(gee.gei.damage);
+				(gee as any).attack_cooldown = 0;
+			}
+		},
+	},
+
+	BleedingSpider: {
+		health: 50,
+		damage: 4,
+		sprite_src: "https://cdn.discordapp.com/attachments/635191339859836948/907740558024388668/unknown.png",
+		sight_radius: 308,
+		attack_radius: 72,
+
+		walk_speed: 4,
+
+		special_data: {},
+		drops: {
+			"Minecraft_String": 1
+		},
+
+		init: (gee: GenericEnemyEntity) => {
+			(gee as any).attack_cooldown = 0;
+		},
+
+		movement_logic: (gee: GenericEnemyEntity) => {
+			MovementImpl1(gee);
+			world.audio_man.play_sound(Sounds.Movement_BleedingSpider);
+		},
+
+		attack_logic: (gee: GenericEnemyEntity) => {
+			(gee as any).attack_cooldown += 1;
+			if ((gee as any).attack_cooldown > 12) {
 				world.player.damage(gee.gei.damage);
 				(gee as any).attack_cooldown = 0;
 			}

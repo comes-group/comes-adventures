@@ -1,4 +1,4 @@
-import { EquippableSlot } from "./item";
+import { EquippableSlot, ItemInfo } from "./item";
 import { Player, ItemInPlayerEq } from "./player";
 import World, { world } from "./world";
 
@@ -139,6 +139,18 @@ export class UI {
 	}
 
 	quests_render() {
+		const count_item = (i: ItemInfo) => {
+			let item_quantity = 0;
+
+			for (const playerEqItem of world.player.eq_items_inside) {
+				if (playerEqItem.info == i) {
+					item_quantity += 1;
+				}
+			}
+
+			return item_quantity;
+		}
+
 		let quest_list = this.ui_quests.getElementsByTagName("ul")[0];
 		quest_list.innerHTML = "";
 
@@ -155,7 +167,7 @@ export class UI {
 			total_html += `<b>${quest.name}</b><ul>`;
 
 			for (const req of quest.requirements) {
-				total_html += `<li>Collect <b>${req.quantity}</b> <b>${req.item.name}</b></li>`;
+				total_html += `<li>Collect <b>${count_item(req.item)}/${req.quantity}</b> <b>${req.item.name}</b></li>`;
 			}
 
 			total_html += `</ul></li>`;

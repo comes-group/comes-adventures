@@ -22,12 +22,20 @@ export const Quests: { [key: string]: Quest } = {
 		]
 	},
 
-	"Region1_CollectCalciumForArrows": {
-		name: "Get calcium from enemies",
+	"Region1_CollectCalciumAndMinecraftStringForArrowsAndBow": {
+		name: "Get calcium and Minecraft String from enemies",
 		requirements: [
 			{
 				item: ItemInformations["Calcium"],
 				quantity: 16
+			},
+			{
+				item: ItemInformations["Minecraft_String"],
+				quantity: 7
+			},
+			{
+				item: ItemInformations["Some_Sticks"],
+				quantity: 25
 			}
 		]
 	}

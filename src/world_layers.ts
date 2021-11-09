@@ -52,6 +52,9 @@ export class WorldLayers {
 	npcs: Array<WorldLayerObject> = [];
 	enemies: Array<WorldLayerObject> = [];
 
+	decorations_top: Array<WorldLayerObject> = [];
+	decorations_bottom: Array<WorldLayerObject> = [];
+
 	collision: Array<WorldLayerChunk> = [];
 	floor: Array<WorldLayerChunk> = [];
 
@@ -97,6 +100,14 @@ export class WorldLayers {
 
 				if (layer.name == "Spawners") {
 					this.spawners.push(layer_object);
+				}
+
+				if (layer.name == "Decorations-Top") {
+					this.decorations_top.push(layer_object);
+				}
+
+				if (layer.name == "Decorations-Bottom") {
+					this.decorations_bottom.push(layer_object);
 				}
 			}
 		}

@@ -35,6 +35,27 @@ export const Dialogs: { [key: string]: Dialog } = {
 			"Hacking to the Gate",
 			"..."
 		]
+	},
+
+	'Region1_Blacksmith_WelcomeComes': {
+		name: "",
+		image: "",
+		stages: [
+			"Hey! So you are this new face on our land eh?",
+			"As you might already tell our place is infested with monsters.",
+			"I think...",
+			"You should get bow and arrows!",
+			"I can make some arrows and bow for you but I need materials.",
+			"Collect me some strings, calcium and sticks."
+		]
+	},
+
+	'Region1_Blacksmith_DoYourJob': {
+		name: "",
+		image: "",
+		stages: [
+			"Do not disturb me, just do your job."
+		]
 	}
 };
 

@@ -145,7 +145,7 @@ export const ItemInformations: {
 		implementation: Item_Weapon_Melee,
 		special_info: {
 			damage: 5,
-			range: 2,
+			range: 2.5,
 			timeout: 150
 		}
 	},

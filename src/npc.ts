@@ -49,8 +49,8 @@ export class TalkableNPC implements Entity {
 		);
 	}
 
-	damage() {}
-	heal() {}
+	damage() { }
+	heal() { }
 
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
@@ -114,6 +114,32 @@ export const NPCs: { [key: string]: TalkableNPC } = {
 						npc.sprite.src,
 						npc.name
 					);
+					break;
+			}
+		}
+	),
+
+	'Region2_Blacksmith': new TalkableNPC(
+		"Blacksmith",
+		"https://cdn.discordapp.com/attachments/635191339859836948/907733399597355068/unknown.png",
+		(npc: TalkableNPC) => {
+			npc.custom_data.completed_dialogs = 0;
+		},
+		(npc: TalkableNPC) => {
+			switch (npc.custom_data.completed_dialogs) {
+				case 0:
+					world.dialog_man.start_dialog(
+						Dialogs["Region1_Blacksmith_WelcomeComes"],
+						npc.sprite.src, npc.name,
+						() => {
+							npc.custom_data.completed_dialogs += 1;
+							world.quest_man.start_quest(Quests["Region1_CollectCalciumAndMinecraftStringForArrowsAndBow"])
+						}
+					);
+					break;
+
+				default:
+					world.dialog_man.start_dialog(Dialogs["Region1_Blacksmith_DoYourJob"], npc.sprite.src, npc.name);
 					break;
 			}
 		}

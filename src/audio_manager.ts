@@ -12,7 +12,8 @@ export const Sounds = {
 	OrthoCollarDamage: new Audio("./assets/sounds/ORTHOCOLLAR_OBRAZENIA.ogg"),
 	AttackSword: new Audio("./assets/sounds/UDERZENIE_MIECZ.ogg"),
 	DamageToPlayer: new Audio("./assets/sounds/LAMANIE_KOSCI.ogg"),
-	Attack_Shooting_OneDir: new Audio("./assets/sounds/ATAK_STRZELANIE_JEDEN_KIERUNEK.ogg")
+	Attack_Shooting_OneDir: new Audio("./assets/sounds/ATAK_STRZELANIE_JEDEN_KIERUNEK.ogg"),
+	Movement_BleedingSpider: new Audio("./assets/sounds/KRWAWIACY_PAJAK_CHODZENIE.ogg")
 }
 
 export class AudioManager {

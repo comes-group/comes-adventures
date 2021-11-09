@@ -1,7 +1,7 @@
 import { create_entity_collision, create_player_collision, rect_intersect, Vector2 } from "./common";
 import { Direction, EntityType } from "./entity";
 import { Player } from "./player";
-import { WorldLayerChunk, WorldLayers } from "./world_layers";
+import { WorldLayerChunk, WorldLayerObject, WorldLayers } from "./world_layers";
 import { Dialog, DialogManager, Dialogs } from "./dialog_manager";
 import { QuestManager, Quests } from "./quest_manager";
 import { UI } from "./ui";
@@ -180,6 +180,27 @@ export default class World {
 		}
 	}
 
+	render_object_layer(ctx: CanvasRenderingContext2D, layer: Array<WorldLayerObject>) {
+		for (const object of layer) {
+			if (!this.camera.check_if_in_bound(
+				ctx, object.position,
+				object.size
+			)) {
+				continue;
+			}
+
+			let tile = this.world_layers.tileset.get_tile_by_id(object.tile_id);
+
+			ctx.drawImage(
+				tile.image,
+				object.position.x,
+				object.position.y - object.size.y,
+				object.size.y,
+				object.size.y
+			);
+		}
+	}
+
 	// Render things out
 	render(ctx: CanvasRenderingContext2D) {
 		// Process player logic
@@ -211,6 +232,8 @@ export default class World {
 			}
 		});
 		this.render_world_layer(ctx, this.world_layers.floor);
+		this.render_object_layer(ctx, this.world_layers.decorations_bottom);
+		this.render_object_layer(ctx, this.world_layers.decorations_top);
 
 		// Store players collisions which accured while checking
 		let player_collisions = [];
