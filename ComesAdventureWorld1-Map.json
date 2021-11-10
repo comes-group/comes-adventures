@@ -1520,6 +1520,24 @@
                  "width":160,
                  "x":224,
                  "y":-800
+                }, 
+                {
+                 "gid":11,
+                 "height":166,
+                 "id":161,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"security_gate_info_id",
+                         "type":"string",
+                         "value":"Region1_BlockBeforePathToTheCity"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":164.666666666667,
+                 "x":-158.666666666667,
+                 "y":-638.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1528,7 +1546,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":161,
+ "nextobjectid":162,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

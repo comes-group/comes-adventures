@@ -220,6 +220,17 @@ export class Player extends RenderablePlayer {
 		}
 	}
 
+	eq_has_item(item: ItemInfo, amount: number) {
+		let count = 0;
+
+		for(const it of this.eq_items_inside) {
+			if(it.info == item)
+				count += 1;
+		}
+
+		return count == amount;
+	}
+
 	// Process key press event
 	process_key_press(key_pressed: any) {
 		// W - Forward

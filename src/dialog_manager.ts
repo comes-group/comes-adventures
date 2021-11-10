@@ -56,6 +56,16 @@ export const Dialogs: { [key: string]: Dialog } = {
 		stages: [
 			"Do not disturb me, just do your job."
 		]
+	},
+
+	'Region1_Blacksmith_CalciumStringStickQuest_Complete': {
+		name: "",
+		image: "",
+		stages: [
+			"Wow, you REALLY collected them all.",
+			"Here is your bow and arrows.",
+			"And I will keep the rest as the payment..."
+		]
 	}
 };
 

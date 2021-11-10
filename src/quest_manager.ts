@@ -76,7 +76,7 @@ export class QuestManager {
 					}
 				}
 
-				if (item_quantity == requirement.quantity) {
+				if (item_quantity >= requirement.quantity) {
 					completed_requirements += 1;
 				}
 			}

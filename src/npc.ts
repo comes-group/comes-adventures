@@ -138,6 +138,30 @@ export const NPCs: { [key: string]: TalkableNPC } = {
 					);
 					break;
 
+				case 1:
+					if (world.quest_man.completed.includes(Quests["Region1_CollectCalciumAndMinecraftStringForArrowsAndBow"])) {
+						world.dialog_man.start_dialog(
+							Dialogs["Region1_Blacksmith_CalciumStringStickQuest_Complete"],
+							npc.sprite.src, npc.name,
+							() => {
+								npc.custom_data.completed_dialogs += 1;
+
+								let bow = new ItemEntity(ItemInformations["PoorManBow"]);
+								bow.position = npc.position.clone();
+								bow.position.x -= 32;
+								world.add_entity(bow);
+
+								for (const i of Array(5)) {
+									let arrow = new ItemEntity(ItemInformations["Arrow"]);
+									arrow.position = npc.position.clone();
+									arrow.position.x -= 32;
+									world.add_entity(arrow);
+								}
+							}
+						);
+						break;
+					}
+
 				default:
 					world.dialog_man.start_dialog(Dialogs["Region1_Blacksmith_DoYourJob"], npc.sprite.src, npc.name);
 					break;

@@ -29,6 +29,7 @@ export class WorldLayerObject {
 	tile_id: number;
 	global_id: number;
 	visible: boolean;
+	rotation: number;
 
 	constructor(data: any) {
 		this.position = new Vector2(data.x, data.y);
@@ -36,6 +37,7 @@ export class WorldLayerObject {
 		this.tile_id = data.gid;
 		this.global_id = data.id;
 		this.visible = data.visible;
+		this.rotation = data.rotation;
 
 		if (data.properties == null)
 			return;
