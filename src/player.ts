@@ -20,8 +20,8 @@ export class RenderablePlayer implements Entity {
 
 	sprite: HTMLImageElement = new Image();
 
-	damage(amount: number) {}
-	heal(amount: number) {}
+	damage(amount: number) { }
+	heal(amount: number) { }
 
 	render(ctx: CanvasRenderingContext2D) {
 		ctx.drawImage(this.sprite, this.position.x, this.position.y);
@@ -80,7 +80,7 @@ export class Player extends RenderablePlayer {
 		this.health -= amount;
 		world.ui.player_stats_refresh();
 
-		if(this.health <= 0) {
+		if (this.health <= 0) {
 			world.audio_man.play_sound(Sounds.GameOver);
 			world.audio_man.stop_music();
 			world.gameover = true;
@@ -180,7 +180,7 @@ export class Player extends RenderablePlayer {
 
 	// Equip item to selected slot
 	equip_item_to_slot(slot: EquippableSlot, item: ItemInPlayerEq) {
-		if(this.eq_items_equippable_slots[slot] != null) {
+		if (this.eq_items_equippable_slots[slot] != null) {
 			this.unequip_item_from_slot(slot);
 		}
 
@@ -277,9 +277,18 @@ export class Player extends RenderablePlayer {
 		}
 
 		// Attack
-		if(key_pressed[" "]) {
-			if(this.eq_items_equippable_implementations[EquippableSlot.WeaponSlot] != null)
+		if (key_pressed[" "]) {
+			if (this.eq_items_equippable_implementations[EquippableSlot.WeaponSlot] != null)
 				this.eq_items_equippable_implementations[EquippableSlot.WeaponSlot].use();
+		}
+	}
+
+	request_npc_interaction(name: string, interaction: () => void) {
+		world.ui.npc_interaction_dialog_visibility(true);
+		world.ui.npc_interaction_dialog_set_npc_name(name);
+
+		if (world.key_pressed["f"]) {
+			interaction();
 		}
 	}
 
@@ -353,12 +362,9 @@ export class Player extends RenderablePlayer {
 			if (entity.type == EntityType.TalkableNPC) {
 				let talkable_npc = entity as TalkableNPC;
 
-				world.ui.npc_interaction_dialog_visibility(true);
-				world.ui.npc_interaction_dialog_set_npc_name(talkable_npc.name);
-
-				if (world.key_pressed["f"]) {
+				this.request_npc_interaction(talkable_npc.name, () => {
 					talkable_npc.interact();
-				}
+				});
 			}
 		}
 	}

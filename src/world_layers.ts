@@ -27,13 +27,17 @@ export class WorldLayerObject {
 	size: Vector2;
 	properties: { [key: string]: any } = {};
 	tile_id: number;
+	global_id: number;
+	visible: boolean;
 
 	constructor(data: any) {
 		this.position = new Vector2(data.x, data.y);
 		this.size = new Vector2(data.width, data.height);
 		this.tile_id = data.gid;
+		this.global_id = data.id;
+		this.visible = data.visible;
 
-		if(data.properties == null)
+		if (data.properties == null)
 			return;
 
 		for (const property of data.properties) {
@@ -51,6 +55,8 @@ export class WorldLayers {
 	items: Array<WorldLayerObject> = [];
 	npcs: Array<WorldLayerObject> = [];
 	enemies: Array<WorldLayerObject> = [];
+
+	utility_entites: Array<WorldLayerObject> = [];
 
 	decorations_top: Array<WorldLayerObject> = [];
 	decorations_bottom: Array<WorldLayerObject> = [];
@@ -102,6 +108,10 @@ export class WorldLayers {
 					this.spawners.push(layer_object);
 				}
 
+				if (layer.name == "UtilityEntites") {
+					this.utility_entites.push(layer_object);
+				}
+
 				if (layer.name == "Decorations-Top") {
 					this.decorations_top.push(layer_object);
 				}
@@ -121,6 +131,24 @@ export class WorldLayers {
 				process_objectgroup_layer(layer);
 			}
 		}
+	}
+
+	get_object_by_id(id: number): WorldLayerObject | null {
+		let super_array = this.gates
+			.concat(this.spawners)
+			.concat(this.items)
+			.concat(this.npcs)
+			.concat(this.enemies)
+			.concat(this.utility_entites)
+			.concat(this.decorations_top)
+			.concat(this.decorations_bottom);
+
+		for(const object of super_array) {
+			if(object.global_id == id)
+				return object;
+		}
+
+		return null;
 	}
 }
 
@@ -143,8 +171,8 @@ export class TileSet {
 
 			let properties: any = {};
 
-			if(tile.properties != undefined) {
-				for(const property of tile.properties) {
+			if (tile.properties != undefined) {
+				for (const property of tile.properties) {
 					properties[property.name] = property.value;
 				}
 			}

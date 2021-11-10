@@ -1,14 +1,23 @@
 import { Sounds } from "./audio_manager";
 import { generateRandomDrop, getRandomInt, Vector2 } from "./common";
+import { Dialogs } from "./dialog_manager";
 import Entity, { Direction, EntityType } from "./entity";
 import { ItemEntity, ItemInformations } from "./item";
 import { world } from "./world";
+import { WorldLayerObject } from "./world_layers";
 
 interface UtilityEntityInfo {
 	health: number;
 	sprite_src: string;
 	drops: { [key: string]: number };
+	damagable: boolean,
+	pure_functional: boolean,
 	drop_amount?: number;
+
+	on_init?: (ue: UtilityEntity) => void,
+	on_collision?: (ue: UtilityEntity, entities: Array<Entity>) => void,
+	on_render?: (ue: UtilityEntity, ctx: CanvasRenderingContext2D) => void,
+	on_process?: (ue: UtilityEntity) => void,
 }
 
 export const Utilities: { [key: string]: UtilityEntityInfo } = {
@@ -18,8 +27,100 @@ export const Utilities: { [key: string]: UtilityEntityInfo } = {
 		drops: {
 			"Some_Sticks": 1
 		},
-		drop_amount: 3
-	}
+		drop_amount: 3,
+		damagable: true,
+		pure_functional: false
+	},
+
+	Teleport: {
+		health: -1,
+		sprite_src: "./textures/UŻYTECZNE/Teleport.png",
+		drops: {},
+		damagable: false,
+		pure_functional: true,
+
+		on_collision: (ue, entities) => {
+			for (const entity of entities) {
+				if (entity.type != EntityType.Player)
+					continue;
+
+				let needs_interaction = ue.worldlayer_object.properties["needs_interaction"];
+				let position_to_tp = world.world_layers.get_object_by_id(
+					ue.worldlayer_object.properties["destination"]
+				);
+
+				if (needs_interaction) {
+					world.player.request_npc_interaction("Teleport", () => {
+						world.player.position = position_to_tp.position;
+						world.remove_entity((ue as any).id);
+					});
+				} else {
+					world.player.position = position_to_tp.position;
+					world.remove_entity((ue as any).id);
+				}
+			}
+		}
+	},
+
+	PlayerSpawn: {
+		health: 220,
+		sprite_src: "./textures/UŻYTECZNE/PlayerSpawn.png",
+		drops: {},
+		damagable: false,
+		pure_functional: true,
+
+		on_process: (ue: UtilityEntity) => {
+			world.player.position = ue.position;
+			world.remove_entity((ue as any).id);
+		},
+
+		on_render: () => { }
+	},
+
+	PositionMark: {
+		health: 220,
+		sprite_src: "./textures/UŻYTECZNE/PositionMarker.png",
+		drops: {},
+		damagable: false,
+		pure_functional: true,
+
+		on_render: () => { }
+	},
+
+	DialogExecute: {
+		health: -1,
+		sprite_src: "./textures/UŻYTECZNE/DialogExecute.png",
+		drops: {},
+		damagable: false,
+		pure_functional: true,
+
+		on_render: (ue, ctx) => {
+			if (ue.worldlayer_object.visible) {
+				ctx.drawImage(
+					ue.sprite,
+					ue.position.x + ((ue.hitbox.x - ue.sprite.width) / 2),
+					ue.position.y - (ue.sprite.height - 32)
+				);
+			}
+		},
+
+		on_collision: (ue, entities) => {
+			for (const entity of entities) {
+				if (entity.type != EntityType.Player)
+					continue;
+
+				let message = ue.worldlayer_object.properties["message"];
+
+				world.player.request_npc_interaction(message, () => {
+					world.dialog_man.start_dialog(
+						Dialogs[ue.worldlayer_object.properties["dialog_id"]],
+						"",
+						message
+					);
+				});
+			}
+		}
+	},
 };
 
 export class UtilityEntity implements Entity {
@@ -37,13 +138,20 @@ export class UtilityEntity implements Entity {
 
 	sprite = new Image();
 
-	constructor(uei: UtilityEntityInfo) {
+	worldlayer_object: null | WorldLayerObject;
+
+	constructor(uei: UtilityEntityInfo, worldlayer_object: WorldLayerObject = null) {
 		this.uei = uei;
 		this.sprite.src = uei.sprite_src;
 		this.health = uei.health;
+
+		this.worldlayer_object = worldlayer_object;
 	}
 
 	damage(amount: number) {
+		if (!this.uei.damagable)
+			return;
+
 		this.health -= amount;
 
 		if (this.health <= 0) {
@@ -66,18 +174,31 @@ export class UtilityEntity implements Entity {
 	heal() { }
 
 	render(ctx: CanvasRenderingContext2D) {
+		if (this.uei.on_render) {
+			this.uei.on_render(this, ctx);
+			return;
+		}
+
 		ctx.drawImage(this.sprite, this.position.x + ((this.hitbox.x - this.sprite.width) / 2), this.position.y - (this.sprite.height - 32));
 
-		ctx.save();
+		if (this.uei.damagable) {
+			ctx.save();
 
-		ctx.fillStyle = "#ff5757aa";
-		ctx.fillRect(this.position.x - 6, this.position.y - 15, 42, 10);
+			ctx.fillStyle = "#ff5757aa";
+			ctx.fillRect(this.position.x - 6, this.position.y - 15, 42, 10);
 
-		ctx.fillStyle = "red";
-		ctx.fillRect(this.position.x - 6, this.position.y - 15, (this.health / this.uei.health) * 42, 10);
+			ctx.fillStyle = "red";
+			ctx.fillRect(this.position.x - 6, this.position.y - 15, (this.health / this.uei.health) * 42, 10);
 
-		ctx.restore();
+			ctx.restore();
+		}
 	}
-	process() { }
-	collides_with() { }
+	process() {
+		if (this.uei.on_process)
+			this.uei.on_process(this);
+	}
+	collides_with(entities: Array<Entity>) {
+		if (this.uei.on_collision)
+			this.uei.on_collision(this, entities);
+	}
 }

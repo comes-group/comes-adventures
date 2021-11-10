@@ -8,7 +8,7 @@
  "margin":0,
  "name":"ComesAdventureWorld1-Tileset",
  "spacing":0,
- "tilecount":22,
+ "tilecount":26,
  "tiledversion":"1.7.2",
  "tileheight":96,
  "tiles":[
@@ -199,6 +199,74 @@
          "image":"textures\/DEKORACJE\/TRAWA.png",
          "imageheight":32,
          "imagewidth":32
+        }, 
+        {
+         "id":24,
+         "image":"textures\/U\u017bYTECZNE\/Teleport.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"destination",
+                 "type":"object",
+                 "value":0
+                }, 
+                {
+                 "name":"entity_id",
+                 "type":"string",
+                 "value":"Teleport"
+                }, 
+                {
+                 "name":"needs_interaction",
+                 "type":"bool",
+                 "value":false
+                }]
+        }, 
+        {
+         "id":25,
+         "image":"textures\/U\u017bYTECZNE\/PlayerSpawn.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"entity_id",
+                 "type":"string",
+                 "value":"PlayerSpawn"
+                }]
+        }, 
+        {
+         "id":26,
+         "image":"textures\/U\u017bYTECZNE\/PositionMarker.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"entity_id",
+                 "type":"string",
+                 "value":"PositionMark"
+                }]
+        }, 
+        {
+         "id":27,
+         "image":"textures\/U\u017bYTECZNE\/DialogExecute.png",
+         "imageheight":32,
+         "imagewidth":32,
+         "properties":[
+                {
+                 "name":"dialog_id",
+                 "type":"string",
+                 "value":""
+                }, 
+                {
+                 "name":"entity_id",
+                 "type":"string",
+                 "value":"DialogExecute"
+                }, 
+                {
+                 "name":"message",
+                 "type":"string",
+                 "value":""
+                }]
         }],
  "tilewidth":128,
  "type":"tileset",

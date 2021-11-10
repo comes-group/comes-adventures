@@ -11,7 +11,7 @@ import { AudioManager, Music } from "./audio_manager";
 import { SecurityGateEntity, SecurityGates } from "./gates";
 import { GenericEnemies, GenericEnemyEntity } from "./enemies";
 import { EnemySpawner, UtilitySpawner } from "./spawners";
-import { UtilityEntity } from "./utility_entities";
+import { Utilities, UtilityEntity } from "./utility_entities";
 
 // Wrapper class for manipulating canvas
 // making things more like in real game engine
@@ -134,6 +134,15 @@ export default class World {
 
 				this.add_entity(spawner);
 			}
+		}
+
+		for (const utility_object of this.world_layers.utility_entites) {
+			let util_entity_id = this.world_layers.tileset.get_tile_by_id(utility_object.tile_id).properties["entity_id"];
+			let util_entity = new UtilityEntity(Utilities[util_entity_id], utility_object);
+
+			util_entity.position = new Vector2(utility_object.position.x, utility_object.position.y - 32);
+
+			this.add_entity(util_entity);
 		}
 	}
 
@@ -278,17 +287,49 @@ export default class World {
 				}
 			}
 
-			for (const enemy of this.enemy_entities) {
-				create_entity_collision(
-					enemy,
-					entity.position,
-					entity.size
-				);
+			if (entity.type != EntityType.Item) {
+				for (const enemy of this.enemy_entities) {
+					create_entity_collision(
+						enemy,
+						entity.position,
+						entity.size
+					);
+				}
+			}
+
+			for (const util_entity of this.utility_entities) {
+				if (rect_intersect(
+					entity.position.x,
+					entity.position.y,
+					entity.hitbox.x,
+					entity.hitbox.y,
+					util_entity.position.x,
+					util_entity.position.y,
+					util_entity.hitbox.x,
+					util_entity.hitbox.y
+				)) {
+					collisions.push(util_entity);
+					util_entity.collides_with([entity]);
+				}
+
+				if (rect_intersect(
+					util_entity.position.x,
+					util_entity.position.y,
+					util_entity.hitbox.x,
+					util_entity.hitbox.y,
+					this.player.position.x,
+					this.player.position.y,
+					this.player.hitbox.x,
+					this.player.hitbox.y
+				)) {
+					player_collisions.push(util_entity);
+					util_entity.collides_with([this.player]);
+				}
 			}
 
 			// Emit collides_with event to entities
 			// and render them
-			entity.collides_with(this, collisions);
+			entity.collides_with(collisions);
 			entity.render(ctx);
 		}
 

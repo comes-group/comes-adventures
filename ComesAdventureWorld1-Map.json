@@ -405,7 +405,19 @@
          "draworder":"topdown",
          "id":10,
          "name":"UtilityEntites",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":26,
+                 "height":32,
+                 "id":158,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":256
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1516,7 +1528,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":156,
+ "nextobjectid":161,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
