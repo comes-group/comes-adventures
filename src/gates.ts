@@ -1,6 +1,7 @@
 import { create_player_collision, Vector2 } from "./common";
 import { Dialogs } from "./dialog_manager";
 import Entity, { Direction, EntityType } from "./entity";
+import { ItemInformations } from "./item";
 import { Quests } from "./quest_manager";
 import { world } from "./world";
 
@@ -18,6 +19,12 @@ export const SecurityGates: { [key: string]: SecurityGateInfo } = {
 	Region1_BlockBeforeSpiderAndOrthoSpawners: {
 		can_be_removed: (sge: SecurityGateEntity) => {
 			return world.quest_man.completed.includes(Quests["Region1_GetTheDaggerBoi"]);
+		}
+	},
+
+	Region1_BlockBeforePathToTheCity: {
+		can_be_removed: (sge: SecurityGateEntity) => {
+			return world.player.eq_has_item(ItemInformations["PoorManBow"], 1);
 		}
 	}
 };
@@ -44,7 +51,7 @@ export class SecurityGateEntity implements Entity {
 		this.sgi = sgi;
 		this.size = size;
 		this.hitbox = size;
-		this.position = position;
+		this.position = new Vector2(position.x, (position.y - this.size.y) + 32);
 	}
 
 	damage() {}
