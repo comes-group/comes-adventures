@@ -1,6 +1,7 @@
 import { Sounds } from "./audio_manager";
 import { rect_intersect, Vector2 } from "./common";
 import Entity, { Direction, EntityType } from "./entity";
+import { Utilities, UtilityEntity } from "./utility_entities";
 import World, { world } from "./world";
 
 /*
@@ -102,6 +103,26 @@ class Item_Weapon_Shooting_OneDir implements ItemImplementation {
 		if (!this.can_be_used)
 			return;
 
+		if (!world.player.eq_has_item(ItemInformations[this.info.special_info.uses], 1)) {
+			return;
+		}
+
+		let projectile = new UtilityEntity(Utilities.Projectile, null, {
+			speed: this.info.special_info.speed,
+			damage: this.info.special_info.damage,
+			range: this.info.special_info.range,
+			item: this.info.special_info.uses,
+			direction: world.player.facing
+		});
+
+		projectile.position = world.player.position.clone();
+
+		world.add_entity(projectile);
+		world.player.remove_item_by_iteminfo_from_eq_with_amount(
+			ItemInformations[this.info.special_info.uses],
+			1
+		);
+
 		world.audio_man.play_sound(Sounds.Attack_Shooting_OneDir);
 
 		this.can_be_used = false;
@@ -179,8 +200,10 @@ export const ItemInformations: {
 		equippable: EquippableSlot.WeaponSlot,
 		implementation: Item_Weapon_Shooting_OneDir,
 		special_info: {
-			range: 6,
-			timeout: 300,
+			range: 4,
+			timeout: 500,
+			damage: 4,
+			speed: 4,
 			uses: "Arrow"
 		}
 	},

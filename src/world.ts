@@ -337,6 +337,24 @@ export default class World {
 			if (this.frame_count % 30 == 0)
 				enemy.process();
 
+			let collisions = [];
+			for (const util_entity of this.utility_entities) {
+				if (rect_intersect(
+					enemy.position.x,
+					enemy.position.y,
+					enemy.hitbox.x,
+					enemy.hitbox.y,
+					util_entity.position.x,
+					util_entity.position.y,
+					util_entity.hitbox.x,
+					util_entity.hitbox.y
+				)) {
+					collisions.push(util_entity);
+					util_entity.collides_with([enemy]);
+				}
+			}
+			enemy.collides_with(collisions);
+
 			enemy.logic_process();
 
 			enemy.render(ctx);

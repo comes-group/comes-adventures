@@ -167,6 +167,26 @@ export class Player extends RenderablePlayer {
 		}
 	}
 
+	remove_item_by_iteminfo_from_eq_with_amount(item: ItemInfo, amount: number) {
+		let items_to_remove = [];
+		let deleted_amount = amount;
+
+		for(const item_in_eq of this.eq_items_inside) {
+			if(item_in_eq.info == item) {
+				items_to_remove.push(item_in_eq);
+			}
+		}
+
+		for(const item_to_remove of items_to_remove) {
+			if(deleted_amount == 0) {
+				return;
+			}
+
+			this.remove_item_from_eq(item_to_remove);
+			deleted_amount -= 1;
+		}
+	}
+
 	// Drop item from equippment to ground
 	drop_item_from_eq(item: ItemInPlayerEq) {
 		this.remove_item_from_eq(item);

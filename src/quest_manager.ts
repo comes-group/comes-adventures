@@ -3,7 +3,8 @@ import World, { world } from "./world";
 
 export interface QuestRequirement {
 	item: ItemInfo,
-	quantity: number
+	quantity: number,
+	remove: number
 }
 
 export interface Quest {
@@ -17,7 +18,8 @@ export const Quests: { [key: string]: Quest } = {
 		requirements: [
 			{
 				item: ItemInformations["Dagger"],
-				quantity: 1
+				quantity: 1,
+				remove: 0
 			}
 		]
 	},
@@ -27,15 +29,18 @@ export const Quests: { [key: string]: Quest } = {
 		requirements: [
 			{
 				item: ItemInformations["Calcium"],
-				quantity: 16
+				quantity: 16,
+				remove: -1,
 			},
 			{
 				item: ItemInformations["Minecraft_String"],
-				quantity: 7
+				quantity: 7,
+				remove: -1,
 			},
 			{
 				item: ItemInformations["Some_Sticks"],
-				quantity: 25
+				quantity: 25,
+				remove: -1,
 			}
 		]
 	}
@@ -84,6 +89,16 @@ export class QuestManager {
 			if (completed_requirements == quest.requirements.length) {
 				this.in_progress.splice(i, 1);
 				this.completed.push(quest);
+
+				for (const requirement of quest.requirements) {
+					if (requirement.remove == -1) {
+						world.player.remove_item_by_iteminfo_from_eq_with_amount(requirement.item, requirement.quantity);
+					}
+
+					if (requirement.remove > 0) {
+						world.player.remove_item_by_iteminfo_from_eq_with_amount(requirement.item, requirement.remove);
+					}
+				}
 
 				alert(`You completed quest ${quest.name}`);
 			}

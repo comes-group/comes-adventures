@@ -121,6 +121,75 @@ export const Utilities: { [key: string]: UtilityEntityInfo } = {
 			}
 		}
 	},
+
+	/*
+		{
+			speed: this.info.special_info.speed,
+			damage: this.info.special_info.damage,
+			range: this.info.special_info.range,
+			item: this.info.special_info.uses,
+			direction: world.player.facing
+		}
+	*/
+
+	Projectile: {
+		health: -1,
+		sprite_src: "",
+		drops: {},
+		damagable: false,
+		pure_functional: true,
+
+		on_init: (ue) => {
+			(ue as any).travelled_distance = 0
+			ue.sprite.src = ItemInformations[ue.special_data.item].texture_url;
+
+			setInterval(() => {
+				(ue as any).can_make_damage = true;
+			}, 50);
+		},
+
+		on_collision: (ue, entities) => {
+			if ((ue as any).can_make_damage) {
+				for (const entity of entities) {
+					if (entity.type == EntityType.GenericEnemy) {
+						entity.damage(ue.special_data.damage);
+					}
+				}
+
+				(ue as any).can_make_damage = false;
+			}
+		},
+
+		on_render: (ue: UtilityEntity, ctx) => {
+			ctx.drawImage(
+				ue.sprite,
+				ue.position.x + ((ue.hitbox.x - ue.sprite.width) / 2),
+				ue.position.y - (ue.sprite.height - 32)
+			);
+
+			if (ue.special_data.direction == Direction.North) {
+				ue.position.y -= ue.special_data.speed;
+			} else if (ue.special_data.direction == Direction.South) {
+				ue.position.y += ue.special_data.speed;
+			} else if (ue.special_data.direction == Direction.West) {
+				ue.position.x -= ue.special_data.speed;
+			} else if (ue.special_data.direction == Direction.East) {
+				ue.position.x += ue.special_data.speed;
+			}
+		},
+
+		on_process: (ue) => {
+			if ((ue as any).travelled_distance * 32 >= ue.special_data.range * 32) {
+				world.remove_entity((ue as any).id)
+
+				let item_entity = new ItemEntity(ItemInformations[ue.special_data.item]);
+				item_entity.position = ue.position.clone();
+				world.add_entity(item_entity);
+			}
+
+			(ue as any).travelled_distance += ue.special_data.speed;
+		}
+	}
 };
 
 export class UtilityEntity implements Entity {
@@ -135,17 +204,22 @@ export class UtilityEntity implements Entity {
 
 	facing = Direction.North;
 	uei: UtilityEntityInfo;
+	special_data: any;
 
 	sprite = new Image();
 
 	worldlayer_object: null | WorldLayerObject;
 
-	constructor(uei: UtilityEntityInfo, worldlayer_object: WorldLayerObject = null) {
+	constructor(uei: UtilityEntityInfo, worldlayer_object: WorldLayerObject = null, special_data: any = {}) {
 		this.uei = uei;
 		this.sprite.src = uei.sprite_src;
 		this.health = uei.health;
+		this.special_data = special_data;
 
 		this.worldlayer_object = worldlayer_object;
+
+		if (this.uei.on_init)
+			this.uei.on_init(this);
 	}
 
 	damage(amount: number) {
