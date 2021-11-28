@@ -204,7 +204,7 @@ export default class World {
 				tile.image,
 				object.position.x,
 				object.position.y - object.size.y,
-				object.size.y,
+				object.size.x,
 				object.size.y
 			);
 		}
