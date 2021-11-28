@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Comes Adventures</title>
+</head>
+
+<body>
+	<h1>COMES ADVENTURES</h1>
+
+	<div id="stage">
+		<div id="ui-layer">
+			<div id="item-pick-dialog">
+				Press <kbd>E</kbd> to pick:
+				<ul>
+					<li>aaa</li>
+				</ul>
+			</div>
+			<div id="player-equipment">
+				<div class="scroll">
+					<div class="player-info">
+						<div class="equipped"></div>
+					</div>
+					<br>
+				</div>
+			</div>
+			<div id="interact-with-npc">
+				Press <kbd>F</kbd> to talk with:
+				<span></span>
+			</div>
+			<div id="player-quests">
+				Things you must do:
+				<ul>
+				</ul>
+			</div>
+			<div id="talk-with-npc-dialog">
+				<div>
+					<img src="https://cdn.discordapp.com/attachments/635191339859836948/902221013150998608/unknown.png"
+						width="128">
+					<div>
+						<b>Old man</b>
+						<span>
+							Welcome Comes, this is world. You must defeat Final Boss.
+						</span>
+					</div>
+				</div>
+				<button>Next</button>
+			</div>
+			<div id="player-stats">
+				<div>
+					HP:
+					<input type="range" id="player-stats-hp" min="0" max="100" value="100" disabled>
+				</div>
+				<div>
+					MP:
+					<input type="range" id="player-stats-mana" min="0" max="100" value="100" disabled>
+				</div>
+			</div>
+		</div>
+		<canvas id="game-canvas" width="800" height="600" style="border:1px solid lightgrey;"></canvas>
+	</div>
+
+	<button id="ui-save-button">Save game</button>
+
+	<br>
+
+	<label for="sound-volume">Sound volume:</label>
+	<input type="range" id="sound-volume" min="0" max="100" value="100">
+
+	<br>
+
+	<label for="music-volume">Music volume:</label>
+	<input type="range" id="music-volume" min="0" max="100" value="100">
+
+
+	<h3>Controls:</h3>
+	<ul>
+		<li><kbd>E</kbd> Pick up items</li>
+		<li><kbd>F</kbd> Talk to npc</li>
+		<li><kbd>I</kbd> Open inventory</li>
+		<li><kbd>SPACE</kbd> Attack</li>
+		<li><kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, <kbd>D</kbd> Control character</li>
+	</ul>
+
+	<h3>Credits:</h3>
+	<ul>
+		<li>
+			<h4>Programming:</h4>
+			<ul>
+				<li>firstbober</li>
+			</ul>
+		</li>
+		<li>
+			<h4>Graphics:</h4>
+			<ul>
+				<li>liquidev</li>
+				<li>firstbober</li>
+			</ul>
+		</li>
+		<li>
+			<h4>Music:</h4>
+			<ul>
+				<li>liquidev</li>
+			</ul>
+		</li>
+	</ul>
+
+	<script src="./dist/main.js"></script>
+
+	<style>
+		body {
+			background-image: url('./assets/background.png');
+			color: white;
+		}
+
+		#stage {
+			width: 800px;
+			height: 600px;
+			position: relative;
+		}
+
+		kbd {
+			background-color: black;
+			color: white;
+			border-radius: 4px;
+			padding: 6px;
+		}
+
+		#ui-layer {
+			width: 800px;
+			height: 600px;
+		}
+
+		canvas,
+		#ui-layer,
+		#item-pick-dialog,
+		#player-equipment,
+		#interact-with-npc,
+		#player-quests,
+		#talk-with-npc-dialog,
+		#player-stats {
+			position: absolute;
+		}
+
+		#ui-layer {
+			z-index: 3;
+		}
+
+		#item-pick-dialog,
+		#interact-with-npc,
+		#player-quests {
+			width: 200px;
+			background-color: rgba(0, 0, 0, 0.5);
+			height: 300px;
+			left: 32px;
+			top: 32px;
+			color: white;
+			display: none;
+		}
+
+		#interact-with-npc {
+			left: 500px;
+			height: 60px;
+			right: 32px;
+		}
+
+		#player-quests {
+			width: 300px;
+			padding: 8px;
+			left: 550px;
+			top: 120px;
+		}
+
+		#player-equipment {
+			background-color: rgba(0, 0, 0, 0.8);
+			width: 800px;
+			height: 600px;
+			color: white;
+			display: flex;
+			flex-direction: column;
+			padding: 26px;
+			box-sizing: border-box;
+			display: none;
+		}
+
+		#player-equipment .item-in-eq {
+			display: flex;
+			gap: 16px;
+			border: 1px solid white;
+			padding: 6px;
+			align-items: center;
+		}
+
+		#player-equipment .equipped {
+			display: flex;
+			align-items: center;
+			gap: 1em;
+		}
+
+		#game-canvas {
+			z-index: 2;
+		}
+
+		#talk-with-npc-dialog {
+			width: 800px;
+			background-color: rgba(0, 0, 0, 0.8);
+			color: white;
+			bottom: 20px;
+			padding: 8px;
+			display: none;
+		}
+
+		#talk-with-npc-dialog>div {
+			display: flex;
+			gap: 12px;
+		}
+
+		#talk-with-npc-dialog>div>div {
+			display: flex;
+			flex-direction: column;
+		}
+
+		#talk-with-npc-dialog>div>div b {
+			font-size: 2em;
+		}
+
+		#talk-with-npc-dialog>div>div span {
+			font-size: 1.5em;
+		}
+
+		#talk-with-npc-dialog button {
+			width: 100%;
+			font-size: 1.5em;
+			margin-top: 10px;
+		}
+
+		#player-stats div {
+			display: flex;
+			align-items: center;
+		}
+
+		#player-stats {
+			background-color: rgba(0, 0, 0, 0.8);
+			color: white;
+			padding: 12px;
+			bottom: 0;
+		}
+
+		#player-stats div:nth-child(1) input {
+			filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2);
+		}
+
+		#player-stats div:nth-child(2) input {
+			filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+		}
+	</style>
+</body>
